@@ -25,4 +25,5 @@ public class Config {
     public static final String rsvp_name2="rsvp_name2";
     public static final String rsvp_phone_one="rsvp_phone_one";
     public static final String rsvp_phone_two="rsvp_phone_two";
+    public static final String rsvp_phone="rsvp_phone_two";
 }
