@@ -90,11 +90,11 @@ public class Events extends Fragment implements View.OnClickListener {
     }
 
     private void setEventTwoValues() {
-        if (sharedPreferences.getString(Config.sagan_engag_tobe, "true").equalsIgnoreCase("true")) {
+        if (sharedPreferences.getString(Config.event_Two_tobe, "true").equalsIgnoreCase("true")) {
             card1.setVisibility(View.VISIBLE);
-            dateValueSag.setText(sharedPreferences.getString(Config.sagan_date, "DATE"));
-            TimeValueSag.setText(sharedPreferences.getString(Config.sagan_time, "TIME"));
-            eventValueSag.setText(sharedPreferences.getString(Config.sagan_location, "location"));
+            dateValueSag.setText(sharedPreferences.getString(Config.event_Two_date, "DATE"));
+            TimeValueSag.setText(sharedPreferences.getString(Config.event_Two_time, "TIME"));
+            eventValueSag.setText(sharedPreferences.getString(Config.event_Two_location, "location"));
         }else{
             card1.setVisibility(View.GONE);
         }

@@ -12,10 +12,10 @@ public class Config {
     public static final String name_groom="name_groom";
     public static final String date_marriage="date_marriage";
     public static final String blessUs_para="blessUs_para";
-    public static final String sagan_engag_tobe="sagan_engag_tobe";
-    public static final String sagan_date="sagan_date";
-    public static final String sagan_time="sagan_time";
-    public static final String sagan_location="sagan_location";
+    public static final String event_Two_tobe ="sagan_engag_tobe";
+    public static final String event_Two_date ="sagan_date";
+    public static final String event_Two_time ="sagan_time";
+    public static final String event_Two_location ="sagan_location";
     public static final String marriage_tobe="marriage_tobe";
     public static final String marriage_date="marriage_date";
     public static final String marriage_time="marriage_time";

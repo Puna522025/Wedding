@@ -141,10 +141,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.name_groom, groomName);
                     paramsj.put(Config.date_marriage, sharedPreferences.getString(Config.date_marriage, "DATE"));
                     paramsj.put(Config.blessUs_para, sharedPreferences.getString(Config.blessUs_para, "DATE"));
-                    paramsj.put(Config.sagan_engag_tobe, sharedPreferences.getString(Config.sagan_engag_tobe, "DATE"));
-                    paramsj.put(Config.sagan_date, sharedPreferences.getString(Config.sagan_date, "DATE"));
-                    paramsj.put(Config.sagan_time, sharedPreferences.getString(Config.sagan_time, "DATE"));
-                    paramsj.put(Config.sagan_location, sharedPreferences.getString(Config.sagan_location, "DATE"));
+                    paramsj.put(Config.event_Two_tobe, sharedPreferences.getString(Config.event_Two_tobe, "DATE"));
+                    paramsj.put(Config.event_Two_date, sharedPreferences.getString(Config.event_Two_date, "DATE"));
+                    paramsj.put(Config.event_Two_time, sharedPreferences.getString(Config.event_Two_time, "DATE"));
+                    paramsj.put(Config.event_Two_location, sharedPreferences.getString(Config.event_Two_location, "DATE"));
                     paramsj.put(Config.marriage_tobe, sharedPreferences.getString(Config.marriage_tobe, "DATE"));
                     paramsj.put(Config.marriage_date, sharedPreferences.getString(Config.marriage_date, "DATE"));
                     paramsj.put(Config.marriage_time, sharedPreferences.getString(Config.marriage_time, "DATE"));

@@ -111,10 +111,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         String name_groom = "";
         String date_marriage = "";
         String blessUs_para = "";
-        String sagan_engag_tobe = "";
-        String sagan_date = "";
-        String sagan_time = "";
-        String sagan_location = "";
+        String event_Two_tobe = "";
+        String event_Two_date = "";
+        String event_Two_time = "";
+        String event_Two_location = "";
         String marriage_tobe = "";
         String marriage_date = "";
         String marriage_time = "";
@@ -134,10 +134,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             name_groom = collegeData.getString(Config.name_groom);
             date_marriage = collegeData.getString(Config.date_marriage);
             blessUs_para = collegeData.getString(Config.blessUs_para);
-            sagan_engag_tobe = collegeData.getString(Config.sagan_engag_tobe);
-            sagan_date = collegeData.getString(Config.sagan_date);
-            sagan_time = collegeData.getString(Config.sagan_time);
-            sagan_location = collegeData.getString(Config.sagan_location);
+            event_Two_tobe = collegeData.getString(Config.event_Two_tobe);
+            event_Two_date = collegeData.getString(Config.event_Two_date);
+            event_Two_time = collegeData.getString(Config.event_Two_time);
+            event_Two_location = collegeData.getString(Config.event_Two_location);
             marriage_tobe = collegeData.getString(Config.marriage_tobe);
             marriage_date = collegeData.getString(Config.marriage_date);
             marriage_time = collegeData.getString(Config.marriage_time);
@@ -163,10 +163,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             editor.putString(Config.rsvp_phone_one, rsvp_phone_one);
             editor.putString(Config.rsvp_phone_two, rsvp_phone_two);
             editor.putString(Config.rsvp_tobe, rsvp_tobe);
-            editor.putString(Config.sagan_date, sagan_date);
-            editor.putString(Config.sagan_engag_tobe, sagan_engag_tobe);
-            editor.putString(Config.sagan_location, sagan_location);
-            editor.putString(Config.sagan_time, sagan_time);
+            editor.putString(Config.event_Two_date, event_Two_date);
+            editor.putString(Config.event_Two_tobe, event_Two_tobe);
+            editor.putString(Config.event_Two_location, event_Two_location);
+            editor.putString(Config.event_Two_time, event_Two_time);
             editor.apply();
 
             Intent intent = new Intent(this,MainActivity.class);
@@ -175,7 +175,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
            /* new AlertDialog.Builder(LaunchScreen.this)
                     .setTitle("Result")
                     .setMessage("unique_wed_code:\t" + unique_wed_code + "\nname_bride:\t" + name_bride + "\ndate_marriage:\t" + date_marriage
-                            + "\nsagan_engag_tobe:\t" + sagan_engag_tobe + "\nrsvp_phone_one:\t" + rsvp_phone_one)
+                            + "\nevent_Two_tobe:\t" + event_Two_tobe + "\nrsvp_phone_one:\t" + rsvp_phone_one)
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();

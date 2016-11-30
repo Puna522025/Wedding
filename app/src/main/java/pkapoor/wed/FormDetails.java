@@ -85,14 +85,17 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         rlEventRSVP = (RelativeLayout) findViewById(R.id.rlEventRSVP);
         rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
 
-        etEventNameText = (EditText) findViewById(R.id.etEventNameText);
+
         etNameBri = (EditText) findViewById(R.id.etNameBri);
         etNameGro = (EditText) findViewById(R.id.etNameGro);
         etLocationValue = (EditText) findViewById(R.id.LocationValue);
         etPinCodeValue = (EditText) findViewById(R.id.PinCodeValue);
         etInviteMesValue = (EditText) findViewById(R.id.InviteMesValue);
+
+        etEventNameText = (EditText) findViewById(R.id.etEventNameText);
         etLocationValueEventTwo = (EditText) findViewById(R.id.LocationValueEventTwo);
         etPinCodeValueEventTwo = (EditText) findViewById(R.id.PinCodeValueEventTwo);
+
         etRSVPNameOne = (EditText) findViewById(R.id.etRSVPNameOne);
         etRSVPMobileOne = (EditText) findViewById(R.id.etRSVPMobileOne);
         etRSVPNameTwo = (EditText) findViewById(R.id.etRSVPNameTwo);
@@ -130,8 +133,8 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         // editor.putString(Config.unique_wed_code, etInviteMesValue.getText().toString());
         String marDateTime = tvmarDateTimeText.getText().toString();
 
-        String marDate =  marDateTime.substring(0,marDateTime.indexOf(","));
-        String marTime =  marDateTime.substring(marDateTime.indexOf(",")+2,marDateTime.length());
+        String marDate = marDateTime.substring(0, marDateTime.indexOf(","));
+        String marTime = marDateTime.substring(marDateTime.indexOf(",") + 2, marDateTime.length());
 
         editor.putString(Config.date_marriage, marDateTime);
         editor.putString(Config.marriage_date, marDate);
@@ -155,19 +158,19 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
         String eventTwoDateTime = tvEventTwoDateTimeText.getText().toString();
 
-        String eventTwoDate =  eventTwoDateTime.substring(0,eventTwoDateTime.indexOf(","));
-        String eventTwoTime =  eventTwoDateTime.substring(eventTwoDateTime.indexOf(",")+2,eventTwoDateTime.length());
+        String eventTwoDate = eventTwoDateTime.substring(0, eventTwoDateTime.indexOf(","));
+        String eventTwoTime = eventTwoDateTime.substring(eventTwoDateTime.indexOf(",") + 2, eventTwoDateTime.length());
 
-        editor.putString(Config.sagan_date, eventTwoDate);
-        editor.putString(Config.sagan_time, eventTwoTime);
+        editor.putString(Config.event_Two_date, eventTwoDate);
+        editor.putString(Config.event_Two_time, eventTwoTime);
 
         if (switchEventTwo.isChecked()) {
-            editor.putString(Config.sagan_engag_tobe, "true");
+            editor.putString(Config.event_Two_tobe, "true");
         } else if (!switchEventRSVP.isChecked()) {
-            editor.putString(Config.sagan_engag_tobe, "false");
+            editor.putString(Config.event_Two_tobe, "false");
         }
 
-        editor.putString(Config.sagan_location, etLocationValueEventTwo.getText().toString() + "," + etPinCodeValueEventTwo.getText().toString());
+        editor.putString(Config.event_Two_location, etLocationValueEventTwo.getText().toString() + "," + etPinCodeValueEventTwo.getText().toString());
         editor.apply();
         progressBar.setVisibility(View.GONE);
 
@@ -175,7 +178,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         Bundle extras = intentOne.getExtras();
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(Config.setToolbarMenuIcons,extras.get(Config.setToolbarMenuIcons).toString());
+        intent.putExtra(Config.setToolbarMenuIcons, extras.get(Config.setToolbarMenuIcons).toString());
         startActivity(intent);
     }
 
