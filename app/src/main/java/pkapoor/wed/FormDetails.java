@@ -40,7 +40,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     EditText etEventNameText, etNameBri, etNameGro, etLocationValue, etPinCodeValue, etInviteMesValue,
             etLocationValueEventTwo, etPinCodeValueEventTwo, etRSVPNameOne, etRSVPMobileOne, etRSVPNameTwo, etRSVPMobileTwo, etInviteMesRSVPValue;
 
-    RelativeLayout rlEventTwo, rlEventRSVP;
+    RelativeLayout rlEventTwo, rlEventRSVP, rlBackground;
     SwitchCompat switchEventTwo, switchEventRSVP;
     ProgressBar progressBar;
     private Toolbar toolbar;
@@ -66,6 +66,10 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
         rlEventRSVP.setVisibility(View.VISIBLE);
 
+        /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.b);
+        Bitmap bb = BlurBuilder.blur(this, bitmap);
+        Drawable d = new BitmapDrawable(getResources(), bb);
+        rlBackground.setBackground(d);*/
     }
 
     private void initializingVariables() {
@@ -79,6 +83,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
         rlEventTwo = (RelativeLayout) findViewById(R.id.rlEventTwo);
         rlEventRSVP = (RelativeLayout) findViewById(R.id.rlEventRSVP);
+        rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
 
         etEventNameText = (EditText) findViewById(R.id.etEventNameText);
         etNameBri = (EditText) findViewById(R.id.etNameBri);
@@ -165,7 +170,12 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.sagan_location, etLocationValueEventTwo.getText().toString() + "," + etPinCodeValueEventTwo.getText().toString());
         editor.apply();
         progressBar.setVisibility(View.GONE);
+
+        Intent intentOne = getIntent();
+        Bundle extras = intentOne.getExtras();
+
         Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Config.setToolbarMenuIcons,extras.get(Config.setToolbarMenuIcons).toString());
         startActivity(intent);
     }
 

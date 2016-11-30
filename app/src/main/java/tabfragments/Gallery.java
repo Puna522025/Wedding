@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +39,7 @@ public class Gallery extends Fragment {
     Adapter adapter;
     RecyclerView listBxxxx, listRxxx, listGrxx;
     TextView tvEventrok, tvEventBri, tvEventGGGG, tvEventRSV, tvRsvpText, tvrsvpFaml1, tvRsvpFamlContact1, tvRsvpFaml2, tvRsvpFamlContact2;
-
+    CardView card4;
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "myPreference";
 
@@ -123,6 +124,7 @@ public class Gallery extends Fragment {
         tvRsvpFamlContact1 = (TextView) view.findViewById(R.id.rsvrFamlContact1);
         tvRsvpFamlContact2 = (TextView) view.findViewById(R.id.rsvrFamlContact2);
 
+        card4 = (CardView)view.findViewById(R.id.card4);
 
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DeliusSwashCaps-Regular.ttf");
 
@@ -143,12 +145,17 @@ public class Gallery extends Fragment {
     }
 
     private void setRSVPdetails() {
-        //tvRsvpText.setText(sharedPreferences.getString("we would like to jsdjkbf", "DATE"));
-        tvRsvpText.setText("vg.sdkmvk;sdmv;lsdmv;sdm,vsdvl;vm;sdlvmsdl;mvl;sd");
-        tvrsvpFaml1.setText(sharedPreferences.getString(Config.rsvp_name1, "name1"));
-        tvRsvpFaml2.setText(sharedPreferences.getString(Config.rsvp_name2, "name2"));
-        tvRsvpFamlContact1.setText(sharedPreferences.getString(Config.rsvp_phone_one, "phone1"));
-        tvRsvpFamlContact2.setText(sharedPreferences.getString(Config.rsvp_phone_two, "phone2"));
+        if (sharedPreferences.getString(Config.rsvp_tobe, "true").equalsIgnoreCase("true")) {
+            card4.setVisibility(View.VISIBLE);
+            //tvRsvpText.setText(sharedPreferences.getString("we would like to jsdjkbf", "DATE"));
+            tvRsvpText.setText("vg.sdkmvk;sdmv;lsdmv;sdm,vsdvl;vm;sdlvmsdl;mvl;sd");
+            tvrsvpFaml1.setText(sharedPreferences.getString(Config.rsvp_name1, "name1"));
+            tvRsvpFaml2.setText(sharedPreferences.getString(Config.rsvp_name2, "name2"));
+            tvRsvpFamlContact1.setText(sharedPreferences.getString(Config.rsvp_phone_one, "phone1"));
+            tvRsvpFamlContact2.setText(sharedPreferences.getString(Config.rsvp_phone_two, "phone2"));
+        }else{
+            card4.setVisibility(View.GONE);
+        }
     }
 
     private void setListLayout(RecyclerView list) {

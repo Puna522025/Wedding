@@ -74,7 +74,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_create_invite, menu);
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("yes")) {
+            getMenuInflater().inflate(R.menu.menu_create_invite, menu);
+        }else if(extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("no")) {
+            getMenuInflater().inflate(R.menu.menu_empty, menu);
+        }
         return true;
     }
 
@@ -87,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             return true;
         }
         if (id == R.id.action_edit) {
+            finish();
             //backgroundColorPickerDialog();
             return true;
         }

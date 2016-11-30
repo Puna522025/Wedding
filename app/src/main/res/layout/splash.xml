@@ -33,12 +33,6 @@
             android:text="Get Invite" />
 
     </RelativeLayout>
-        <Button
-            android:id="@+id/btnPut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Post Invite" />
     <Button
         android:id="@+id/btnCreateInvite"
         android:layout_width="wrap_content"

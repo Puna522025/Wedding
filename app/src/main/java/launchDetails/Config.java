@@ -27,4 +27,7 @@ public class Config {
     public static final String rsvp_phone_two="rsvp_phone_two";
     public static final String rsvp_phone="rsvp_phone_two";
     public static final String rsvpSample="rsvp_phone_two";
+    public static final String setToolbarMenuIcons ="setToolbarMenuIcons";
+
+    public static final String bundleMenuValue = "bundleMenuValue";
 }

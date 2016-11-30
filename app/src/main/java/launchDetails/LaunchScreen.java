@@ -36,7 +36,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     public static final String MyPREFERENCES = "myPreference";
     EditText etWedCode;
     RelativeLayout rlCode;
-    Button btnGetInvite, btnPostInvite,btnCreateInvite;
+    Button btnGetInvite, btnCreateInvite;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +45,6 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         etWedCode = (EditText) findViewById(R.id.etWedCode);
         rlCode = (RelativeLayout) findViewById(R.id.rlCode);
         btnGetInvite = (Button) findViewById(R.id.btnGetInvite);
-        btnPostInvite = (Button) findViewById(R.id.btnPut);
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
 
         new Handler().postDelayed(new Runnable() {
@@ -63,7 +62,6 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             }
         }, 1 * 1500); // wait for 5 seconds
         btnGetInvite.setOnClickListener(this);
-        btnPostInvite.setOnClickListener(this);
         btnCreateInvite.setOnClickListener(this);
     }
 
@@ -77,9 +75,6 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "Please enter the wedding invite code", Toast.LENGTH_LONG).show();
                 }
                 break;
-            case R.id.btnPut:
-                //insertToDatabase();
-                break;
             case R.id.btnCreateInvite:
                 createInviteForm();
                 break;
@@ -88,6 +83,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
     private void createInviteForm() {
         Intent intent = new Intent(this, FormDetails.class);
+        intent.putExtra(Config.setToolbarMenuIcons,"yes");
         startActivity(intent);
     }
 
@@ -174,6 +170,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             editor.apply();
 
             Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra(Config.setToolbarMenuIcons,"no");
             startActivity(intent);
            /* new AlertDialog.Builder(LaunchScreen.this)
                     .setTitle("Result")
