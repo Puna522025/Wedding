@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="50dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card1"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                android:layout_marginTop="@dimen/marginEventTopViewLine"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlTextRec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorRed">
+
+                        <TextView
+                            android:id="@+id/Event"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/marginEventTopViewLine"
+                            android:text="Sagan Ceremony"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/mainHeadingSize" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlTextRec"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp">
+
+
+                        <TextView
+                            android:id="@+id/dateText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/TimeText"
+                            android:layout_alignBottom="@+id/TimeText"
+                            android:layout_alignStart="@+id/dateValue"
+                            android:text="DATE"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/dateValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/dateText"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:layout_toLeftOf="@+id/divider"
+                            android:text="22/01/2017"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/valueTextSize" />
+
+                        <View
+                            android:id="@+id/viewDate"
+                            android:layout_width="25dp"
+                            android:layout_height="@dimen/viewHeight"
+                            android:layout_alignEnd="@+id/dateValue"
+                            android:layout_alignStart="@+id/dateValue"
+                            android:layout_below="@+id/dateValue"
+                            android:layout_marginTop="@dimen/marginEventTopViewLine"
+                            android:background="@android:color/darker_gray" />
+
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="50dp"
+                            android:layout_height="@dimen/marginEventTopViewLine"
+                            android:layout_centerInParent="true" />
+
+                        <TextView
+                            android:id="@+id/TimeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:layout_toRightOf="@id/divider"
+                            android:text="TIME"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/TimeValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TimeText"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:layout_toRightOf="@id/divider"
+                            android:text="07:00 pm"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/valueTextSize" />
+
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="25dp"
+                            android:layout_height="@dimen/viewHeight"
+                            android:layout_alignEnd="@+id/TimeValue"
+                            android:layout_below="@+id/dateValue"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="@dimen/marginEventTopViewLine"
+                            android:layout_toRightOf="@id/divider"
+                            android:background="@android:color/darker_gray" />
+
+                        <TextView
+                            android:id="@+id/EventText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/dateText"
+                            android:layout_below="@+id/viewDate"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:text="VENUE"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/eventValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/dateText"
+                            android:layout_below="@+id/EventText"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:text="2121dvsdvsdvsdvsdvs545"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/valueTextSize" />
+
+                        <View
+                            android:id="@+id/viewEvent"
+                            android:layout_width="25dp"
+                            android:layout_height="@dimen/viewHeight"
+                            android:layout_alignEnd="@+id/TimeValue"
+                            android:layout_alignStart="@+id/dateText"
+                            android:layout_below="@+id/eventValue"
+                            android:layout_marginTop="@dimen/marginEventTopViewLine"
+                            android:background="@android:color/darker_gray" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlSagLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/TimeValue"
+                            android:layout_alignStart="@+id/EventText"
+                            android:layout_below="@+id/viewEvent">
+
+                            <TextView
+                                android:id="@+id/Routetext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/marginEventTop"
+                                android:text="Click for Route"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:id="@+id/viewRoute"
+                                android:layout_width="25dp"
+                                android:layout_height="@dimen/viewHeight"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_below="@+id/locationTap"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginTop="@dimen/marginEventTopViewLine"
+                                android:background="@android:color/darker_gray" />
+
+                            <ImageView
+                                android:id="@+id/locationTap"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignTop="@+id/Routetext"
+                                android:src="@drawable/location"
+                                android:tint="@android:color/darker_gray" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card2"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card1"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlTextMar"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorRed">
+
+                        <TextView
+                            android:id="@+id/MarriEvent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/marginEventTopViewLine"
+                            android:text="Mariage Ceremony"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/mainHeadingSize" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlTextMar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/dateTextMar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/dateValueMar"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:text="DATE"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/dateValueMar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/dateTextMar"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:layout_toLeftOf="@+id/dividerMar"
+                            android:text="23/01/2017"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/valueTextSize" />
+
+                        <View
+                            android:id="@+id/viewDateMar"
+                            android:layout_width="25dp"
+                            android:layout_height="@dimen/viewHeight"
+                            android:layout_alignEnd="@+id/dateValueMar"
+                            android:layout_alignStart="@+id/dateValueMar"
+                            android:layout_below="@+id/dateValueMar"
+                            android:layout_marginTop="@dimen/marginEventTopViewLine"
+                            android:background="@android:color/darker_gray" />
+
+                        <View
+                            android:id="@+id/dividerMar"
+                            android:layout_width="50dp"
+                            android:layout_height="@dimen/marginEventTopViewLine"
+                            android:layout_centerInParent="true" />
+
+                        <TextView
+                            android:id="@+id/TimeTextMar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:layout_toRightOf="@id/dividerMar"
+                            android:text="TIME"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/TimeValueMar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/TimeTextMar"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:layout_toRightOf="@id/dividerMar"
+                            android:text="08:00 pm"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/valueTextSize" />
+
+                        <View
+                            android:id="@+id/viewMar"
+                            android:layout_width="25dp"
+                            android:layout_height="@dimen/viewHeight"
+                            android:layout_alignEnd="@+id/TimeValueMar"
+                            android:layout_below="@+id/dateValueMar"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="@dimen/marginEventTopViewLine"
+                            android:layout_toRightOf="@id/dividerMar"
+                            android:background="@android:color/darker_gray" />
+
+                        <TextView
+                            android:id="@+id/EventTextMar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/dateTextMar"
+                            android:layout_below="@+id/viewDateMar"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:text="VENUE"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/eventValueMar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/dateTextMar"
+                            android:layout_below="@+id/EventTextMar"
+                            android:layout_marginTop="@dimen/marginEventTop"
+                            android:text="2121dvsdvsdvsdvsdvs545"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/valueTextSize" />
+
+                        <View
+                            android:id="@+id/viewEventMar"
+                            android:layout_width="25dp"
+                            android:layout_height="@dimen/viewHeight"
+                            android:layout_alignEnd="@+id/TimeValueMar"
+                            android:layout_alignStart="@+id/dateTextMar"
+                            android:layout_below="@+id/eventValueMar"
+                            android:layout_marginTop="@dimen/marginEventTopViewLine"
+                            android:background="@android:color/darker_gray" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlMarLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/TimeValueMar"
+                            android:layout_alignStart="@+id/dateTextMar"
+                            android:layout_below="@+id/viewEventMar">
+
+                            <TextView
+                                android:id="@+id/RoutetextMar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/marginEventTop"
+                                android:text="Click for Route"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:id="@+id/viewRouteMar"
+                                android:layout_width="25dp"
+                                android:layout_height="@dimen/viewHeight"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_below="@+id/locationTapMar"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginTop="@dimen/marginEventTopViewLine"
+                                android:background="@android:color/darker_gray" />
+
+                            <ImageView
+                                android:id="@+id/locationTapMar"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignTop="@+id/RoutetextMar"
+                                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                                android:src="@drawable/location"
+                                android:tint="@android:color/darker_gray" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

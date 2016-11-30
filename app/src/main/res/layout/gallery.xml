@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="50dp">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card1"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlTextRec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorRed">
+
+                        <TextView
+                            android:id="@+id/Event"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/marginEventTopViewLine"
+                            android:text="TTT RRRR"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/mainHeadingSize" />
+                    </RelativeLayout>
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/listRxxx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlTextRec"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:scrollbars="vertical" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card2"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card1"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlTextBri"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorRed">
+
+                        <TextView
+                            android:id="@+id/EventBri"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/marginEventTopViewLine"
+                            android:text="TTT BBBBB"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/mainHeadingSize" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/listBrid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlTextBri"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:scrollbars="vertical" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card3"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card2"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlTextGggg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorRed">
+
+                        <TextView
+                            android:id="@+id/EventGGGG"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/marginEventTopViewLine"
+                            android:text="TTT GGGGG"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/mainHeadingSize" />
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/listGrxx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlTextGggg"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:scrollbars="vertical" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card4"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card3"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                android:layout_marginRight="@dimen/marginEventTopViewLine"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlRSV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorRed">
+
+                        <TextView
+                            android:id="@+id/EventRSV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/marginEventTopViewLine"
+                            android:text="RRRR"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/mainHeadingSize" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/rsvrText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlRSV"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:text="We request the pleasure of your company at the celebration of their union."
+                        android:textColor="@color/textColor"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/rsvrFaml1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rsvrText"
+                        android:layout_centerHorizontal="true"
+                        android:text="Vvvvv Kaaaaa"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/counterValue" />
+
+                    <TextView
+                        android:id="@+id/rsvrFaml2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rsvrFaml1"
+                        android:layout_centerHorizontal="true"
+                        android:text="Niddd Kaaaaa"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/counterValue" />
+                    <TextView
+                        android:id="@+id/rsvrFamlContact1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rsvrFaml2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="8800817842"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/counterValue" />
+
+                    <TextView
+                        android:id="@+id/rsvrFamlContact2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rsvrFamlContact1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:text="8800817842"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/counterValue" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

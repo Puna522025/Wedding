@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="50dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card1"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imageHea"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/calendar" />
+
+
+                        <TextView
+                            android:id="@+id/inviteText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imageHea"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:text="Inites you to their"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/mainCoupSize" />
+
+                        <ImageView
+                            android:id="@+id/imageWedding"
+                            android:layout_width="150dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/inviteText"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/wedding_banner"
+                            android:tint="@android:color/white" />
+
+                        <TextView
+                            android:id="@+id/tobeHeld"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/imageWedding"
+                            android:layout_marginLeft="10dp"
+                            android:layout_below="@+id/imageWedding"
+                            android:text="To be held on"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/mainCoupSize" />
+
+                        <TextView
+                            android:id="@+id/Date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tobeHeld"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:text="Jan 23, 2017"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/Date" />
+
+                        <TextView
+                            android:id="@+id/BriName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/imageHea"
+                            android:layout_marginTop="15dp"
+                            android:layout_toLeftOf="@+id/imageHea"
+                            android:text="ccccc"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/mainCoupName" />
+
+                        <TextView
+                            android:id="@+id/GroName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/BriName"
+                            android:layout_alignBottom="@+id/BriName"
+                            android:layout_toEndOf="@+id/imageHea"
+                            android:text="ccccc"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/mainCoupName" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/heading"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="30dp">
+
+                        <RelativeLayout
+                            android:id="@+id/rlDay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/daysValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterValue"
+                                android:textStyle="bold"
+                                tools:text="59" />
+
+                            <TextView
+                                android:id="@+id/daysText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/daysValue"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="Days"
+
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterText" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/viewDays"
+                            android:layout_width="0.7dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/rlDay"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/marginCounter"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/rlDay"
+                            android:background="@color/viewColor" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/rlHour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/marginCounter"
+                            android:layout_toRightOf="@+id/viewDays">
+
+                            <TextView
+                                android:id="@+id/HourValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="5dp"
+                                android:text="59"
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterValue"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/HourText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/HourValue"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="Hours"
+
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterText" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/viewHour"
+                            android:layout_width="0.7dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/rlDay"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/marginCounter"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/rlHour"
+                            android:background="@color/viewColor" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlMin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/marginCounter"
+                            android:layout_toRightOf="@+id/viewHour">
+
+                            <TextView
+                                android:id="@+id/MinValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="5dp"
+                                android:text="59"
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterValue"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/MinText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/MinValue"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+
+                                android:text="Minutes"
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterText" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:id="@+id/MinView"
+                            android:layout_width="0.7dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/rlDay"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="@dimen/marginCounter"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/rlMin"
+                            android:background="@color/viewColor" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/rlSec"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/marginCounter"
+                            android:layout_toRightOf="@+id/MinView">
+
+                            <TextView
+                                android:id="@+id/SecValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="5dp"
+                                android:text="59"
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterValue"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/SecText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/SecValue"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:text="Seconds"
+
+                                android:textColor="@color/colorRed"
+                                android:textSize="@dimen/counterText" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card2"
+                style="@style/CardViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card1"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/rlBless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            android:id="@+id/tvBless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bless"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/mainCoupSize" />
+
+                        <TextView
+                            android:id="@+id/tvUs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/tvBless"
+                            android:text="Us"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/mainCoupSize" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tcTextblesss"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rlBless"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="hyghighbbhbbbbbbbbhjimllmmlmlbbbbbbj"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/counterValue" />
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

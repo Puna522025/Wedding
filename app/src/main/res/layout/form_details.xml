@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        </android.support.design.widget.AppBarLayout>
+
+        <TextView
+            android:id="@+id/tvFillForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appBarLayout"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/margin_top_forms"
+            android:text="Please fill the details so that we can go ahead and create your invite--"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/headingEvents"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tvFillForm">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardWed"
+                    style="@style/CardViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                    android:layout_marginRight="@dimen/marginEventTopViewLine"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorCardLayout">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/NameBriText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Name(Bri)"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etNameBri"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/NameBriText"
+                            android:layout_below="@+id/NameBriText"
+                            android:digits="abcdefghijklmnopqrstuvwxyz"
+                            android:maxLength="12"
+                            android:textSize="@dimen/headingEvents" />
+
+
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="50dp"
+                            android:layout_height="@dimen/marginEventTopViewLine"
+                            android:layout_centerInParent="true" />
+
+                        <TextView
+                            android:id="@+id/NameGroText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/divider"
+                            android:text="Name(Gr)"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/etNameGro"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/NameGroText"
+                            android:layout_below="@+id/NameBriText"
+                            android:layout_toRightOf="@+id/divider"
+                            android:digits="abcdefghijklmnopqrstuvwxyz"
+                            android:inputType="textPersonName"
+                            android:maxLength="12"
+                            android:textSize="@dimen/headingEvents" />
+
+                        <TextView
+                            android:id="@+id/DateText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etNameBri"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Wedding Date &amp; Time"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imgDateCalender"
+                            android:layout_width="20dp"
+                            android:layout_height="30dp"
+                            android:layout_below="@+id/DateText"
+                            android:layout_marginLeft="65dp"
+                            android:src="@drawable/calendar" />
+
+                        <TextView
+                            android:id="@+id/marDateTimeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etNameBri"
+                            android:layout_marginTop="20dp"
+                            android:layout_toRightOf="@+id/divider"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:text="23/10/2015, 7:00pm"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/LocationText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imgDateCalender"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Wedding Location(Address)"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/LocationValue"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/LocationText"
+                            android:layout_below="@+id/LocationText"
+                            android:layout_marginRight="10dp"
+                            android:layout_toStartOf="@+id/PinCodeText"
+                            android:textSize="@dimen/headingEvents" />
+
+                        <TextView
+                            android:id="@+id/PinCodeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imgDateCalender"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/divider"
+                            android:text="Pin Code"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/PinCodeValue"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/PinCodeText"
+                            android:layout_below="@+id/PinCodeText"
+                            android:layout_toRightOf="@+id/divider"
+                            android:maxLength="8"
+                            android:textSize="@dimen/headingEvents" />
+
+                        <TextView
+                            android:id="@+id/InviteMesText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/LocationValue"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Invite Message from the couple"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/InviteMesCharacters"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/LocationValue"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/InviteMesText"
+                            android:text="(100 char)"
+                            android:textColor="@color/textColor"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/InviteMesValue"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignStart="@+id/LocationText"
+                            android:layout_below="@+id/InviteMesText"
+                            android:maxLength="100"
+                            android:textSize="@dimen/headingEvents" />
+
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardEventOne"
+                    style="@style/CardViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardWed"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                    android:layout_marginRight="@dimen/marginEventTopViewLine"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorCardLayout">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/SecondEventHeadingText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Event 2 (Engagement/Sagan etc..)"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/TobeAddedText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/SecondEventHeadingText"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Include this event?"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/switchEventTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/TobeAddedText"
+                            android:layout_below="@+id/TobeAddedText"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:checked="true" />
+
+                        <TextView
+                            android:id="@+id/EventNameText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/SecondEventHeadingText"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_toRightOf="@+id/dividerEventTwo"
+                            android:text="Event Name"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/etEventNameText"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/switchEventTwo"
+                            android:layout_alignStart="@+id/EventNameText"
+                            android:maxLength="15"
+                            android:textSize="@dimen/headingEvents"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                        <View
+                            android:id="@+id/dividerEventTwo"
+                            android:layout_width="50dp"
+                            android:layout_height="@dimen/marginEventTopViewLine"
+                            android:layout_centerInParent="true" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlEventTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/etEventNameText"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <View
+                                android:id="@+id/dividerEventInsiderl"
+                                android:layout_width="50dp"
+                                android:layout_height="@dimen/marginEventTopViewLine"
+                                android:layout_centerInParent="true" />
+
+                            <TextView
+                                android:id="@+id/DateTextEventTwo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:text="Event Date &amp; Time"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/imgDateCalenderEventTwo"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
+                                android:layout_below="@+id/DateTextEventTwo"
+                                android:layout_marginLeft="65dp"
+                                android:src="@drawable/calendar" />
+
+                            <TextView
+                                android:id="@+id/EventTwoDateTimeText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:layout_toRightOf="@+id/dividerEventInsiderl"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold"
+                                android:visibility="gone"
+                                tools:text="23/10/2015, 7:00pm"
+                                tools:visibility="visible" />
+
+                            <TextView
+                                android:id="@+id/LocationTextEventTwo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/imgDateCalenderEventTwo"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:text="Event Location(Address)"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/LocationValueEventTwo"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/LocationTextEventTwo"
+                                android:layout_below="@+id/LocationTextEventTwo"
+                                android:layout_marginRight="10dp"
+                                android:layout_toStartOf="@+id/PinCodeTextEventTwo"
+                                android:textSize="@dimen/headingEvents" />
+
+                            <TextView
+                                android:id="@+id/PinCodeTextEventTwo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/imgDateCalenderEventTwo"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:layout_toRightOf="@+id/dividerEventInsiderl"
+                                android:text="Pin Code"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/PinCodeValueEventTwo"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/PinCodeTextEventTwo"
+                                android:layout_below="@+id/PinCodeTextEventTwo"
+                                android:layout_toRightOf="@+id/dividerEventInsiderl"
+                                android:maxLength="8"
+                                android:textSize="@dimen/headingEvents" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardRSVP"
+                    style="@style/CardViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardEventOne"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                    android:layout_marginRight="@dimen/marginEventTopViewLine"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorCardLayout">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/RSVPtHeadingText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="R.S.V.P details"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/TobeAddedRSVPText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/RSVPtHeadingText"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Include RSVP details?"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/switchEventRSVP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/TobeAddedRSVPText"
+                            android:layout_below="@+id/TobeAddedRSVPText"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:checked="true" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlEventRSVP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/switchEventRSVP"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <View
+                                android:id="@+id/dividerEventRSVP"
+                                android:layout_width="50dp"
+                                android:layout_height="@dimen/marginEventTopViewLine"
+                                android:layout_centerInParent="true" />
+
+                            <TextView
+                                android:id="@+id/RSVPNameOneText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:text="Family Member 1"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/etRSVPNameOne"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/RSVPNameOneText"
+                                android:layout_below="@+id/RSVPNameOneText"
+                                android:maxLength="15"
+                                android:textSize="@dimen/headingEvents" />
+
+
+                            <TextView
+                                android:id="@+id/RSVPMobileOneText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:layout_toRightOf="@+id/dividerEventRSVP"
+                                android:text="Contact Number"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/etRSVPMobileOne"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/RSVPMobileOneText"
+                                android:layout_below="@+id/RSVPMobileOneText"
+                                android:layout_toRightOf="@+id/dividerEventRSVP"
+                                android:maxLength="12"
+                                android:digits="0123456789"
+                                android:inputType="phone"
+                                android:textSize="@dimen/headingEvents" />
+
+
+                            <TextView
+                                android:id="@+id/RSVPNameTwoText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/etRSVPNameOne"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:text="Family Member 2"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/etRSVPNameTwo"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/RSVPNameTwoText"
+                                android:layout_below="@+id/RSVPNameTwoText"
+                                android:maxLength="15"
+                                android:textSize="@dimen/headingEvents" />
+
+
+                            <TextView
+                                android:id="@+id/RSVPMobileTwoText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/etRSVPMobileOne"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:layout_toRightOf="@+id/dividerEventRSVP"
+                                android:text="Contact Number"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/etRSVPMobileTwo"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignStart="@+id/RSVPMobileTwoText"
+                                android:layout_below="@+id/RSVPMobileTwoText"
+                                android:layout_toRightOf="@+id/dividerEventRSVP"
+                                android:maxLength="12"
+                                android:digits="0123456789"
+                                android:inputType="phone"
+                                android:textSize="@dimen/headingEvents" />
+
+                            <TextView
+                                android:id="@+id/InviteMesTextRSVP"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/etRSVPMobileTwo"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:text="Invite Message from the family"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/headingEvents"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/InviteMesRSVPCharacters"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/etRSVPMobileTwo"
+                                android:layout_marginLeft="2dp"
+                                android:layout_marginTop="@dimen/margin_top_forms"
+                                android:layout_toRightOf="@+id/InviteMesTextRSVP"
+                                android:text="(100 char)"
+                                android:textColor="@color/textColor"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <EditText
+                                android:id="@+id/InviteMesRSVPValue"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignStart="@+id/InviteMesTextRSVP"
+                                android:layout_below="@+id/InviteMesTextRSVP"
+                                android:maxLength="100"
+                                android:textSize="@dimen/headingEvents" />
+
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/continueToInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/frame"
+            android:layout_marginRight="15dp"
+            android:padding="15dp"
+            android:text="Continue and checkout the invite >>"
+            android:textColor="@color/colorRed"
+            android:textSize="@dimen/mainHeadingSize"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+</ScrollView>

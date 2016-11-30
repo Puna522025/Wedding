@@ -1,0 +1,25 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="tab_max_width">264dp</dimen>
+    <dimen name="tab_padding_bottom">16dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
+    <dimen name="custom_tab_layout_height">72dp</dimen>
+    <dimen name="headingEvents">14sp</dimen>
+    <dimen name="valueTextSize">15sp</dimen>
+    <dimen name="mainHeadingSize">18sp</dimen>
+    <dimen name="mainCoupSize">22sp</dimen>
+    <dimen name="headingDateForm">16sp</dimen>
+    <dimen name="mainCoupName">27sp</dimen>
+
+    <dimen name="Date">40sp</dimen>
+    <dimen name="counterValue">20sp</dimen>
+    <dimen name="counterText">17sp</dimen>
+    <dimen name="marginCounter">10dp</dimen>
+    <dimen name="marginEventTop">10dp</dimen>
+    <dimen name="marginEventTopViewLine">6dp</dimen>
+    <dimen name="viewHeight">1dp</dimen>
+    <dimen name="margin_top_forms">10dp</dimen>
+    <dimen name="margin_top_form_edittext">5dp</dimen>
+</resources>
