@@ -1,10 +1,12 @@
 package launchDetails;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -83,7 +85,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
     private void createInviteForm() {
         Intent intent = new Intent(this, FormDetails.class);
-        intent.putExtra(Config.setToolbarMenuIcons,"yes");
+        intent.putExtra(Config.setToolbarMenuIcons, "yes");
         startActivity(intent);
     }
 
@@ -130,60 +132,62 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
             JSONObject collegeData = result.getJSONObject(0);
             unique_wed_code = collegeData.getString(Config.unique_wed_code);
-            name_bride = collegeData.getString(Config.name_bride);
-            name_groom = collegeData.getString(Config.name_groom);
-            date_marriage = collegeData.getString(Config.date_marriage);
-            blessUs_para = collegeData.getString(Config.blessUs_para);
-            event_Two_tobe = collegeData.getString(Config.event_Two_tobe);
-            event_Two_date = collegeData.getString(Config.event_Two_date);
-            event_Two_time = collegeData.getString(Config.event_Two_time);
-            event_Two_location = collegeData.getString(Config.event_Two_location);
-            marriage_tobe = collegeData.getString(Config.marriage_tobe);
-            marriage_date = collegeData.getString(Config.marriage_date);
-            marriage_time = collegeData.getString(Config.marriage_time);
-            marriage_location = collegeData.getString(Config.marriage_location);
-            rsvp_tobe = collegeData.getString(Config.rsvp_tobe);
-            rsvp_name1 = collegeData.getString(Config.rsvp_name1);
-            rsvp_name2 = collegeData.getString(Config.rsvp_name2);
-            rsvp_phone_one = collegeData.getString(Config.rsvp_phone_one);
-            rsvp_phone_two = collegeData.getString(Config.rsvp_phone_two);
+            if(!unique_wed_code.equalsIgnoreCase("null")) {
+                name_bride = collegeData.getString(Config.name_bride);
+                name_groom = collegeData.getString(Config.name_groom);
+                date_marriage = collegeData.getString(Config.date_marriage);
+                blessUs_para = collegeData.getString(Config.blessUs_para);
+                event_Two_tobe = collegeData.getString(Config.event_Two_tobe);
+                event_Two_date = collegeData.getString(Config.event_Two_date);
+                event_Two_time = collegeData.getString(Config.event_Two_time);
+                event_Two_location = collegeData.getString(Config.event_Two_location);
+                marriage_tobe = collegeData.getString(Config.marriage_tobe);
+                marriage_date = collegeData.getString(Config.marriage_date);
+                marriage_time = collegeData.getString(Config.marriage_time);
+                marriage_location = collegeData.getString(Config.marriage_location);
+                rsvp_tobe = collegeData.getString(Config.rsvp_tobe);
+                rsvp_name1 = collegeData.getString(Config.rsvp_name1);
+                rsvp_name2 = collegeData.getString(Config.rsvp_name2);
+                rsvp_phone_one = collegeData.getString(Config.rsvp_phone_one);
+                rsvp_phone_two = collegeData.getString(Config.rsvp_phone_two);
 
-            SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
-            editor.putString(Config.blessUs_para, blessUs_para);
-            editor.putString(Config.unique_wed_code, unique_wed_code);
-            editor.putString(Config.date_marriage, date_marriage);
-            editor.putString(Config.marriage_date, marriage_date);
-            editor.putString(Config.marriage_location, marriage_location);
-            editor.putString(Config.marriage_time, marriage_time);
-            editor.putString(Config.marriage_tobe, marriage_tobe);
-            editor.putString(Config.name_bride, name_bride);
-            editor.putString(Config.name_groom, name_groom);
-            editor.putString(Config.rsvp_name1, rsvp_name1);
-            editor.putString(Config.rsvp_name2, rsvp_name2);
-            editor.putString(Config.rsvp_phone_one, rsvp_phone_one);
-            editor.putString(Config.rsvp_phone_two, rsvp_phone_two);
-            editor.putString(Config.rsvp_tobe, rsvp_tobe);
-            editor.putString(Config.event_Two_date, event_Two_date);
-            editor.putString(Config.event_Two_tobe, event_Two_tobe);
-            editor.putString(Config.event_Two_location, event_Two_location);
-            editor.putString(Config.event_Two_time, event_Two_time);
-            editor.apply();
+                SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
+                editor.putString(Config.blessUs_para, blessUs_para);
+                editor.putString(Config.unique_wed_code, unique_wed_code);
+                editor.putString(Config.date_marriage, date_marriage);
+                editor.putString(Config.marriage_date, marriage_date);
+                editor.putString(Config.marriage_location, marriage_location);
+                editor.putString(Config.marriage_time, marriage_time);
+                editor.putString(Config.marriage_tobe, marriage_tobe);
+                editor.putString(Config.name_bride, name_bride);
+                editor.putString(Config.name_groom, name_groom);
+                editor.putString(Config.rsvp_name1, rsvp_name1);
+                editor.putString(Config.rsvp_name2, rsvp_name2);
+                editor.putString(Config.rsvp_phone_one, rsvp_phone_one);
+                editor.putString(Config.rsvp_phone_two, rsvp_phone_two);
+                editor.putString(Config.rsvp_tobe, rsvp_tobe);
+                editor.putString(Config.event_Two_date, event_Two_date);
+                editor.putString(Config.event_Two_tobe, event_Two_tobe);
+                editor.putString(Config.event_Two_location, event_Two_location);
+                editor.putString(Config.event_Two_time, event_Two_time);
+                editor.apply();
 
-            Intent intent = new Intent(this,MainActivity.class);
-            intent.putExtra(Config.setToolbarMenuIcons,"no");
-            startActivity(intent);
-           /* new AlertDialog.Builder(LaunchScreen.this)
-                    .setTitle("Result")
-                    .setMessage("unique_wed_code:\t" + unique_wed_code + "\nname_bride:\t" + name_bride + "\ndate_marriage:\t" + date_marriage
-                            + "\nevent_Two_tobe:\t" + event_Two_tobe + "\nrsvp_phone_one:\t" + rsvp_phone_one)
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra(Config.setToolbarMenuIcons, "no");
+                startActivity(intent);
+
+            }else{
+                 new AlertDialog.Builder(LaunchScreen.this)
+                    .setTitle("OOPS!!")
+                    .setMessage("Sorry....There seems to be no wedding with this code. Please try again..")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();*/
-
+                    .show();
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
