@@ -101,10 +101,9 @@ public class TheCouple extends Fragment {
     }
 
     private void fetchCoupleScreenValues() {
-        String grName = sharedPreferences.getString(Config.name_groom, "NAME");
-        String brName = sharedPreferences.getString(Config.name_bride, "NAME");
-        if(grName.length()>7 || brName.length()>7)
-        {
+        String grName = sharedPreferences.getString(Config.name_groom, "");
+        String brName = sharedPreferences.getString(Config.name_bride, "");
+        if (grName.length() > 7 || brName.length() > 7) {
             tvGroName.setTextSize(20);
             tvBriName.setTextSize(20);
         }
@@ -112,12 +111,14 @@ public class TheCouple extends Fragment {
         tvBriName.setText(brName);
 
         tvTextblesss.setText(sharedPreferences.getString(Config.blessUs_para, "Bless Us"));
-        try {
-            setDateForMarriage(sharedPreferences.getString(Config.marriage_date, "NAME"));
-        } catch (ParseException e) {
-            e.printStackTrace();
+        String dateMarriage = sharedPreferences.getString(Config.marriage_date, "DATE");
+        if (!dateMarriage.equalsIgnoreCase("DATE")) {
+            try {
+                setDateForMarriage(sharedPreferences.getString(Config.marriage_date, "NAME"));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
     private void setDateForMarriage(String date) throws ParseException {

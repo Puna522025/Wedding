@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -59,10 +60,10 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         imgDateCalenderEventTwo.setOnClickListener(this);
         switchEventTwo.setOnCheckedChangeListener(this);
         switchEventRSVP.setOnCheckedChangeListener(this);
+
         rlEventTwo.setVisibility(View.VISIBLE);
         tvEventNameText.setVisibility(View.VISIBLE);
         etEventNameText.setVisibility(View.VISIBLE);
-
         rlEventRSVP.setVisibility(View.VISIBLE);
 
         /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.b);
@@ -135,15 +136,15 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         // editor.putString(Config.unique_wed_code, etInviteMesValue.getText().toString());
         String marDateTime = tvmarDateTimeText.getText().toString();
 
-        String marDate = marDateTime.substring(0, marDateTime.indexOf(","));
-        String marTime = marDateTime.substring(marDateTime.indexOf(",") + 2, marDateTime.length());
-
-        editor.putString(Config.date_marriage, marDateTime);
-        editor.putString(Config.marriage_date, marDate);
-        editor.putString(Config.marriage_time, marTime);
+        if (!TextUtils.isEmpty(marDateTime)) {
+            String marDate = marDateTime.substring(0, marDateTime.indexOf(","));
+            String marTime = marDateTime.substring(marDateTime.indexOf(",") + 2, marDateTime.length());
+            editor.putString(Config.date_marriage, marDateTime);
+            editor.putString(Config.marriage_date, marDate);
+            editor.putString(Config.marriage_time, marTime);
+        }
 
         editor.putString(Config.marriage_location, etLocationValue.getText().toString() + "," + etPinCodeValue.getText().toString());
-
         editor.putString(Config.marriage_tobe, "true");
         editor.putString(Config.name_bride, etNameBri.getText().toString());
         editor.putString(Config.name_groom, etNameGro.getText().toString());
@@ -152,6 +153,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.rsvp_phone_one, etRSVPMobileOne.getText().toString());
         editor.putString(Config.rsvp_phone_two, etRSVPMobileTwo.getText().toString());
         editor.putString(Config.event_two_name, etEventNameText.getText().toString());
+        editor.putString(Config.rsvp_text, etInviteMesRSVPValue.getText().toString());
 
         if (switchEventRSVP.isChecked()) {
             editor.putString(Config.rsvp_tobe, "true");
@@ -160,12 +162,12 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         }
 
         String eventTwoDateTime = tvEventTwoDateTimeText.getText().toString();
-
-        String eventTwoDate = eventTwoDateTime.substring(0, eventTwoDateTime.indexOf(","));
-        String eventTwoTime = eventTwoDateTime.substring(eventTwoDateTime.indexOf(",") + 2, eventTwoDateTime.length());
-
-        editor.putString(Config.event_Two_date, eventTwoDate);
-        editor.putString(Config.event_Two_time, eventTwoTime);
+        if (!TextUtils.isEmpty(eventTwoDateTime)) {
+            String eventTwoDate = eventTwoDateTime.substring(0, eventTwoDateTime.indexOf(","));
+            String eventTwoTime = eventTwoDateTime.substring(eventTwoDateTime.indexOf(",") + 2, eventTwoDateTime.length());
+            editor.putString(Config.event_Two_date, eventTwoDate);
+            editor.putString(Config.event_Two_time, eventTwoTime);
+        }
 
         if (switchEventTwo.isChecked()) {
             editor.putString(Config.event_two_tobe, "true");

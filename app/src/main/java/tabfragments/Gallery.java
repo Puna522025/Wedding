@@ -148,7 +148,7 @@ public class Gallery extends Fragment {
         if (sharedPreferences.getString(Config.rsvp_tobe, "true").equalsIgnoreCase("true")) {
             card4.setVisibility(View.VISIBLE);
             //tvRsvpText.setText(sharedPreferences.getString("we would like to jsdjkbf", "DATE"));
-            tvRsvpText.setText("vg.sdkmvk;sdmv;lsdmv;sdm,vsdvl;vm;sdlvmsdl;mvl;sd");
+            tvRsvpText.setText(sharedPreferences.getString(Config.rsvp_text, "name1"));
             tvrsvpFaml1.setText(sharedPreferences.getString(Config.rsvp_name1, "name1"));
             tvRsvpFaml2.setText(sharedPreferences.getString(Config.rsvp_name2, "name2"));
             tvRsvpFamlContact1.setText(sharedPreferences.getString(Config.rsvp_phone_one, "phone1"));

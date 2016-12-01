@@ -40,7 +40,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/marginEventTopViewLine"
-                            android:text="Sagan Ceremony"
+                            android:text="Event Two details"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/mainHeadingSize" />
                     </RelativeLayout>
@@ -73,7 +73,7 @@
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="@dimen/marginEventTop"
                             android:layout_toLeftOf="@+id/divider"
-                            android:text="22/01/2017"
+                            android:text="XX/XX/XXXX"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/valueTextSize" />
 
@@ -114,7 +114,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="@dimen/marginEventTop"
                             android:layout_toRightOf="@id/divider"
-                            android:text="07:00 pm"
+                            android:text="XX:XX xx"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/valueTextSize" />
 
@@ -148,7 +148,7 @@
                             android:layout_alignLeft="@+id/dateText"
                             android:layout_below="@+id/EventText"
                             android:layout_marginTop="@dimen/marginEventTop"
-                            android:text="2121dvsdvsdvsdvsdvs545"
+                            android:text="XXXXXXXXXXXXXXXXXXXXXX"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/valueTextSize" />
 
@@ -263,7 +263,7 @@
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="@dimen/marginEventTop"
                             android:layout_toLeftOf="@+id/dividerMar"
-                            android:text="23/01/2017"
+                            android:text="XX/XX/XXXX"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/valueTextSize" />
 
@@ -303,7 +303,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="@dimen/marginEventTop"
                             android:layout_toRightOf="@id/dividerMar"
-                            android:text="08:00 pm"
+                            android:text="XX:XX xx"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/valueTextSize" />
 
@@ -337,7 +337,7 @@
                             android:layout_alignStart="@+id/dateTextMar"
                             android:layout_below="@+id/EventTextMar"
                             android:layout_marginTop="@dimen/marginEventTop"
-                            android:text="2121dvsdvsdvsdvsdvs545"
+                            android:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/valueTextSize" />
 

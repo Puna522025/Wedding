@@ -154,6 +154,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         String rsvp_phone_one = "";
         String rsvp_phone_two = "";
         String event_two_Name = "";
+        String rsvp_text = "";
 
         try {
             progressDialog.setMessage("Creating you invite..");
@@ -180,6 +181,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 rsvp_phone_one = weddingData.getString(Config.rsvp_phone_one);
                 rsvp_phone_two = weddingData.getString(Config.rsvp_phone_two);
                 event_two_Name = weddingData.getString(Config.event_two_name);
+                rsvp_text = weddingData.getString(Config.rsvp_text);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
                 editor.putString(Config.blessUs_para, blessUs_para);
@@ -201,6 +203,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 editor.putString(Config.event_Two_location, event_Two_location);
                 editor.putString(Config.event_Two_time, event_Two_time);
                 editor.putString(Config.event_two_name, event_two_Name);
+                editor.putString(Config.rsvp_text, rsvp_text);
                 editor.apply();
                 progressDialog.dismiss();
                 Intent intent = new Intent(this, MainActivity.class);

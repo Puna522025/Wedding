@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -136,14 +137,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 try {
                     HashMap<String, String> paramsj = new HashMap<>();
 
-                    String brideName = sharedPreferences.getString(Config.name_bride, "NAME");
-                    String groomName = sharedPreferences.getString(Config.name_groom, "NAME");
+                    String brideName = sharedPreferences.getString(Config.name_bride, "");
+                    String groomName = sharedPreferences.getString(Config.name_groom, "");
+                    if (!TextUtils.isEmpty(brideName) && !TextUtils.isEmpty(groomName)) {
+                        String brideInitial = brideName.substring(0, 1);
+                        String groomInitial = groomName.substring(0, 1);
 
-                    String brideInitial = brideName.substring(0, 1);
-                    String groomInitial = groomName.substring(0, 1);
-
-                    uniqueCode = brideInitial + groomInitial + ((int) (Math.random() * 999) + 100);
-
+                        uniqueCode = brideInitial + groomInitial + ((int) (Math.random() * 999) + 100);
+                    }
                     paramsj.put(Config.unique_wed_code, uniqueCode);
                     paramsj.put(Config.name_bride, brideName);
                     paramsj.put(Config.name_groom, groomName);
@@ -163,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.rsvp_phone_one, sharedPreferences.getString(Config.rsvp_phone_one, "Phone"));
                     paramsj.put(Config.rsvp_phone_two, sharedPreferences.getString(Config.rsvp_phone_two, "Phone"));
                     paramsj.put(Config.event_two_name, sharedPreferences.getString(Config.event_two_name, "NAME"));
+                    paramsj.put(Config.rsvp_text, sharedPreferences.getString(Config.rsvp_text, "NAME"));
 
                     StringBuilder sb = new StringBuilder();
                     URL url = new URL("http://vnnps.esy.es/insert-db.php");
@@ -209,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Result")
-                        .setMessage("Unique Code - " + uniqueCode)
+                        .setMessage(result + " - Unique Code - " + uniqueCode)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(MainActivity.this, LaunchScreen.class);

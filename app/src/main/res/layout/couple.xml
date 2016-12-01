@@ -83,7 +83,7 @@
                             android:layout_below="@+id/tobeHeld"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Jan 23, 2017"
+                            tools:text="XXX xx, XXXX"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/Date" />
 
@@ -94,7 +94,7 @@
                             android:layout_alignTop="@+id/imageHea"
                             android:layout_marginTop="15dp"
                             android:layout_toLeftOf="@+id/imageHea"
-                            android:text="ccccc"
+                            tools:text="XXXX"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/mainCoupName" />
 
@@ -105,7 +105,7 @@
                             android:layout_alignBaseline="@+id/BriName"
                             android:layout_alignBottom="@+id/BriName"
                             android:layout_toEndOf="@+id/imageHea"
-                            android:text="ccccc"
+                            tools:text="YYYYY"
                             android:textColor="@color/colorRed"
                             android:textSize="@dimen/mainCoupName" />
                     </RelativeLayout>
@@ -338,7 +338,7 @@
                         android:layout_below="@+id/rlBless"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="hyghighbbhbbbbbbbbhjimllmmlmlbbbbbbj"
+                        tools:text="XXXXXXXXXXXXXX"
                         android:textColor="@color/textColor"
                         android:textSize="@dimen/counterValue" />
 

@@ -31,11 +31,8 @@ public class Config {
     public static final String rsvp_phone_one="rsvp_phone_one";
     public static final String rsvp_phone_two="rsvp_phone_two";
     public static final String event_two_name="event_two_name";
-
-
+    public static final String rsvp_text="rsvp_text";
     public static final String setToolbarMenuIcons ="setToolbarMenuIcons";
-
-    public static final String bundleMenuValue = "bundleMenuValue";
 
     public static boolean isOnline(@NonNull Context context) {
         ConnectivityManager cm =
