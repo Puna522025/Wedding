@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -70,6 +72,23 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         Bitmap bb = BlurBuilder.blur(this, bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
         rlBackground.setBackground(d);*/
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_show_invite, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_save_continue) {
+            continueToInviteScreen();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     private void initializingVariables() {
