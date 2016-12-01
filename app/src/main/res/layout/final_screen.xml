@@ -6,6 +6,13 @@
     android:orientation="vertical"
     android:background="@color/colorRed">
 
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/congrats"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/progressBar"
+        android:layout_marginBottom="70dp"/>
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
