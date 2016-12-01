@@ -1,5 +1,6 @@
 package pkapoor.wed;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,9 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -47,10 +45,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    ProgressBar progressBar;
     private String uniqueCode = "";
     private int[] tabIcons;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         setSupportActionBar(toolbar);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -76,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public boolean onCreateOptionsMenu(Menu menu) {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if(extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("yes")) {
+        if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("yes")) {
             getMenuInflater().inflate(R.menu.menu_create_invite, menu);
-        }else if(extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("no")) {
+        } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("no")) {
             getMenuInflater().inflate(R.menu.menu_empty, menu);
         }
         return true;
@@ -122,6 +119,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     private void insertToDatabase() {
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog = new ProgressDialog(MainActivity.this);
+                progressDialog.setMessage("Saving the invite..");
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progressDialog.setIndeterminate(true);
+                progressDialog.show();
+            }
+
             @Override
             protected String doInBackground(String... params) {
 
@@ -184,35 +192,32 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         while ((response = br.readLine()) != null) {
                             sb.append(response);
                         }
+                    } else {
+                        progressDialog.dismiss();
                     }
                 } catch (IOException e) {
-
+                    progressDialog.dismiss();
                 }
                 return "success";
             }
 
             @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressBar.setVisibility(View.VISIBLE);
-            }
-
-            @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-                progressBar.setVisibility(View.GONE);
-
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
 
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Result")
-                        .setMessage(result + "Unique Code - " + uniqueCode)
+                        .setMessage("Unique Code - " + uniqueCode)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(MainActivity.this, LaunchScreen.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 dialog.dismiss();
                                 finish();
+
+
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)

@@ -1,5 +1,10 @@
 package launchDetails;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+
 /**
  * Created by DELL on 11/29/2016.
  */
@@ -30,4 +35,12 @@ public class Config {
     public static final String setToolbarMenuIcons ="setToolbarMenuIcons";
 
     public static final String bundleMenuValue = "bundleMenuValue";
+
+    public static boolean isOnline(@NonNull Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
 }

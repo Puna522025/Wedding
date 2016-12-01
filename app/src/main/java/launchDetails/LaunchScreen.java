@@ -1,5 +1,6 @@
 package launchDetails;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,10 +37,10 @@ import pkapoor.wed.R;
 public class LaunchScreen extends AppCompatActivity implements View.OnClickListener {
 
     public static final String MyPREFERENCES = "myPreference";
-    EditText etWedCode;
-    RelativeLayout rlCode;
-    Button btnGetInvite, btnCreateInvite;
-
+    private EditText etWedCode;
+    private RelativeLayout rlCode;
+    private Button btnGetInvite, btnCreateInvite;
+    private ProgressDialog progressDialog ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +56,6 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void run() {
-               /* Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-
-                // close this activity
-                finish();*/
                 rlCode.setVisibility(View.VISIBLE);
             }
         }, 1 * 1500); // wait for 5 seconds
@@ -72,7 +68,20 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnGetInvite:
                 if (!TextUtils.isEmpty(etWedCode.getText().toString())) {
-                    getDBweddingDetails();
+                    if(Config.isOnline(this)) {
+                        getDBweddingDetails();
+                    }else{
+                        new AlertDialog.Builder(LaunchScreen.this)
+                                .setTitle("OOPS!!")
+                                .setMessage("No Internet ..try again..")
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
                 } else {
                     Toast.makeText(this, "Please enter the wedding invite code", Toast.LENGTH_LONG).show();
                 }
@@ -90,6 +99,13 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getDBweddingDetails() {
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Getting the invite..");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
+
         String url = Config.URL_FETCH + "'" + etWedCode.getText().toString() + "'";
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -99,6 +115,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
                 Toast.makeText(LaunchScreen.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
             }
         });
@@ -128,6 +145,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         String rsvp_phone_two = "";
 
         try {
+            progressDialog.setMessage("Creating you invite..");
             JSONObject jsonObject = new JSONObject(response);
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
             JSONObject collegeData = result.getJSONObject(0);
@@ -171,12 +189,13 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 editor.putString(Config.event_Two_location, event_Two_location);
                 editor.putString(Config.event_Two_time, event_Two_time);
                 editor.apply();
-
+                progressDialog.dismiss();
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra(Config.setToolbarMenuIcons, "no");
                 startActivity(intent);
 
             }else{
+                progressDialog.dismiss();
                  new AlertDialog.Builder(LaunchScreen.this)
                     .setTitle("OOPS!!")
                     .setMessage("Sorry....There seems to be no wedding with this code. Please try again..")
@@ -190,6 +209,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             }
 
         } catch (JSONException e) {
+            progressDialog.dismiss();
             e.printStackTrace();
         }
     }
