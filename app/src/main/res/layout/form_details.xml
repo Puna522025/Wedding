@@ -195,7 +195,7 @@
                             android:layout_marginLeft="2dp"
                             android:layout_marginTop="@dimen/margin_top_forms"
                             android:layout_toRightOf="@+id/InviteMesText"
-                            android:text="(150 char)"
+                            android:text="@string/number_of_characters"
                             android:textColor="@color/textColor"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -612,7 +612,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginTop="@dimen/margin_top_forms"
                                 android:layout_toRightOf="@+id/InviteMesTextRSVP"
-                                android:text="(150 char)"
+                                android:text="@string/number_of_characters"
                                 android:textColor="@color/textColor"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />

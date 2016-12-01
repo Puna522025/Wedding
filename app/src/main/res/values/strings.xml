@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Wed</string>
+    <string name="number_of_characters">(150 characters)</string>
 </resources>
