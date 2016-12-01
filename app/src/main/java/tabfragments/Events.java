@@ -31,7 +31,7 @@ import pkapoor.wed.R;
 public class Events extends Fragment implements View.OnClickListener {
 
     RelativeLayout rlSagLocation, rlMarLocation;
-    TextView Event, MarriEvent, dateValueSag, TimeValueSag, eventValueSag, dateValueMar, TimeValueMar, eventValueMar;
+    TextView tvEvent, MarriEvent, dateValueSag, TimeValueSag, eventValueSag, dateValueMar, TimeValueMar, eventValueMar;
     CardView card1, card2;
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "myPreference";
@@ -62,7 +62,7 @@ public class Events extends Fragment implements View.OnClickListener {
         rlMarLocation.setOnClickListener(this);
         rlSagLocation.setOnClickListener(this);
 
-        Event = (TextView) view.findViewById(R.id.Event);
+        tvEvent = (TextView) view.findViewById(R.id.Event);
         MarriEvent = (TextView) view.findViewById(R.id.MarriEvent);
 
         //SAGAN
@@ -77,7 +77,7 @@ public class Events extends Fragment implements View.OnClickListener {
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DeliusSwashCaps-Regular.ttf");
 
         MarriEvent.setTypeface(type);
-        Event.setTypeface(type);
+        tvEvent.setTypeface(type);
         setEventTwoValues();
         setMarriageEventValues();
         return view;
@@ -90,8 +90,9 @@ public class Events extends Fragment implements View.OnClickListener {
     }
 
     private void setEventTwoValues() {
-        if (sharedPreferences.getString(Config.event_Two_tobe, "true").equalsIgnoreCase("true")) {
+        if (sharedPreferences.getString(Config.event_two_tobe, "true").equalsIgnoreCase("true")) {
             card1.setVisibility(View.VISIBLE);
+            tvEvent.setText(sharedPreferences.getString(Config.event_two_name, "NAME"));
             dateValueSag.setText(sharedPreferences.getString(Config.event_Two_date, "DATE"));
             TimeValueSag.setText(sharedPreferences.getString(Config.event_Two_time, "TIME"));
             eventValueSag.setText(sharedPreferences.getString(Config.event_Two_location, "location"));

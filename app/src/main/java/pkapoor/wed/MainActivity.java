@@ -148,20 +148,21 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.name_bride, brideName);
                     paramsj.put(Config.name_groom, groomName);
                     paramsj.put(Config.date_marriage, sharedPreferences.getString(Config.date_marriage, "DATE"));
-                    paramsj.put(Config.blessUs_para, sharedPreferences.getString(Config.blessUs_para, "DATE"));
-                    paramsj.put(Config.event_Two_tobe, sharedPreferences.getString(Config.event_Two_tobe, "DATE"));
-                    paramsj.put(Config.event_Two_date, sharedPreferences.getString(Config.event_Two_date, "DATE"));
-                    paramsj.put(Config.event_Two_time, sharedPreferences.getString(Config.event_Two_time, "DATE"));
-                    paramsj.put(Config.event_Two_location, sharedPreferences.getString(Config.event_Two_location, "DATE"));
-                    paramsj.put(Config.marriage_tobe, sharedPreferences.getString(Config.marriage_tobe, "DATE"));
-                    paramsj.put(Config.marriage_date, sharedPreferences.getString(Config.marriage_date, "DATE"));
-                    paramsj.put(Config.marriage_time, sharedPreferences.getString(Config.marriage_time, "DATE"));
-                    paramsj.put(Config.marriage_location, sharedPreferences.getString(Config.marriage_location, "DATE"));
-                    paramsj.put(Config.rsvp_tobe, sharedPreferences.getString(Config.rsvp_tobe, "DATE"));
-                    paramsj.put(Config.rsvp_name1, sharedPreferences.getString(Config.rsvp_name1, "DATE"));
-                    paramsj.put(Config.rsvp_name2, sharedPreferences.getString(Config.rsvp_name2, "DATE"));
-                    paramsj.put(Config.rsvp_phone_one, sharedPreferences.getString(Config.rsvp_phone_one, "DATE"));
-                    paramsj.put(Config.rsvp_phone_two, sharedPreferences.getString(Config.rsvp_phone_two, "DATE"));
+                    paramsj.put(Config.blessUs_para, sharedPreferences.getString(Config.blessUs_para, "NAME"));
+                    paramsj.put(Config.event_two_tobe, sharedPreferences.getString(Config.event_two_tobe, "NAME"));
+                    paramsj.put(Config.event_Two_date, sharedPreferences.getString(Config.event_Two_date, "NAME"));
+                    paramsj.put(Config.event_Two_time, sharedPreferences.getString(Config.event_Two_time, "NAME"));
+                    paramsj.put(Config.event_Two_location, sharedPreferences.getString(Config.event_Two_location, "NAME"));
+                    paramsj.put(Config.marriage_tobe, sharedPreferences.getString(Config.marriage_tobe, "NAME"));
+                    paramsj.put(Config.marriage_date, sharedPreferences.getString(Config.marriage_date, "NAME"));
+                    paramsj.put(Config.marriage_time, sharedPreferences.getString(Config.marriage_time, "NAME"));
+                    paramsj.put(Config.marriage_location, sharedPreferences.getString(Config.marriage_location, "NAME"));
+                    paramsj.put(Config.rsvp_tobe, sharedPreferences.getString(Config.rsvp_tobe, "NAME"));
+                    paramsj.put(Config.rsvp_name1, sharedPreferences.getString(Config.rsvp_name1, "NAME"));
+                    paramsj.put(Config.rsvp_name2, sharedPreferences.getString(Config.rsvp_name2, "NAME"));
+                    paramsj.put(Config.rsvp_phone_one, sharedPreferences.getString(Config.rsvp_phone_one, "Phone"));
+                    paramsj.put(Config.rsvp_phone_two, sharedPreferences.getString(Config.rsvp_phone_two, "Phone"));
+                    paramsj.put(Config.event_two_name, sharedPreferences.getString(Config.event_two_name, "NAME"));
 
                     StringBuilder sb = new StringBuilder();
                     URL url = new URL("http://vnnps.esy.es/insert-db.php");
@@ -216,8 +217,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                                 startActivity(intent);
                                 dialog.dismiss();
                                 finish();
-
-
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)

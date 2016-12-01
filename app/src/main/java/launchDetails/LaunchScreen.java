@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -38,7 +39,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
     public static final String MyPREFERENCES = "myPreference";
     private EditText etWedCode;
-    private RelativeLayout rlCode;
+    private RelativeLayout rlCode, rlBackground;
     private Button btnGetInvite, btnCreateInvite;
     private ProgressDialog progressDialog ;
     @Override
@@ -47,6 +48,8 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.splash);
         etWedCode = (EditText) findViewById(R.id.etWedCode);
         rlCode = (RelativeLayout) findViewById(R.id.rlCode);
+        rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
+
         btnGetInvite = (Button) findViewById(R.id.btnGetInvite);
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
 
@@ -61,6 +64,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         }, 1 * 1500); // wait for 5 seconds
         btnGetInvite.setOnClickListener(this);
         btnCreateInvite.setOnClickListener(this);
+        rlBackground.setOnClickListener(this);
     }
 
     @Override
@@ -88,6 +92,12 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnCreateInvite:
                 createInviteForm();
+                break;
+            case R.id.rlBackground:
+                if(getCurrentFocus()!=null) {
+                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
                 break;
         }
     }
@@ -143,31 +153,33 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         String rsvp_name2 = "";
         String rsvp_phone_one = "";
         String rsvp_phone_two = "";
+        String event_two_Name = "";
 
         try {
             progressDialog.setMessage("Creating you invite..");
             JSONObject jsonObject = new JSONObject(response);
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
-            JSONObject collegeData = result.getJSONObject(0);
-            unique_wed_code = collegeData.getString(Config.unique_wed_code);
+            JSONObject weddingData = result.getJSONObject(0);
+            unique_wed_code = weddingData.getString(Config.unique_wed_code);
             if(!unique_wed_code.equalsIgnoreCase("null")) {
-                name_bride = collegeData.getString(Config.name_bride);
-                name_groom = collegeData.getString(Config.name_groom);
-                date_marriage = collegeData.getString(Config.date_marriage);
-                blessUs_para = collegeData.getString(Config.blessUs_para);
-                event_Two_tobe = collegeData.getString(Config.event_Two_tobe);
-                event_Two_date = collegeData.getString(Config.event_Two_date);
-                event_Two_time = collegeData.getString(Config.event_Two_time);
-                event_Two_location = collegeData.getString(Config.event_Two_location);
-                marriage_tobe = collegeData.getString(Config.marriage_tobe);
-                marriage_date = collegeData.getString(Config.marriage_date);
-                marriage_time = collegeData.getString(Config.marriage_time);
-                marriage_location = collegeData.getString(Config.marriage_location);
-                rsvp_tobe = collegeData.getString(Config.rsvp_tobe);
-                rsvp_name1 = collegeData.getString(Config.rsvp_name1);
-                rsvp_name2 = collegeData.getString(Config.rsvp_name2);
-                rsvp_phone_one = collegeData.getString(Config.rsvp_phone_one);
-                rsvp_phone_two = collegeData.getString(Config.rsvp_phone_two);
+                name_bride = weddingData.getString(Config.name_bride);
+                name_groom = weddingData.getString(Config.name_groom);
+                date_marriage = weddingData.getString(Config.date_marriage);
+                blessUs_para = weddingData.getString(Config.blessUs_para);
+                event_Two_tobe = weddingData.getString(Config.event_two_tobe);
+                event_Two_date = weddingData.getString(Config.event_Two_date);
+                event_Two_time = weddingData.getString(Config.event_Two_time);
+                event_Two_location = weddingData.getString(Config.event_Two_location);
+                marriage_tobe = weddingData.getString(Config.marriage_tobe);
+                marriage_date = weddingData.getString(Config.marriage_date);
+                marriage_time = weddingData.getString(Config.marriage_time);
+                marriage_location = weddingData.getString(Config.marriage_location);
+                rsvp_tobe = weddingData.getString(Config.rsvp_tobe);
+                rsvp_name1 = weddingData.getString(Config.rsvp_name1);
+                rsvp_name2 = weddingData.getString(Config.rsvp_name2);
+                rsvp_phone_one = weddingData.getString(Config.rsvp_phone_one);
+                rsvp_phone_two = weddingData.getString(Config.rsvp_phone_two);
+                event_two_Name = weddingData.getString(Config.event_two_name);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
                 editor.putString(Config.blessUs_para, blessUs_para);
@@ -185,9 +197,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 editor.putString(Config.rsvp_phone_two, rsvp_phone_two);
                 editor.putString(Config.rsvp_tobe, rsvp_tobe);
                 editor.putString(Config.event_Two_date, event_Two_date);
-                editor.putString(Config.event_Two_tobe, event_Two_tobe);
+                editor.putString(Config.event_two_tobe, event_Two_tobe);
                 editor.putString(Config.event_Two_location, event_Two_location);
                 editor.putString(Config.event_Two_time, event_Two_time);
+                editor.putString(Config.event_two_name, event_two_Name);
                 editor.apply();
                 progressDialog.dismiss();
                 Intent intent = new Intent(this, MainActivity.class);

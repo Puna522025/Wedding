@@ -1,6 +1,7 @@
 package pkapoor.wed;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +15,6 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -42,7 +42,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
     RelativeLayout rlEventTwo, rlEventRSVP, rlBackground;
     SwitchCompat switchEventTwo, switchEventRSVP;
-    ProgressBar progressBar;
+    private ProgressDialog progressDialog;
     private Toolbar toolbar;
 
     @Override
@@ -59,7 +59,6 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         imgDateCalenderEventTwo.setOnClickListener(this);
         switchEventTwo.setOnCheckedChangeListener(this);
         switchEventRSVP.setOnCheckedChangeListener(this);
-
         rlEventTwo.setVisibility(View.VISIBLE);
         tvEventNameText.setVisibility(View.VISIBLE);
         etEventNameText.setVisibility(View.VISIBLE);
@@ -106,7 +105,6 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         switchEventRSVP = (SwitchCompat) findViewById(R.id.switchEventRSVP);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
@@ -114,7 +112,6 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         switch (view.getId()) {
             case R.id.imgDateCalender:
                 setDate("wedding");
-
                 break;
             case R.id.imgDateCalenderEventTwo:
                 setDate("eventTwo");
@@ -127,7 +124,12 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
     private void continueToInviteScreen() {
         //TODO: check if all the fields are filled properly or not..
-        progressBar.setVisibility(View.VISIBLE);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Creating your invite..");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true);
+        progressDialog.show();
+
         SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
         editor.putString(Config.blessUs_para, etInviteMesValue.getText().toString());
         // editor.putString(Config.unique_wed_code, etInviteMesValue.getText().toString());
@@ -149,6 +151,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.rsvp_name2, etRSVPNameTwo.getText().toString());
         editor.putString(Config.rsvp_phone_one, etRSVPMobileOne.getText().toString());
         editor.putString(Config.rsvp_phone_two, etRSVPMobileTwo.getText().toString());
+        editor.putString(Config.event_two_name, etEventNameText.getText().toString());
 
         if (switchEventRSVP.isChecked()) {
             editor.putString(Config.rsvp_tobe, "true");
@@ -165,14 +168,15 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.event_Two_time, eventTwoTime);
 
         if (switchEventTwo.isChecked()) {
-            editor.putString(Config.event_Two_tobe, "true");
-        } else if (!switchEventRSVP.isChecked()) {
-            editor.putString(Config.event_Two_tobe, "false");
+            editor.putString(Config.event_two_tobe, "true");
+        } else if (!switchEventTwo.isChecked()) {
+            editor.putString(Config.event_two_tobe, "false");
         }
 
         editor.putString(Config.event_Two_location, etLocationValueEventTwo.getText().toString() + "," + etPinCodeValueEventTwo.getText().toString());
         editor.apply();
-        progressBar.setVisibility(View.GONE);
+
+        progressDialog.dismiss();
 
         Intent intentOne = getIntent();
         Bundle extras = intentOne.getExtras();

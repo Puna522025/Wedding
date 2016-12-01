@@ -17,10 +17,10 @@ public class Config {
     public static final String name_groom="name_groom";
     public static final String date_marriage="date_marriage";
     public static final String blessUs_para="blessUs_para";
-    public static final String event_Two_tobe ="sagan_engag_tobe";
-    public static final String event_Two_date ="sagan_date";
-    public static final String event_Two_time ="sagan_time";
-    public static final String event_Two_location ="sagan_location";
+    public static final String event_two_tobe ="event_two_tobe";
+    public static final String event_Two_date ="event_two_date";
+    public static final String event_Two_time ="event_two_time";
+    public static final String event_Two_location ="event_two_location";
     public static final String marriage_tobe="marriage_tobe";
     public static final String marriage_date="marriage_date";
     public static final String marriage_time="marriage_time";
@@ -30,8 +30,9 @@ public class Config {
     public static final String rsvp_name2="rsvp_name2";
     public static final String rsvp_phone_one="rsvp_phone_one";
     public static final String rsvp_phone_two="rsvp_phone_two";
-    public static final String rsvp_phone="rsvp_phone_two";
-    public static final String rsvpSample="rsvp_phone_two";
+    public static final String event_two_name="event_two_name";
+
+
     public static final String setToolbarMenuIcons ="setToolbarMenuIcons";
 
     public static final String bundleMenuValue = "bundleMenuValue";
