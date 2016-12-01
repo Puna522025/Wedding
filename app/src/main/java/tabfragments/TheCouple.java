@@ -82,11 +82,10 @@ public class TheCouple extends Fragment {
 
         //Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DeliusSwashCaps-Regular.ttf");
 
-        Typeface typeBriName = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Bungasai.ttf");
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Bungasai.ttf");
 
-        tvGroName.setTypeface(typeBriName);
-        tvBriName.setTypeface(typeBriName);
+        tvGroName.setTypeface(type);
+        tvBriName.setTypeface(type);
 
         tvInviteText.setTypeface(type);
         tvTobeHeldOnHeading.setTypeface(type);
@@ -102,9 +101,16 @@ public class TheCouple extends Fragment {
     }
 
     private void fetchCoupleScreenValues() {
+        String grName = sharedPreferences.getString(Config.name_groom, "NAME");
+        String brName = sharedPreferences.getString(Config.name_bride, "NAME");
+        if(grName.length()>7 || brName.length()>7)
+        {
+            tvGroName.setTextSize(20);
+            tvBriName.setTextSize(20);
+        }
+        tvGroName.setText(grName);
+        tvBriName.setText(brName);
 
-        tvGroName.setText(sharedPreferences.getString(Config.name_groom, "NAME"));
-        tvBriName.setText(sharedPreferences.getString(Config.name_bride, "NAME"));
         tvTextblesss.setText(sharedPreferences.getString(Config.blessUs_para, "Bless Us"));
         try {
             setDateForMarriage(sharedPreferences.getString(Config.marriage_date, "NAME"));

@@ -7,9 +7,9 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rlBackground"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rlBackground">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -75,16 +75,6 @@
                             android:textSize="@dimen/headingEvents"
                             android:textStyle="bold" />
 
-                        <EditText
-                            android:id="@+id/etNameBri"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/NameBriText"
-                            android:layout_below="@+id/NameBriText"
-                            android:digits="abcdefghijklmnopqrstuvwxyz"
-                            android:maxLength="12"
-                            android:textSize="@dimen/headingEvents" />
-
 
                         <View
                             android:id="@+id/divider"
@@ -102,18 +92,6 @@
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/headingEvents"
                             android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/etNameGro"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/NameGroText"
-                            android:layout_below="@+id/NameBriText"
-                            android:layout_toRightOf="@+id/divider"
-                            android:digits="abcdefghijklmnopqrstuvwxyz"
-                            android:inputType="textPersonName"
-                            android:maxLength="12"
-                            android:textSize="@dimen/headingEvents" />
 
                         <TextView
                             android:id="@+id/DateText"
@@ -190,7 +168,10 @@
                             android:layout_alignStart="@+id/PinCodeText"
                             android:layout_below="@+id/PinCodeText"
                             android:layout_toRightOf="@+id/divider"
+                            android:imeOptions="actionNext"
                             android:maxLength="8"
+                            android:singleLine="true"
+                            android:nextFocusForward="@+id/InviteMesValue"
                             android:textSize="@dimen/headingEvents" />
 
                         <TextView
@@ -213,7 +194,7 @@
                             android:layout_marginLeft="2dp"
                             android:layout_marginTop="@dimen/margin_top_forms"
                             android:layout_toRightOf="@+id/InviteMesText"
-                            android:text="(100 char)"
+                            android:text="(150 char)"
                             android:textColor="@color/textColor"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -225,7 +206,33 @@
                             android:layout_alignParentEnd="true"
                             android:layout_alignStart="@+id/LocationText"
                             android:layout_below="@+id/InviteMesText"
-                            android:maxLength="100"
+                            android:maxLength="150"
+                            android:textSize="@dimen/headingEvents" />
+
+                        <EditText
+                            android:id="@+id/etNameGro"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/NameGroText"
+                            android:layout_below="@+id/NameGroText"
+                            android:digits="abcdefghijklmnopqrstuvwxyz"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName"
+                            android:maxLength="10"
+                            android:singleLine="true"
+                            android:textSize="@dimen/headingEvents" />
+
+                        <EditText
+                            android:id="@+id/etNameBri"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/NameBriText"
+                            android:layout_below="@+id/NameBriText"
+                            android:digits="abcdefghijklmnopqrstuvwxyz"
+                            android:imeOptions="actionNext"
+                            android:maxLength="10"
+                            android:singleLine="true"
+                            android:nextFocusForward="@+id/etNameGro"
                             android:textSize="@dimen/headingEvents" />
 
 
@@ -303,7 +310,9 @@
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/switchEventTwo"
                             android:layout_alignStart="@+id/EventNameText"
-                            android:maxLength="15"
+                            android:imeOptions="actionNext"
+                            android:maxLength="20"
+                            android:singleLine="true"
                             android:textSize="@dimen/headingEvents"
                             android:visibility="gone"
                             tools:visibility="visible" />
@@ -401,7 +410,10 @@
                                 android:layout_alignStart="@+id/PinCodeTextEventTwo"
                                 android:layout_below="@+id/PinCodeTextEventTwo"
                                 android:layout_toRightOf="@+id/dividerEventInsiderl"
+                                android:imeOptions="actionNext"
                                 android:maxLength="8"
+                                android:singleLine="true"
+                                android:nextFocusForward="@+id/etRSVPNameOne"
                                 android:textSize="@dimen/headingEvents" />
                         </RelativeLayout>
 
@@ -490,7 +502,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignStart="@+id/RSVPNameOneText"
                                 android:layout_below="@+id/RSVPNameOneText"
-                                android:maxLength="15"
+                                android:imeOptions="actionNext"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:nextFocusForward="@+id/etRSVPMobileOne"
                                 android:textSize="@dimen/headingEvents" />
 
 
@@ -513,9 +528,12 @@
                                 android:layout_alignStart="@+id/RSVPMobileOneText"
                                 android:layout_below="@+id/RSVPMobileOneText"
                                 android:layout_toRightOf="@+id/dividerEventRSVP"
-                                android:maxLength="12"
                                 android:digits="0123456789"
+                                android:imeOptions="actionNext"
                                 android:inputType="phone"
+                                android:maxLength="12"
+                                android:singleLine="true"
+                                android:nextFocusForward="@+id/etRSVPNameTwo"
                                 android:textSize="@dimen/headingEvents" />
 
 
@@ -537,7 +555,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignStart="@+id/RSVPNameTwoText"
                                 android:layout_below="@+id/RSVPNameTwoText"
-                                android:maxLength="15"
+                                android:imeOptions="actionNext"
+                                android:maxLength="25"
+                                android:singleLine="true"
+                                android:nextFocusForward="@+id/etRSVPMobileTwo"
                                 android:textSize="@dimen/headingEvents" />
 
 
@@ -561,9 +582,13 @@
                                 android:layout_alignStart="@+id/RSVPMobileTwoText"
                                 android:layout_below="@+id/RSVPMobileTwoText"
                                 android:layout_toRightOf="@+id/dividerEventRSVP"
-                                android:maxLength="12"
                                 android:digits="0123456789"
+                                android:imeOptions="actionNext"
                                 android:inputType="phone"
+                                android:maxLength="12"
+                                android:singleLine="true"
+                                android:nextFocusForward="@+id/InviteMesRSVPValue"
+
                                 android:textSize="@dimen/headingEvents" />
 
                             <TextView
@@ -586,7 +611,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:layout_marginTop="@dimen/margin_top_forms"
                                 android:layout_toRightOf="@+id/InviteMesTextRSVP"
-                                android:text="(100 char)"
+                                android:text="(150 char)"
                                 android:textColor="@color/textColor"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -598,7 +623,7 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignStart="@+id/InviteMesTextRSVP"
                                 android:layout_below="@+id/InviteMesTextRSVP"
-                                android:maxLength="100"
+                                android:maxLength="150"
                                 android:textSize="@dimen/headingEvents" />
 
 
