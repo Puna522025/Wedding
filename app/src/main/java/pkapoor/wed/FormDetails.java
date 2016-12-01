@@ -41,7 +41,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     public static final String MyPREFERENCES = "myPreference";
     ImageView imgDateCalender, imgDateCalenderEventTwo;
     int mYear, mMonth, mDay, mHour, mMinute;
-    TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite,DateText;
+    TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite, DateText, DateTextEventTwo;
 
     EditText etEventNameText, etNameBri, etNameGro, etLocationValue, etPinCodeValue, etInviteMesValue,
             etLocationValueEventTwo, etPinCodeValueEventTwo, etRSVPNameOne, etRSVPMobileOne, etRSVPNameTwo, etRSVPMobileTwo, etInviteMesRSVPValue;
@@ -96,26 +96,31 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     private void checkNull() {
-        /*if (!TextUtils.isEmpty(etNameBri.getText().toString()) &&
-                !TextUtils.isEmpty(etNameGro.getText().toString()) &&
-                !TextUtils.isEmpty(etLocationValue.getText().toString()) &&
-                !TextUtils.isEmpty(etPinCodeValue.getText().toString()) &&
-                !TextUtils.isEmpty(etInviteMesValue.getText().toString())) {
-            continueToInviteScreen();
-        }*/
+        if (Config.isEditTextEmpty(etNameBri) || Config.isEditTextEmpty(etNameGro) ||
+                Config.isEditTextEmpty(etLocationValue) || Config.isEditTextEmpty(etPinCodeValue) ||
+                Config.isEditTextEmpty(etInviteMesValue) || Config.checkDateText(tvmarDateTimeText) ||
+                Config.checkDateText(tvmarDateTimeText) || checkEventTwoDetails() || checkRSVPDetails()) {
 
-        if (Config.isEditTextEmpty(etNameBri)||Config.isEditTextEmpty(etNameGro)||
-                Config.isEditTextEmpty(etLocationValue)||Config.isEditTextEmpty(etPinCodeValue)||
-                Config.isEditTextEmpty(etInviteMesValue)||/*checkEventTwoDetails()||*/
-                Config.checkDateText(tvmarDateTimeText,DateText,
-                ContextCompat.getColor(this,R.color.colorRed), ContextCompat.getColor(this,R.color.textColor))) {
-
+            Config.changeDateTextcolor(tvmarDateTimeText, DateText,
+                    ContextCompat.getColor(this, R.color.colorRed), ContextCompat.getColor(this, R.color.textColor));
             Config.checkEditTextNullandSetError(etNameBri);
             Config.checkEditTextNullandSetError(etNameGro);
             Config.checkEditTextNullandSetError(etLocationValue);
             Config.checkEditTextNullandSetError(etPinCodeValue);
             Config.checkEditTextNullandSetError(etInviteMesValue);
+            if (switchEventTwo.isChecked()) {
+                Config.changeDateTextcolor(tvEventTwoDateTimeText, DateTextEventTwo,
+                        ContextCompat.getColor(this, R.color.colorRed), ContextCompat.getColor(this, R.color.textColor));
 
+                Config.checkEditTextNullandSetError(etEventNameText);
+                Config.checkEditTextNullandSetError(etLocationValueEventTwo);
+                Config.checkEditTextNullandSetError(etPinCodeValueEventTwo);
+            }
+            if (switchEventRSVP.isChecked()) {
+                Config.checkEditTextNullandSetError(etRSVPNameOne);
+                Config.checkEditTextNullandSetError(etRSVPMobileOne);
+                Config.checkEditTextNullandSetError(etInviteMesRSVPValue);
+            }
             new AlertDialog.Builder(this)
                     .setTitle("")
                     .setMessage("Please fill the details")
@@ -126,15 +131,35 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        }
-        else {
+        } else {
             continueToInviteScreen();
         }
     }
 
     private boolean checkEventTwoDetails() {
+        if (switchEventTwo.isChecked()) {
+            if (Config.isEditTextEmpty(etEventNameText) || Config.isEditTextEmpty(etLocationValueEventTwo) ||
+                    Config.isEditTextEmpty(etPinCodeValueEventTwo) || Config.checkDateText(tvEventTwoDateTimeText)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 
-        return true;
+    private boolean checkRSVPDetails() {
+        if (switchEventRSVP.isChecked()) {
+            if (Config.isEditTextEmpty(etRSVPNameOne) || Config.isEditTextEmpty(etRSVPMobileOne)
+                    || Config.isEditTextEmpty(etInviteMesRSVPValue)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     private void initializingVariables() {
@@ -146,6 +171,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         tvEventNameText = (TextView) findViewById(R.id.EventNameText);
         tvcontinueToInvite = (TextView) findViewById(R.id.continueToInvite);
         DateText = (TextView) findViewById(R.id.DateText);
+        DateTextEventTwo = (TextView) findViewById(R.id.DateTextEventTwo);
 
         rlEventTwo = (RelativeLayout) findViewById(R.id.rlEventTwo);
         rlEventRSVP = (RelativeLayout) findViewById(R.id.rlEventRSVP);
@@ -310,9 +336,11 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                             String formatedDate = sdf1.format(new Date(mYear, mMonth, mDay));
                             if (type.equalsIgnoreCase("wedding")) {
                                 tvmarDateTimeText.setVisibility(View.VISIBLE);
+                                DateText.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColor));
                                 updateTime(mHour, mMinute, tvmarDateTimeText, formatedDate);
                             } else if (type.equalsIgnoreCase("eventTwo")) {
                                 tvEventTwoDateTimeText.setVisibility(View.VISIBLE);
+                                DateTextEventTwo.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColor));
                                 updateTime(mHour, mMinute, tvEventTwoDateTimeText, formatedDate);
                             }
                         }
