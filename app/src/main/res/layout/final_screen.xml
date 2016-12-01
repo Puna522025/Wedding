@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorRed">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:max="500"
+        android:progress="0"
+        android:progressDrawable="@drawable/circular" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="SP4567"
+        android:textSize="25sp"
+        android:textColor="#ECDDDD"
+        android:textStyle="bold"
+        android:id="@+id/tvUniqueCode"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="continue >>"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignParentRight="true"
+        android:padding="25dp"
+        android:textSize="25sp"
+        android:textColor="#ECDDDD"
+        android:textStyle="bold"
+        android:id="@+id/tvContinue"
+        android:layout_centerInParent="true"/>
+
+
+</RelativeLayout>

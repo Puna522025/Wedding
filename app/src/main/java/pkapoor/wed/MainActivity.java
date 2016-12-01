@@ -34,7 +34,6 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 import launchDetails.Config;
-import launchDetails.LaunchScreen;
 import tabfragments.Events;
 import tabfragments.Gallery;
 import tabfragments.TheCouple;
@@ -92,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
         if (id == R.id.action_edit) {
             finish();
-            //backgroundColorPickerDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -105,6 +103,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         insertToDatabase();
+                        /*uniqueCode = "SP5454";
+                        Intent intent = new Intent(MainActivity.this, EndScreen.class);
+                        intent.putExtra("uniqueCode",uniqueCode);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        dialog.dismiss();
+                        finish();*/
                         dialog.dismiss();
                     }
                 })
@@ -208,13 +213,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
                 progressDialog.dismiss();
-
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Result")
                         .setMessage(result + " - Unique Code - " + uniqueCode)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(MainActivity.this, LaunchScreen.class);
+                                Intent intent = new Intent(MainActivity.this, EndScreen.class);
+                                intent.putExtra("uniqueCode",uniqueCode);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 dialog.dismiss();
