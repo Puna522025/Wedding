@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
@@ -40,7 +41,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     public static final String MyPREFERENCES = "myPreference";
     ImageView imgDateCalender, imgDateCalenderEventTwo;
     int mYear, mMonth, mDay, mHour, mMinute;
-    TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite;
+    TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite,DateText;
 
     EditText etEventNameText, etNameBri, etNameGro, etLocationValue, etPinCodeValue, etInviteMesValue,
             etLocationValueEventTwo, etPinCodeValueEventTwo, etRSVPNameOne, etRSVPMobileOne, etRSVPNameTwo, etRSVPMobileTwo, etInviteMesRSVPValue;
@@ -105,7 +106,9 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
         if (Config.isEditTextEmpty(etNameBri)||Config.isEditTextEmpty(etNameGro)||
                 Config.isEditTextEmpty(etLocationValue)||Config.isEditTextEmpty(etPinCodeValue)||
-                Config.isEditTextEmpty(etInviteMesValue)) {
+                Config.isEditTextEmpty(etInviteMesValue)||/*checkEventTwoDetails()||*/
+                Config.checkDateText(tvmarDateTimeText,DateText,
+                ContextCompat.getColor(this,R.color.colorRed), ContextCompat.getColor(this,R.color.textColor))) {
 
             Config.checkEditTextNullandSetError(etNameBri);
             Config.checkEditTextNullandSetError(etNameGro);
@@ -129,6 +132,11 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    private boolean checkEventTwoDetails() {
+
+        return true;
+    }
+
     private void initializingVariables() {
         imgDateCalender = (ImageView) findViewById(R.id.imgDateCalender);
         imgDateCalenderEventTwo = (ImageView) findViewById(R.id.imgDateCalenderEventTwo);
@@ -137,6 +145,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         tvEventTwoDateTimeText = (TextView) findViewById(R.id.EventTwoDateTimeText);
         tvEventNameText = (TextView) findViewById(R.id.EventNameText);
         tvcontinueToInvite = (TextView) findViewById(R.id.continueToInvite);
+        DateText = (TextView) findViewById(R.id.DateText);
 
         rlEventTwo = (RelativeLayout) findViewById(R.id.rlEventTwo);
         rlEventRSVP = (RelativeLayout) findViewById(R.id.rlEventRSVP);

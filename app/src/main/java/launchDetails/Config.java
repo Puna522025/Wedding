@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by DELL on 11/29/2016.
@@ -48,6 +49,15 @@ public class Config {
         }
     }
 
+    public static boolean checkDateText(TextView toCheck,TextView toChaneColor,int colorRed,int colorNormal) {
+        if (TextUtils.isEmpty(toCheck.getText().toString())) {
+            toChaneColor.setTextColor(colorRed);
+            return true;
+        }else{
+            toChaneColor.setTextColor(colorNormal);
+            return false;
+        }
+    }
     public static boolean isEditTextEmpty(EditText editText) {
         if (TextUtils.isEmpty(editText.getText().toString())) {
             return true;
