@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.widget.EditText;
 
 /**
  * Created by DELL on 11/29/2016.
@@ -40,5 +42,19 @@ public class Config {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
+    public static void checkEditTextNullandSetError(EditText editText) {
+        if (TextUtils.isEmpty(editText.getText().toString())) {
+            editText.setError("Please fill the details..");
+        }
+    }
+
+    public static boolean isEditTextEmpty(EditText editText) {
+        if (TextUtils.isEmpty(editText.getText().toString())) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
 }

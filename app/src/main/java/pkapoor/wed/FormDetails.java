@@ -3,10 +3,12 @@ package pkapoor.wed;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -84,11 +86,47 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_save_continue) {
-            continueToInviteScreen();
+            //continueToInviteScreen();
+            checkNull();
             return true;
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    private void checkNull() {
+        /*if (!TextUtils.isEmpty(etNameBri.getText().toString()) &&
+                !TextUtils.isEmpty(etNameGro.getText().toString()) &&
+                !TextUtils.isEmpty(etLocationValue.getText().toString()) &&
+                !TextUtils.isEmpty(etPinCodeValue.getText().toString()) &&
+                !TextUtils.isEmpty(etInviteMesValue.getText().toString())) {
+            continueToInviteScreen();
+        }*/
+
+        if (Config.isEditTextEmpty(etNameBri)||Config.isEditTextEmpty(etNameGro)||
+                Config.isEditTextEmpty(etLocationValue)||Config.isEditTextEmpty(etPinCodeValue)||
+                Config.isEditTextEmpty(etInviteMesValue)) {
+
+            Config.checkEditTextNullandSetError(etNameBri);
+            Config.checkEditTextNullandSetError(etNameGro);
+            Config.checkEditTextNullandSetError(etLocationValue);
+            Config.checkEditTextNullandSetError(etPinCodeValue);
+            Config.checkEditTextNullandSetError(etInviteMesValue);
+
+            new AlertDialog.Builder(this)
+                    .setTitle("")
+                    .setMessage("Please fill the details")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else {
+            continueToInviteScreen();
+        }
     }
 
     private void initializingVariables() {
