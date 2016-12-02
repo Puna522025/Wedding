@@ -5,16 +5,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -44,6 +49,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     private Button btnGetInvite, btnCreateInvite;
     private ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
+    ImageView imageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,19 +59,30 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         rlCode = (RelativeLayout) findViewById(R.id.rlCode);
         rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
 
+        imageView = (ImageView) findViewById(R.id.imageView);
+
         btnGetInvite = (Button) findViewById(R.id.btnGetInvite);
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
+
+        etWedCode.getBackground().mutate().setColorFilter(ContextCompat.getColor(this, R.color.colorLightRed), PorterDuff.Mode.SRC_ATOP);
+        etWedCode.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
+        final Animation slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+        final Animation grow = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.grow_anim);
+
         new Handler().postDelayed(new Runnable() {
 
             // Using handler with postDelayed called runnable run method
 
             @Override
             public void run() {
+                imageView.setAnimation(slideUp);
                 rlCode.setVisibility(View.VISIBLE);
+                rlCode.setAnimation(grow);
+
             }
-        }, 1 * 1500); // wait for 5 seconds
+        }, 1 * 900); // wait for 5 seconds
         btnGetInvite.setOnClickListener(this);
         btnCreateInvite.setOnClickListener(this);
         rlBackground.setOnClickListener(this);
@@ -118,6 +135,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         progressDialog.setMessage("Getting the invite..");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         String url = Config.URL_FETCH + "'" + etWedCode.getText().toString() + "'";

@@ -29,6 +29,7 @@ public class EndScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.final_screen);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         tvUniqueCode = (TextView) findViewById(R.id.tvUniqueCode);
         tvContinue = (TextView) findViewById(R.id.tvContinue);
         if (getIntent() != null && getIntent().getExtras().get("uniqueCode") != null) {

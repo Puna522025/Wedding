@@ -8,5 +8,6 @@
     <color name="viewColor">#848484</color>
     <color name="textColor">#585858</color>
     <color name="phoneIconTint">#096C1E</color>
+    <color name="colorLightRed">#ECDDDD</color>
 
 </resources>

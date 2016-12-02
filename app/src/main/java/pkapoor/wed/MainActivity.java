@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 progressDialog.setMessage("Saving the invite..");
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog.setIndeterminate(true);
+                progressDialog.setCancelable(false);
                 progressDialog.show();
             }
 

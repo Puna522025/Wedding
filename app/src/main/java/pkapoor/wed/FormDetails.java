@@ -223,6 +223,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         progressDialog.setMessage("Creating your invite..");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();

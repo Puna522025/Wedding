@@ -9,7 +9,6 @@
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_above="@+id/rlCode"
         android:layout_centerInParent="true"
         android:src="@drawable/calendar" />
 
