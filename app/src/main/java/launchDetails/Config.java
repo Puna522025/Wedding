@@ -39,6 +39,8 @@ public class Config {
     public static final String rsvp_text = "rsvp_text";
     public static final String setToolbarMenuIcons = "setToolbarMenuIcons";
     public static final String setLatestViewedId = "setLatestViewedId";
+    public static final  String TYPE_WED_CREATED = "created";
+    public static final  String TYPE_WED_VIEWED = "viewed";
 
     public static boolean isOnline(@NonNull Context context) {
         ConnectivityManager cm =

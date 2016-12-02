@@ -33,9 +33,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
+import database.DatabaseHandler;
+import database.WedPojo;
 import pkapoor.wed.FormDetails;
 import pkapoor.wed.MainActivity;
 import pkapoor.wed.R;
+import viewlist.ShowList;
 
 /**
  * Created by pkapo8 on 11/23/2016.
@@ -46,10 +51,11 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     public static final String MyPREFERENCES = "myPreference";
     private EditText etWedCode;
     private RelativeLayout rlCode, rlBackground;
-    private Button btnGetInvite, btnCreateInvite;
+    private Button btnGetInvite, btnCreateInvite, btnGetList;
     private ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
     ImageView imageView;
+    DatabaseHandler database;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +69,8 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
         btnGetInvite = (Button) findViewById(R.id.btnGetInvite);
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
+        btnGetList = (Button) findViewById(R.id.btnGetList);
+
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
 
@@ -85,7 +93,9 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         }, 1 * 900); // wait for 5 seconds
         btnGetInvite.setOnClickListener(this);
         btnCreateInvite.setOnClickListener(this);
+        btnGetList.setOnClickListener(this);
         rlBackground.setOnClickListener(this);
+        database = new DatabaseHandler(this);
     }
 
     @Override
@@ -119,6 +129,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                     InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 }
+                break;
+            case R.id.btnGetList:
+                Intent intent = new Intent(this, ShowList.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -228,7 +242,9 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 editor.putString(Config.event_two_name, event_two_Name);
                 editor.putString(Config.rsvp_text, rsvp_text);
                 editor.apply();
+                saveInDBviewOnly();
                 progressDialog.dismiss();
+
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra(Config.setToolbarMenuIcons, "no");
                 startActivity(intent);
@@ -251,5 +267,31 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             progressDialog.dismiss();
             e.printStackTrace();
         }
+    }
+
+    private void saveInDBviewOnly() {
+        if (!isWedExistsInDB())
+        {
+            WedPojo wedPojo = new WedPojo();
+            String brideName = sharedPreferences.getString(Config.name_bride, "");
+            String groomName = sharedPreferences.getString(Config.name_groom, "");
+
+            wedPojo.setName(brideName + " & " + groomName);
+            wedPojo.setType(Config.TYPE_WED_VIEWED);
+            wedPojo.setDate(sharedPreferences.getString(Config.marriage_date, ""));
+            wedPojo.setId(sharedPreferences.getString(Config.unique_wed_code, ""));
+
+            database.addWedDetails(wedPojo);
+        }
+    }
+
+    private boolean isWedExistsInDB() {
+        List<WedPojo> wedPojoArrayList = database.getAllWedDetails();
+        for (int i = 0; i < wedPojoArrayList.size(); i++) {
+            if (wedPojoArrayList.get(i).getId().equalsIgnoreCase(sharedPreferences.getString(Config.unique_wed_code, ""))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

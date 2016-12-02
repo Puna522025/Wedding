@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card1"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:background="@color/colorCardLayout">
+
+        <RelativeLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:id="@+id/tvNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/headingEvents"
+               android:layout_marginTop="5dp"
+                android:layout_centerInParent="true"
+                tools:text="sss &amp; sss" />
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_alignStart="@id/tvNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNames"
+                android:textColor="@color/colorRed"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/headingEvents"
+                tools:text="25/11/2017" />
+
+            <TextView
+                android:id="@+id/tvId"
+                android:layout_alignStart="@id/tvNames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDate"
+                android:textColor="@color/colorRed"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+                android:textSize="@dimen/headingEvents"
+                tools:text="25/11/2017" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

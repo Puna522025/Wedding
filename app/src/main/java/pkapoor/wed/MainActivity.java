@@ -33,6 +33,8 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import database.DatabaseHandler;
+import database.WedPojo;
 import launchDetails.Config;
 import tabfragments.Events;
 import tabfragments.Gallery;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private int[] tabIcons;
     private SharedPreferences sharedPreferences;
     private ProgressDialog progressDialog;
+    DatabaseHandler database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(this);
         viewPager.setOffscreenPageLimit(3);
+        database = new DatabaseHandler(this);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         setupTabIcons();
     }
@@ -212,12 +216,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-                progressDialog.dismiss();
+                //progressDialog.dismiss();
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Result")
                         .setMessage(result + " - Unique Code - " + uniqueCode)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+
+                                savingInDB();
                                 Intent intent = new Intent(MainActivity.this, EndScreen.class);
                                 intent.putExtra("uniqueCode",uniqueCode);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -232,6 +238,20 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
         sendPostReqAsyncTask.execute();
+    }
+
+    private void savingInDB() {
+        WedPojo wedPojo = new WedPojo();
+        String brideName = sharedPreferences.getString(Config.name_bride, "");
+        String groomName = sharedPreferences.getString(Config.name_groom, "");
+
+        wedPojo.setName(brideName + " & "+groomName);
+        wedPojo.setType(Config.TYPE_WED_CREATED);
+        wedPojo.setDate(sharedPreferences.getString(Config.marriage_date, ""));
+        wedPojo.setId(uniqueCode);
+
+        database.addWedDetails(wedPojo);
+        progressDialog.dismiss();
     }
 
     private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {

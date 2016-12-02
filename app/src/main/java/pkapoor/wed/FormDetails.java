@@ -78,6 +78,27 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        new AlertDialog.Builder(this)
+                .setTitle("")
+                .setMessage("Your Progress will not be saved. Do you want to continue?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_show_invite, menu);
         return true;
@@ -204,14 +225,15 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imgDateCalender:
-                Config.hideKeyboard(getCurrentFocus(),this);
+                Config.hideKeyboard(getCurrentFocus(), this);
                 setDate("wedding");
                 break;
             case R.id.imgDateCalenderEventTwo:
-                Config.hideKeyboard(getCurrentFocus(),this);
+                Config.hideKeyboard(getCurrentFocus(), this);
                 setDate("eventTwo");
                 break;
             case R.id.continueToInvite:
+                //TODO:  checkNull();
                 continueToInviteScreen();
                 break;
         }

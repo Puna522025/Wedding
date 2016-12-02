@@ -40,4 +40,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:text="Create Invite" />
+
+    <Button
+        android:id="@+id/btnGetList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="Recently created and viewed" />
+
+
 </RelativeLayout>
