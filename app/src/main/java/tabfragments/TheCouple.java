@@ -104,8 +104,8 @@ public class TheCouple extends Fragment {
         String grName = sharedPreferences.getString(Config.name_groom, "");
         String brName = sharedPreferences.getString(Config.name_bride, "");
         if (grName.length() > 7 || brName.length() > 7) {
-            tvGroName.setTextSize(20);
-            tvBriName.setTextSize(20);
+            tvGroName.setTextSize(19);
+            tvBriName.setTextSize(19);
         }
         tvGroName.setText(grName);
         tvBriName.setText(brName);
