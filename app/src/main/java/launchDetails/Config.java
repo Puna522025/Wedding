@@ -36,6 +36,7 @@ public class Config {
     public static final String event_two_name = "event_two_name";
     public static final String rsvp_text = "rsvp_text";
     public static final String setToolbarMenuIcons = "setToolbarMenuIcons";
+    public static final String setLatestViewedId = "setLatestViewedId";
 
     public static boolean isOnline(@NonNull Context context) {
         ConnectivityManager cm =

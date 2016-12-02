@@ -1,6 +1,7 @@
 package launchDetails;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,7 +42,9 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     private EditText etWedCode;
     private RelativeLayout rlCode, rlBackground;
     private Button btnGetInvite, btnCreateInvite;
-    private ProgressDialog progressDialog ;
+    private ProgressDialog progressDialog;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,8 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
         btnGetInvite = (Button) findViewById(R.id.btnGetInvite);
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
-
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
         new Handler().postDelayed(new Runnable() {
 
             // Using handler with postDelayed called runnable run method
@@ -72,9 +76,9 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnGetInvite:
                 if (!TextUtils.isEmpty(etWedCode.getText().toString())) {
-                    if(Config.isOnline(this)) {
+                    if (Config.isOnline(this)) {
                         getDBweddingDetails();
-                    }else{
+                    } else {
                         new AlertDialog.Builder(LaunchScreen.this)
                                 .setTitle("OOPS!!")
                                 .setMessage("No Internet ..try again..")
@@ -94,7 +98,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 createInviteForm();
                 break;
             case R.id.rlBackground:
-                if(getCurrentFocus()!=null) {
+                if (getCurrentFocus() != null) {
                     InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 }
@@ -162,7 +166,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             JSONArray result = jsonObject.getJSONArray(Config.TAG_JSON_ARRAY);
             JSONObject weddingData = result.getJSONObject(0);
             unique_wed_code = weddingData.getString(Config.unique_wed_code);
-            if(!unique_wed_code.equalsIgnoreCase("null")) {
+            if (!unique_wed_code.equalsIgnoreCase("null")) {
                 name_bride = weddingData.getString(Config.name_bride);
                 name_groom = weddingData.getString(Config.name_groom);
                 date_marriage = weddingData.getString(Config.date_marriage);
@@ -184,6 +188,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 rsvp_text = weddingData.getString(Config.rsvp_text);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
+                editor.putString(Config.setLatestViewedId, etWedCode.getText().toString());
                 editor.putString(Config.blessUs_para, blessUs_para);
                 editor.putString(Config.unique_wed_code, unique_wed_code);
                 editor.putString(Config.date_marriage, date_marriage);
@@ -210,18 +215,18 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra(Config.setToolbarMenuIcons, "no");
                 startActivity(intent);
 
-            }else{
+            } else {
                 progressDialog.dismiss();
-                 new AlertDialog.Builder(LaunchScreen.this)
-                    .setTitle("OOPS!!")
-                    .setMessage("Sorry....There seems to be no wedding with this code. Please try again..")
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+                new AlertDialog.Builder(LaunchScreen.this)
+                        .setTitle("OOPS!!")
+                        .setMessage("Sorry....There seems to be no wedding with this code. Please try again..")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
             }
 
         } catch (JSONException e) {
