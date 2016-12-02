@@ -7,4 +7,6 @@
     <color name="colorCardLayout">#E6E6E6</color>
     <color name="viewColor">#848484</color>
     <color name="textColor">#585858</color>
+    <color name="phoneIconTint">#096C1E</color>
+
 </resources>

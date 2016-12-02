@@ -5,6 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -75,5 +77,10 @@ public class Config {
         }
     }
 
-
+    public static void hideKeyboard(View currentFocus, Context context) {
+        if (currentFocus != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+        }
+    }
 }

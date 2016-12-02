@@ -1,24 +1,33 @@
 package tabfragments;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -32,15 +41,16 @@ import pkapoor.wed.R;
  * Created by pkapo8 on 11/23/2016.
  */
 
-public class Gallery extends Fragment {
+public class Gallery extends Fragment implements View.OnClickListener {
 
-
+    private static final int MY_PERMISSIONS_REQUEST = 11;
     ArrayList<Integer> bridImages, gxxxmImages, rxxxaImages;
     Adapter adapter;
     RecyclerView listBxxxx, listRxxx, listGrxx;
     TextView tvEventrok, tvEventBri, tvEventGGGG, tvEventRSV, tvRsvpText, tvrsvpFaml1, tvRsvpFamlContact1, tvRsvpFaml2, tvRsvpFamlContact2;
     CardView card4;
     SharedPreferences sharedPreferences;
+    RelativeLayout rlContactOne, rlContactTwo;
     public static final String MyPREFERENCES = "myPreference";
 
     @Override
@@ -124,7 +134,10 @@ public class Gallery extends Fragment {
         tvRsvpFamlContact1 = (TextView) view.findViewById(R.id.rsvrFamlContact1);
         tvRsvpFamlContact2 = (TextView) view.findViewById(R.id.rsvrFamlContact2);
 
-        card4 = (CardView)view.findViewById(R.id.card4);
+        rlContactOne = (RelativeLayout) view.findViewById(R.id.rlContactOne);
+        rlContactTwo = (RelativeLayout) view.findViewById(R.id.rlContactTwo);
+
+        card4 = (CardView) view.findViewById(R.id.card4);
 
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DeliusSwashCaps-Regular.ttf");
 
@@ -139,21 +152,38 @@ public class Gallery extends Fragment {
         tvRsvpFamlContact1.setTypeface(type);
         tvRsvpFamlContact2.setTypeface(type);
         sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        rlContactOne.setOnClickListener(this);
+        rlContactTwo.setOnClickListener(this);
 
         setRSVPdetails();
         return view;
     }
 
     private void setRSVPdetails() {
+
         if (sharedPreferences.getString(Config.rsvp_tobe, "true").equalsIgnoreCase("true")) {
             card4.setVisibility(View.VISIBLE);
-            //tvRsvpText.setText(sharedPreferences.getString("we would like to jsdjkbf", "DATE"));
+
             tvRsvpText.setText(sharedPreferences.getString(Config.rsvp_text, "name1"));
             tvrsvpFaml1.setText(sharedPreferences.getString(Config.rsvp_name1, "name1"));
             tvRsvpFaml2.setText(sharedPreferences.getString(Config.rsvp_name2, "name2"));
-            tvRsvpFamlContact1.setText(sharedPreferences.getString(Config.rsvp_phone_one, "phone1"));
-            tvRsvpFamlContact2.setText(sharedPreferences.getString(Config.rsvp_phone_two, "phone2"));
-        }else{
+
+            String phoneOne = sharedPreferences.getString(Config.rsvp_phone_one, "");
+            String phoneTwo = sharedPreferences.getString(Config.rsvp_phone_two, "");
+
+            if (!TextUtils.isEmpty(phoneOne)) {
+                tvRsvpFamlContact1.setText(phoneOne);
+                rlContactOne.setVisibility(View.VISIBLE);
+            } else {
+                rlContactOne.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(phoneTwo)) {
+                tvRsvpFamlContact2.setText(phoneTwo);
+                rlContactTwo.setVisibility(View.VISIBLE);
+            } else {
+                rlContactTwo.setVisibility(View.GONE);
+            }
+        } else {
             card4.setVisibility(View.GONE);
         }
     }
@@ -161,7 +191,6 @@ public class Gallery extends Fragment {
     private void setListLayout(RecyclerView list) {
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        //LinearLayoutManager llm = new LinearLayoutManager(getContext());
         list.setLayoutManager(layoutManager);
         list.setHasFixedSize(true);
         list.setItemAnimator(new DefaultItemAnimator());
@@ -172,5 +201,88 @@ public class Gallery extends Fragment {
 
         super.onActivityCreated(savedInstanceState);
     }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.rlContactOne:
+                String phoneOne = sharedPreferences.getString(Config.rsvp_phone_one, "");
+                if (!TextUtils.isEmpty(phoneOne)) {
+                    makeCall(phoneOne);
+                }
+                break;
+            case R.id.rlContactTwo:
+                String phoneTwo = sharedPreferences.getString(Config.rsvp_phone_two, "");
+                if (!TextUtils.isEmpty(phoneTwo)) {
+                    makeCall(phoneTwo);
+                }
+                break;
+        }
+    }
+
+    private void makeCall(String phoneNumber) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.CALL_PHONE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.CALL_PHONE},
+                        MY_PERMISSIONS_REQUEST);
+            } else {
+                PackageManager packageManager = getActivity().getPackageManager();
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + phoneNumber));
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "No call support", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted!!
+
+                } else {
+                    if (ContextCompat.checkSelfPermission(getContext(),
+                            Manifest.permission.CALL_PHONE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        // Should we show an explanation?
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                                Manifest.permission.CALL_PHONE)) {
+                            // Show an expanation to the user *asynchronously* -- don't block
+                            // this thread waiting for the user's response! After the user
+                            // sees the explanation, try again to request the permission.
+
+                        } else {
+
+                            // No explanation needed, we can request the permission.
+
+                            ActivityCompat.requestPermissions(getActivity(),
+                                    new String[]{Manifest.permission.CALL_PHONE},
+                                    MY_PERMISSIONS_REQUEST);
+
+                            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                            // app-defined int constant. The callback method gets the
+                            // result of the request.
+                        }
+                        // permission denied, boo! Disable the
+                        // functionality that depends on this permission.
+                    }
+                }
+                return;
+            }
+        }
+    }
+
 }
 

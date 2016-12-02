@@ -165,8 +165,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.rsvp_tobe, sharedPreferences.getString(Config.rsvp_tobe, "NAME"));
                     paramsj.put(Config.rsvp_name1, sharedPreferences.getString(Config.rsvp_name1, "NAME"));
                     paramsj.put(Config.rsvp_name2, sharedPreferences.getString(Config.rsvp_name2, "NAME"));
-                    paramsj.put(Config.rsvp_phone_one, sharedPreferences.getString(Config.rsvp_phone_one, "Phone"));
-                    paramsj.put(Config.rsvp_phone_two, sharedPreferences.getString(Config.rsvp_phone_two, "Phone"));
+                    paramsj.put(Config.rsvp_phone_one, sharedPreferences.getString(Config.rsvp_phone_one, ""));
+                    paramsj.put(Config.rsvp_phone_two, sharedPreferences.getString(Config.rsvp_phone_two, ""));
                     paramsj.put(Config.event_two_name, sharedPreferences.getString(Config.event_two_name, "NAME"));
                     paramsj.put(Config.rsvp_text, sharedPreferences.getString(Config.rsvp_text, "NAME"));
 

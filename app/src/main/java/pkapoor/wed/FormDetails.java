@@ -204,9 +204,11 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.imgDateCalender:
+                Config.hideKeyboard(getCurrentFocus(),this);
                 setDate("wedding");
                 break;
             case R.id.imgDateCalenderEventTwo:
+                Config.hideKeyboard(getCurrentFocus(),this);
                 setDate("eventTwo");
                 break;
             case R.id.continueToInvite:
