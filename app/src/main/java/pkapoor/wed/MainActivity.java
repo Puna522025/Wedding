@@ -39,6 +39,7 @@ import launchDetails.Config;
 import tabfragments.Events;
 import tabfragments.Gallery;
 import tabfragments.TheCouple;
+import viewlist.ShowList;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String uniqueCode = "";
-    private int[] tabIcons;
     private SharedPreferences sharedPreferences;
     private ProgressDialog progressDialog;
     DatabaseHandler database;
@@ -81,6 +81,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             getMenuInflater().inflate(R.menu.menu_create_invite, menu);
         } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("no")) {
             getMenuInflater().inflate(R.menu.menu_empty, menu);
+        } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
+            getMenuInflater().inflate(R.menu.menu_view_type, menu);
+        }else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase(Config.TYPE_WED_VIEWED)) {
+            getMenuInflater().inflate(R.menu.menu_view_type, menu);
+            MenuItem action_share = menu.findItem(R.id.action_share);
+            action_share.setVisible(false);
         }
         return true;
     }
@@ -96,8 +102,38 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         if (id == R.id.action_edit) {
             finish();
             return true;
+        } if (id == R.id.action_share) {
+           // finish();
+            return true;
+        } if (id == R.id.action_delete) {
+            deleteEntry();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteEntry() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("Delete Invite")
+                .setMessage("Are you sure you want to delete this invite?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        database.deleteNote(sharedPreferences.getString(Config.unique_wed_code,""));
+                        finish();
+                        Intent intent = new Intent(MainActivity.this, ShowList.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
     }
 
     private void saveDatatoDB() {

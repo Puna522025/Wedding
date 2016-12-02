@@ -125,10 +125,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     // Deleting single note
-    public void deleteNote(WedPojo wedPojo) {
+    public void deleteNote(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_WED_DETAILS, KEY_UNIQUE_ID + " = ?",
-                new String[]{String.valueOf(wedPojo.getId())});
+                new String[]{String.valueOf(id)});
         db.close();
     }
 }

@@ -23,12 +23,14 @@ public class AdapterListWed extends RecyclerView.Adapter<AdapterListWed.MyViewHo
         public TextView tvNames;
         public TextView tvDate;
         public TextView tvId;
+        public TextView tvType;
 
         public MyViewHolder(View view) {
             super(view);
             this.tvNames = (TextView) view.findViewById(R.id.tvNames);
             this.tvDate = (TextView) view.findViewById(R.id.tvDate);
             this.tvId = (TextView) view.findViewById(R.id.tvId);
+            this.tvType = (TextView) view.findViewById(R.id.tvType);
             view.setOnClickListener(this);
         }
 
@@ -64,6 +66,7 @@ public class AdapterListWed extends RecyclerView.Adapter<AdapterListWed.MyViewHo
         holder.tvNames.setText(arrayList.get(position).getName());
         holder.tvDate.setText(arrayList.get(position).getDate());
         holder.tvId.setText(arrayList.get(position).getId());
+        holder.tvType.setText(arrayList.get(position).getType());
     }
 
     @Override

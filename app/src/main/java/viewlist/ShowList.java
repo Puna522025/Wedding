@@ -88,8 +88,9 @@ public class ShowList extends AppCompatActivity {
             @Override
             public void onItemClick(int position, View v) {
                 TextView tvId = (TextView) v.findViewById(R.id.tvId);
+                TextView tvType = (TextView) v.findViewById(R.id.tvType);
                 if (Config.isOnline(ShowList.this)) {
-                    getDBweddingDetails(tvId.getText().toString());
+                    getDBweddingDetails(tvId.getText().toString(),tvType.getText().toString());
                 } else {
                     new AlertDialog.Builder(ShowList.this)
                             .setTitle("OOPS!!")
@@ -109,7 +110,7 @@ public class ShowList extends AppCompatActivity {
         });
     }
 
-    private void getDBweddingDetails(final String unique_code) {
+    private void getDBweddingDetails(final String unique_code, final String type) {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Getting the invite..");
@@ -122,7 +123,7 @@ public class ShowList extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                showJSON(response,unique_code);
+                showJSON(response,unique_code,type);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -135,7 +136,7 @@ public class ShowList extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private void showJSON(String response,String unique_code) {
+    private void showJSON(String response, String unique_code, String type) {
 
         String unique_wed_code = "";
         String name_bride = "";
@@ -211,7 +212,7 @@ public class ShowList extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(Config.setToolbarMenuIcons, "no");
+                intent.putExtra(Config.setToolbarMenuIcons, type);
                 startActivity(intent);
 
             } else {
