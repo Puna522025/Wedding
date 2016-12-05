@@ -3,7 +3,7 @@
     android:innerRadiusRatio="2.8"
     android:shape="ring"
     android:thickness="3.5sp">
-    <solid android:color="#FCB6B6" />
+    <solid android:color="@color/colorRed" />
 </shape>
 
 

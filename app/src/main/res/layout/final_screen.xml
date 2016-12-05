@@ -3,108 +3,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorRed"
     android:orientation="vertical">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/ImageCongrats"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/progressBar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="85dp"
-        android:src="@drawable/congrats" />
+        android:src="@drawable/congrats" />-->
+    <TextView
+        android:id="@+id/tvCongrats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rlCenterLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="90dp"
+        android:text="Congratulations"
+        android:textColor="@android:color/white"
+        android:textSize="40sp" />
 
     <TextView
         android:id="@+id/tvYourCodeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/progressBar"
+        android:layout_above="@+id/rlCenterLayout"
         android:layout_alignStart="@+id/rlShare"
         android:layout_centerInParent="true"
-        android:textColor="@color/colorRed"
-        android:layout_marginBottom="30dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:text="Your Invite Code -" />
+        android:layout_marginBottom="20dp"
+        android:text="Your Invite Code -"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="@color/colorRed"
-    android:layout_centerInParent="true"
-    android:id="@+id/rlCenterLayout"
-    android:layout_gravity="center_horizontal"/>
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+    <android.support.v7.widget.CardView
+        style="@style/CardViewStyle"
+        android:id="@+id/rlCenterLayout"
+        android:elevation="20dp"
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center_horizontal"
-        android:max="500"
-        android:progress="0"
-        android:progressDrawable="@drawable/circular"
-        tools:progress="500" />
+        android:backgroundTint="@android:color/white" >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:max="500"
+            android:progress="0"
+            android:progressDrawable="@drawable/circular"
+            tools:progress="500" />
 
-    <TextView
-        android:id="@+id/tvUniqueCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textColor="@color/colorLightRed"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        tools:text="SP4567" />
+        <TextView
+            android:id="@+id/tvUniqueCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorRed"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:text="SP4567" />
+</RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+
 
     <View
+        android:id="@+id/divider"
         android:layout_width="2dp"
         android:layout_height="match_parent"
-        android:id="@+id/divider"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
     <RelativeLayout
         android:id="@+id/rlShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="60dp"
+        android:layout_below="@+id/rlCenterLayout"
         android:layout_marginLeft="20dp"
-        android:layout_below="@+id/rlCenterLayout">
+        android:layout_marginTop="60dp">
 
         <TextView
             android:id="@+id/tvShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Share the Invite"
-            android:textColor="@color/colorRed"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
+
         <ImageView
+            android:id="@+id/imageShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvShare"
-            android:id="@+id/imageShare"
-            android:tint="@color/colorRed"
-            android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:src="@android:drawable/ic_menu_share"/>
+            android:layout_marginTop="5dp"
+            android:src="@android:drawable/ic_menu_share"
+            android:tint="@android:color/white" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/tvContinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Continue and Share later >>"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/colorRed"
-        android:textSize="18sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="60dp"
-        android:textStyle="bold"
         android:layout_below="@+id/rlCenterLayout"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
         android:layout_toEndOf="@+id/divider"
-        android:layout_marginStart="8dp" />
+        android:text="Continue and Share later >>"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

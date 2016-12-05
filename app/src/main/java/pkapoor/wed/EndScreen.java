@@ -2,6 +2,7 @@ package pkapoor.wed;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,7 @@ import launchDetails.LaunchScreen;
 public class EndScreen extends AppCompatActivity {
 
     ProgressBar progressBar;
-    TextView tvUniqueCode,tvContinue;
+    TextView tvUniqueCode, tvCongrats, tvYourCodeText, tvShare,tvContinue;
     RelativeLayout rlShare;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
 
@@ -37,7 +38,18 @@ public class EndScreen extends AppCompatActivity {
 
         tvUniqueCode = (TextView) findViewById(R.id.tvUniqueCode);
         tvContinue = (TextView) findViewById(R.id.tvContinue);
-        if (getIntent() != null && getIntent().getExtras().get("uniqueCode") != null) {
+        tvCongrats = (TextView) findViewById(R.id.tvCongrats);
+        tvYourCodeText = (TextView) findViewById(R.id.tvYourCodeText);
+        tvShare = (TextView) findViewById(R.id.tvShare);
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "fonts/Bungasai.ttf");
+        tvCongrats.setTypeface(type);
+        tvYourCodeText.setTypeface(type);
+        tvShare.setTypeface(type);
+        tvContinue.setTypeface(type);
+
+
+        if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().get("uniqueCode") != null) {
             tvUniqueCode.setText(getIntent().getExtras().get("uniqueCode").toString());
         }
         ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 600);
