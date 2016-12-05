@@ -77,16 +77,24 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public boolean onCreateOptionsMenu(Menu menu) {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("yes")) {
-            getMenuInflater().inflate(R.menu.menu_create_invite, menu);
-        } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("no")) {
+        if (null != extras && null != extras.get(Config.setToolbarMenuIcons)) {
+            if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase("yes")) {
+                getMenuInflater().inflate(R.menu.menu_create_invite, menu);
+            } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase(Config.ONLY_SHARE)) {
+                getMenuInflater().inflate(R.menu.menu_view_type, menu);
+                MenuItem action_delete = menu.findItem(R.id.action_delete);
+                action_delete.setVisible(false);
+            } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
+                getMenuInflater().inflate(R.menu.menu_view_type, menu);
+            } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase(Config.TYPE_WED_VIEWED)) {
+                getMenuInflater().inflate(R.menu.menu_view_type, menu);
+                MenuItem action_share = menu.findItem(R.id.action_share);
+                action_share.setVisible(false);
+            } else {
+                getMenuInflater().inflate(R.menu.menu_empty, menu);
+            }
+        } else {
             getMenuInflater().inflate(R.menu.menu_empty, menu);
-        } else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
-            getMenuInflater().inflate(R.menu.menu_view_type, menu);
-        }else if (extras.get(Config.setToolbarMenuIcons).toString().equalsIgnoreCase(Config.TYPE_WED_VIEWED)) {
-            getMenuInflater().inflate(R.menu.menu_view_type, menu);
-            MenuItem action_share = menu.findItem(R.id.action_share);
-            action_share.setVisible(false);
         }
         return true;
     }
@@ -96,16 +104,31 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         int id = item.getItemId();
         if (id == R.id.action_save) {
-            saveDatatoDB();
+            if (Config.isOnline(MainActivity.this)) {
+                saveDatatoDB();
+            }else {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("OOPS!!")
+                        .setMessage("No Internet ..Please try again..")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
             return true;
         }
         if (id == R.id.action_edit) {
             finish();
             return true;
-        } if (id == R.id.action_share) {
-           // finish();
+        }
+        if (id == R.id.action_share) {
+            // finish();
             return true;
-        } if (id == R.id.action_delete) {
+        }
+        if (id == R.id.action_delete) {
             deleteEntry();
             return true;
         }
@@ -118,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 .setMessage("Are you sure you want to delete this invite?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        database.deleteNote(sharedPreferences.getString(Config.unique_wed_code,""));
+                        database.deleteNote(sharedPreferences.getString(Config.unique_wed_code, ""));
                         finish();
                         Intent intent = new Intent(MainActivity.this, ShowList.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -139,17 +162,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private void saveDatatoDB() {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Create Invite")
-                .setMessage("You will not be able to edit this invite if you save it.Do you want to create this invite?")
+                .setMessage("You will not be able to edit this invite if you save it. Do you want to create this invite?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        insertToDatabase();
-                        /*uniqueCode = "SP5454";
-                        Intent intent = new Intent(MainActivity.this, EndScreen.class);
-                        intent.putExtra("uniqueCode",uniqueCode);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        dialog.dismiss();
-                        finish();*/
+                        insertToOnlineDatabase();
                         dialog.dismiss();
                     }
                 })
@@ -162,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 .show();
     }
 
-    private void insertToDatabase() {
+    private void insertToOnlineDatabase() {
         class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
 
             @Override
@@ -253,23 +269,26 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
                 //progressDialog.dismiss();
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Result")
-                        .setMessage(result + " - Unique Code - " + uniqueCode)
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                savingInDB();
-                                Intent intent = new Intent(MainActivity.this, EndScreen.class);
-                                intent.putExtra("uniqueCode",uniqueCode);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                dialog.dismiss();
-                                finish();
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+                if (!TextUtils.isEmpty(result) && result.equalsIgnoreCase("success")) {
+                    savingInDB();
+                    Intent intent = new Intent(MainActivity.this, EndScreen.class);
+                    intent.putExtra("uniqueCode", uniqueCode);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Result")
+                            .setMessage(result + "Unable to save details.Please try after some time.")
+                            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    progressDialog.dismiss();
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
             }
         }
         SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
@@ -281,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         String brideName = sharedPreferences.getString(Config.name_bride, "");
         String groomName = sharedPreferences.getString(Config.name_groom, "");
 
-        wedPojo.setName(brideName + " & "+groomName);
+        wedPojo.setName(brideName + " & " + groomName);
         wedPojo.setType(Config.TYPE_WED_CREATED);
         wedPojo.setDate(sharedPreferences.getString(Config.marriage_date, ""));
         wedPojo.setId(uniqueCode);

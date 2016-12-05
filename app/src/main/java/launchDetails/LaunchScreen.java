@@ -107,14 +107,20 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                     String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId,"");
                     // No need to hit the service if ID was already fetched the last time.
                     if(!TextUtils.isEmpty(latestViewedId)&&latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())){
-                        callMainActivity();
+                        progressDialog = new ProgressDialog(this);
+                        progressDialog.setMessage("Getting the invite..");
+                        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        progressDialog.setIndeterminate(true);
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+                        callMainActivity(latestViewedId);
                     }
                     else if (Config.isOnline(this)) {
                         getDBweddingDetails();
                     } else {
                         new AlertDialog.Builder(LaunchScreen.this)
                                 .setTitle("OOPS!!")
-                                .setMessage("No Internet ..try again..")
+                                .setMessage("No Internet ..Please try again..")
                                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.dismiss();
@@ -143,9 +149,17 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void callMainActivity() {
+    private void callMainActivity(String uniqueId) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(Config.setToolbarMenuIcons, "no");
+        List<WedPojo> wedPojoArrayList = database.getAllWedDetails();
+        for (int i = 0; i < wedPojoArrayList.size(); i++) {
+            if (wedPojoArrayList.get(i).getId().equalsIgnoreCase(uniqueId)
+                    && wedPojoArrayList.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
+                intent.putExtra(Config.setToolbarMenuIcons, Config.ONLY_SHARE);
+                break;
+            }
+        }
+        progressDialog.dismiss();
         startActivity(intent);
     }
 
@@ -257,7 +271,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 saveInDBviewOnly();
                 progressDialog.dismiss();
 
-                callMainActivity();
+                callMainActivity(unique_wed_code);
 
             } else {
                 progressDialog.dismiss();

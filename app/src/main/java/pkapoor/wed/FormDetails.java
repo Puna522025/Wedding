@@ -71,10 +71,6 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         etEventNameText.setVisibility(View.VISIBLE);
         rlEventRSVP.setVisibility(View.VISIBLE);
 
-        /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.b);
-        Bitmap bb = BlurBuilder.blur(this, bitmap);
-        Drawable d = new BitmapDrawable(getResources(), bb);
-        rlBackground.setBackground(d);*/
     }
 
     @Override
@@ -108,7 +104,6 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_save_continue) {
-            //continueToInviteScreen();
             checkNull();
             return true;
         }
@@ -233,8 +228,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                 setDate("eventTwo");
                 break;
             case R.id.continueToInvite:
-                //TODO:  checkNull();
-                continueToInviteScreen();
+                checkNull();
                 break;
         }
     }

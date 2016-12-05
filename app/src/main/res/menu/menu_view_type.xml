@@ -10,7 +10,6 @@
         app:showAsAction="always">
 
     </item>
-
     <item
         android:id="@+id/action_share"
         android:icon="@android:drawable/ic_menu_share"

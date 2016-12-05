@@ -41,6 +41,7 @@ public class Config {
     public static final String setLatestViewedId = "setLatestViewedId";
     public static final  String TYPE_WED_CREATED = "created";
     public static final  String TYPE_WED_VIEWED = "viewed";
+    public static final String ONLY_SHARE = "only_Share";
 
     public static boolean isOnline(@NonNull Context context) {
         ConnectivityManager cm =
