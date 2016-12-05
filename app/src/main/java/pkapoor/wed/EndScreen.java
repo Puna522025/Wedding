@@ -10,8 +10,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import launchDetails.Config;
 import launchDetails.LaunchScreen;
 
 /**
@@ -22,6 +24,7 @@ public class EndScreen extends AppCompatActivity {
 
     ProgressBar progressBar;
     TextView tvUniqueCode,tvContinue;
+    RelativeLayout rlShare;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
 
     @Override
@@ -29,6 +32,8 @@ public class EndScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.final_screen);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        rlShare = (RelativeLayout) findViewById(R.id.rlShare);
 
         tvUniqueCode = (TextView) findViewById(R.id.tvUniqueCode);
         tvContinue = (TextView) findViewById(R.id.tvContinue);
@@ -70,6 +75,12 @@ public class EndScreen extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
+            }
+        });
+        rlShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Config.shareIntent(EndScreen.this);
             }
         });
     }

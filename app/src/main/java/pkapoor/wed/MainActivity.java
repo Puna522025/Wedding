@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         viewPager.addOnPageChangeListener(this);
         viewPager.setOffscreenPageLimit(3);
         database = new DatabaseHandler(this);
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         setupTabIcons();
     }
 
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             return true;
         }
         if (id == R.id.action_share) {
-            // finish();
+            Config.shareIntent(MainActivity.this);
             return true;
         }
         if (id == R.id.action_delete) {
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.name_groom, groomName);
                     paramsj.put(Config.date_marriage, sharedPreferences.getString(Config.date_marriage, "DATE"));
                     paramsj.put(Config.blessUs_para, sharedPreferences.getString(Config.blessUs_para, "NAME"));
-                    paramsj.put(Config.event_two_tobe, sharedPreferences.getString(Config.event_two_tobe, "NAME"));
+                    paramsj.put(Config.event_two_tobe, sharedPreferences.getString(Config.event_two_tobe, "false"));
                     paramsj.put(Config.event_Two_date, sharedPreferences.getString(Config.event_Two_date, "NAME"));
                     paramsj.put(Config.event_Two_time, sharedPreferences.getString(Config.event_Two_time, "NAME"));
                     paramsj.put(Config.event_Two_location, sharedPreferences.getString(Config.event_Two_location, "NAME"));
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.marriage_date, sharedPreferences.getString(Config.marriage_date, "NAME"));
                     paramsj.put(Config.marriage_time, sharedPreferences.getString(Config.marriage_time, "NAME"));
                     paramsj.put(Config.marriage_location, sharedPreferences.getString(Config.marriage_location, "NAME"));
-                    paramsj.put(Config.rsvp_tobe, sharedPreferences.getString(Config.rsvp_tobe, "NAME"));
+                    paramsj.put(Config.rsvp_tobe, sharedPreferences.getString(Config.rsvp_tobe, "false"));
                     paramsj.put(Config.rsvp_name1, sharedPreferences.getString(Config.rsvp_name1, "NAME"));
                     paramsj.put(Config.rsvp_name2, sharedPreferences.getString(Config.rsvp_name2, "NAME"));
                     paramsj.put(Config.rsvp_phone_one, sharedPreferences.getString(Config.rsvp_phone_one, ""));
@@ -357,13 +357,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         Drawable drawableEvents = getDrawable(R.drawable.calender_one);
         drawableEvents.setTint(ContextCompat.getColor(this, android.R.color.white));
 
-        Drawable drawableLocation = getDrawable(R.drawable.location);
-        drawableLocation.setTint(ContextCompat.getColor(this, android.R.color.white));
-
-
         tabLayout.getTabAt(0).setIcon(drawableCouple);
         tabLayout.getTabAt(1).setIcon(drawableEvents);
-        tabLayout.getTabAt(2).setIcon(drawableLocation);
+        if(sharedPreferences.getString(Config.rsvp_tobe,"false").equalsIgnoreCase("true")) {
+            Drawable drawableRSVP = getDrawable(R.drawable.rsvp);
+            drawableRSVP.setTint(ContextCompat.getColor(this, android.R.color.white));
+            tabLayout.getTabAt(2).setIcon(drawableRSVP);
+        }
     }
 
 
@@ -371,7 +371,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new TheCouple(), "The Couple");
         adapter.addFragment(new Events(), "Events");
-        adapter.addFragment(new Gallery(), "Gallery");
+        if(sharedPreferences.getString(Config.rsvp_tobe,"false").equalsIgnoreCase("true")) {
+            adapter.addFragment(new Gallery(), "RSVP");
+        }
         viewPager.setAdapter(adapter);
     }
 }

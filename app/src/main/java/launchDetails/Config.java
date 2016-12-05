@@ -1,6 +1,8 @@
 package launchDetails;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by DELL on 11/29/2016.
@@ -84,6 +87,25 @@ public class Config {
         if (currentFocus != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(currentFocus.getWindowToken(), 0);
+        }
+    }
+
+    public static void shareIntent(Context context) {
+        String shareBody ="Here's the wedding invite. Looking forward to see you there..";
+
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Wedding invite");
+        //sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+
+        String link = "http://play.google.com/store/apps/details?id=sample.myapplication";
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody + " " + link);
+        PackageManager packageManager = context.getPackageManager();
+
+        if (sharingIntent.resolveActivity(packageManager) != null) {
+            context.startActivity(Intent.createChooser(sharingIntent, "Share the invite via"));
+        } else {
+            Toast.makeText(context, "No message support", Toast.LENGTH_SHORT).show();
         }
     }
 }
