@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorRed"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <ImageView
@@ -22,13 +22,19 @@
         android:layout_above="@+id/progressBar"
         android:layout_alignStart="@+id/rlShare"
         android:layout_centerInParent="true"
-        android:textColor="@color/colorLightRed"
+        android:textColor="@color/colorRed"
         android:layout_marginBottom="30dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:text="Your Invite Code -" />
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/colorRed"
+    android:layout_centerInParent="true"
+    android:id="@+id/rlCenterLayout"
+    android:layout_gravity="center_horizontal"/>
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -64,14 +70,14 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="20dp"
-        android:layout_below="@+id/progressBar">
+        android:layout_below="@+id/rlCenterLayout">
 
         <TextView
             android:id="@+id/tvShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Share the Invite"
-            android:textColor="@color/colorLightRed"
+            android:textColor="@color/colorRed"
             android:textSize="18sp"
             android:textStyle="bold" />
         <ImageView
@@ -79,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvShare"
             android:id="@+id/imageShare"
+            android:tint="@color/colorRed"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
             android:src="@android:drawable/ic_menu_share"/>
@@ -90,12 +97,12 @@
         android:layout_height="wrap_content"
         android:text="Continue and Share later >>"
         android:layout_marginRight="20dp"
-        android:textColor="@color/colorLightRed"
+        android:textColor="@color/colorRed"
         android:textSize="18sp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="60dp"
         android:textStyle="bold"
-        android:layout_below="@+id/progressBar"
+        android:layout_below="@+id/rlCenterLayout"
         android:layout_toEndOf="@+id/divider"
         android:layout_marginStart="8dp" />
 

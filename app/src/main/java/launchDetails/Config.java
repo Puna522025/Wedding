@@ -107,5 +107,6 @@ public class Config {
         } else {
             Toast.makeText(context, "No message support", Toast.LENGTH_SHORT).show();
         }
+
     }
 }

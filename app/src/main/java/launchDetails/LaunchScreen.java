@@ -74,6 +74,11 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
         etWedCode.getBackground().mutate().setColorFilter(ContextCompat.getColor(this, R.color.colorLightRed), PorterDuff.Mode.SRC_ATOP);
         etWedCode.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
         final Animation slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
@@ -107,11 +112,8 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                     String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId,"");
                     // No need to hit the service if ID was already fetched the last time.
                     if(!TextUtils.isEmpty(latestViewedId)&&latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())){
-                        progressDialog = new ProgressDialog(this);
+
                         progressDialog.setMessage("Getting the invite..");
-                        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                        progressDialog.setIndeterminate(true);
-                        progressDialog.setCancelable(false);
                         progressDialog.show();
                         callMainActivity(latestViewedId);
                     }
@@ -152,11 +154,13 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     private void callMainActivity(String uniqueId) {
         Intent intent = new Intent(this, MainActivity.class);
         List<WedPojo> wedPojoArrayList = database.getAllWedDetails();
-        for (int i = 0; i < wedPojoArrayList.size(); i++) {
-            if (wedPojoArrayList.get(i).getId().equalsIgnoreCase(uniqueId)
-                    && wedPojoArrayList.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
-                intent.putExtra(Config.setToolbarMenuIcons, Config.ONLY_SHARE);
-                break;
+        if(null != wedPojoArrayList) {
+            for (int i = 0; i < wedPojoArrayList.size(); i++) {
+                if (wedPojoArrayList.get(i).getId().equalsIgnoreCase(uniqueId)
+                        && wedPojoArrayList.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
+                    intent.putExtra(Config.setToolbarMenuIcons, Config.ONLY_SHARE);
+                    break;
+                }
             }
         }
         progressDialog.dismiss();
@@ -171,11 +175,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
     private void getDBweddingDetails() {
 
-        progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Getting the invite..");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
         progressDialog.show();
 
         String url = Config.URL_FETCH + "'" + etWedCode.getText().toString() + "'";
@@ -188,7 +188,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(LaunchScreen.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(LaunchScreen.this, "error", Toast.LENGTH_LONG).show();
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -269,8 +269,6 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 editor.putString(Config.rsvp_text, rsvp_text);
                 editor.apply();
                 saveInDBviewOnly();
-                progressDialog.dismiss();
-
                 callMainActivity(unique_wed_code);
 
             } else {

@@ -129,7 +129,7 @@ public class ShowList extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(ShowList.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(ShowList.this, "error", Toast.LENGTH_LONG).show();
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);

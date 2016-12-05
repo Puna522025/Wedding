@@ -62,6 +62,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         setSupportActionBar(toolbar);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+        progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog.setMessage("Getting the invite..");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -71,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         database = new DatabaseHandler(this);
 
         setupTabIcons();
+        progressDialog.dismiss();
     }
 
     @Override
@@ -126,6 +135,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
         if (id == R.id.action_share) {
             Config.shareIntent(MainActivity.this);
+           /* Intent intent = new AppInviteInvitation.IntentBuilder("hello")
+                    .setMessage("hello message")
+                    .setDeepLink(Uri.parse("http://play.google.com/store/apps/details?id=sample.myapplication"))
+                    .setCallToActionText("ct253")
+                    .build();
+            startActivityForResult(intent, 1);*/
             return true;
         }
         if (id == R.id.action_delete) {
@@ -184,11 +199,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                progressDialog = new ProgressDialog(MainActivity.this);
                 progressDialog.setMessage("Saving the invite..");
-                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progressDialog.setIndeterminate(true);
-                progressDialog.setCancelable(false);
                 progressDialog.show();
             }
 

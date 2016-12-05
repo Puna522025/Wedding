@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "130837708121",
+    "firebase_url": "https://weddinginvites-f9066.firebaseio.com",
+    "project_id": "weddinginvites-f9066",
+    "storage_bucket": "weddinginvites-f9066.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130837708121:android:ca354336043860a5",
+        "android_client_info": {
+          "package_name": "pkapoor.wed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130837708121-pil0ppns9kdi45jgsc00rd5r161fevus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjeJ6smyG3IvFhs_aQF3sbIT78lNOXCxE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
