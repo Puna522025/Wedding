@@ -42,7 +42,7 @@
                             android:layout_height="60dp"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
-                            android:src="@drawable/heart" />
+                            android:src="@drawable/calendar" />
 
 
                         <TextView

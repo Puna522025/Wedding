@@ -103,7 +103,13 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnGetInvite:
                 if (!TextUtils.isEmpty(etWedCode.getText().toString())) {
-                    if (Config.isOnline(this)) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+                    String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId,"");
+                    // No need to hit the service if ID was already fetched the last time.
+                    if(!TextUtils.isEmpty(latestViewedId)&&latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())){
+                        callMainActivity();
+                    }
+                    else if (Config.isOnline(this)) {
                         getDBweddingDetails();
                     } else {
                         new AlertDialog.Builder(LaunchScreen.this)
@@ -135,6 +141,12 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
         }
+    }
+
+    private void callMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Config.setToolbarMenuIcons, "no");
+        startActivity(intent);
     }
 
     private void createInviteForm() {
@@ -245,9 +257,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 saveInDBviewOnly();
                 progressDialog.dismiss();
 
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(Config.setToolbarMenuIcons, "no");
-                startActivity(intent);
+                callMainActivity();
 
             } else {
                 progressDialog.dismiss();
