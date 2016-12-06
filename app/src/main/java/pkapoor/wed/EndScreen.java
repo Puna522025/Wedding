@@ -2,9 +2,11 @@ package pkapoor.wed;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -25,7 +27,7 @@ public class EndScreen extends AppCompatActivity {
 
     ProgressBar progressBar;
     TextView tvUniqueCode, tvCongrats, tvYourCodeText, tvShare,tvContinue;
-    RelativeLayout rlShare;
+    RelativeLayout rlShare,rlEndBackground;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
 
     @Override
@@ -35,6 +37,7 @@ public class EndScreen extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         rlShare = (RelativeLayout) findViewById(R.id.rlShare);
+        rlEndBackground = (RelativeLayout) findViewById(R.id.rlEndBackground);
 
         tvUniqueCode = (TextView) findViewById(R.id.tvUniqueCode);
         tvContinue = (TextView) findViewById(R.id.tvContinue);
@@ -48,6 +51,7 @@ public class EndScreen extends AppCompatActivity {
         tvShare.setTypeface(type);
         tvContinue.setTypeface(type);
 
+        changeBackgroundColor();
 
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().get("uniqueCode") != null) {
             tvUniqueCode.setText(getIntent().getExtras().get("uniqueCode").toString());
@@ -95,6 +99,15 @@ public class EndScreen extends AppCompatActivity {
                 Config.shareIntent(EndScreen.this);
             }
         });
+    }
+
+    private void changeBackgroundColor() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
+        String color = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
+
+        int colorSelected = Integer.parseInt(color);
+        rlEndBackground.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), colorSelected));
+        tvUniqueCode.setTextColor(ContextCompat.getColor(getApplicationContext(),colorSelected));
     }
 
     @Override

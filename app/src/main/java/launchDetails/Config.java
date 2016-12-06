@@ -22,7 +22,7 @@ import android.widget.Toast;
  * Created by DELL on 11/29/2016.
  */
 public class Config {
-
+    public static final String MyPREFERENCES = "myPreference";
     public static final String URL_FETCH = "http://vnnps.esy.es/getData.php?unique_wed_code=";
     public static final String TAG_JSON_ARRAY = "result";
     public static final String unique_wed_code = "unique_wed_code";
@@ -50,7 +50,8 @@ public class Config {
     public static final  String TYPE_WED_CREATED = "created";
     public static final  String TYPE_WED_VIEWED = "viewed";
     public static final String ONLY_SHARE = "only_Share";
-    public static final String colorSelected = "";
+    public static final String colorSelected = "color";
+    public static final String back_image = "back_image";
 
     public static boolean isOnline(@NonNull Context context) {
         ConnectivityManager cm =

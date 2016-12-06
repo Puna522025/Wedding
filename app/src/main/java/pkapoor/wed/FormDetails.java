@@ -294,7 +294,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.rsvp_phone_two, etRSVPMobileTwo.getText().toString());
         editor.putString(Config.event_two_name, etEventNameText.getText().toString());
         editor.putString(Config.rsvp_text, etInviteMesRSVPValue.getText().toString());
-        editor.putInt(Config.colorSelected, colorSelected);
+        editor.putString(Config.colorSelected, Integer.toString(colorSelected));
 
         if (switchEventRSVP.isChecked()) {
             editor.putString(Config.rsvp_tobe, "true");

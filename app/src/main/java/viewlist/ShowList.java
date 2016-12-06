@@ -158,7 +158,8 @@ public class ShowList extends AppCompatActivity {
         String rsvp_phone_two = "";
         String event_two_Name = "";
         String rsvp_text = "";
-
+        String colorSelected = "";
+        String back_image = "";
         try {
             progressDialog.setMessage("Creating you invite..");
             JSONObject jsonObject = new JSONObject(response);
@@ -185,6 +186,8 @@ public class ShowList extends AppCompatActivity {
                 rsvp_phone_two = weddingData.getString(Config.rsvp_phone_two);
                 event_two_Name = weddingData.getString(Config.event_two_name);
                 rsvp_text = weddingData.getString(Config.rsvp_text);
+                colorSelected = weddingData.getString(Config.colorSelected);
+                back_image = weddingData.getString(Config.back_image);
 
                 SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
                 editor.putString(Config.setLatestViewedId, unique_code);
@@ -208,6 +211,8 @@ public class ShowList extends AppCompatActivity {
                 editor.putString(Config.event_Two_time, event_Two_time);
                 editor.putString(Config.event_two_name, event_two_Name);
                 editor.putString(Config.rsvp_text, rsvp_text);
+                editor.putString(Config.colorSelected, colorSelected);
+                editor.putString(Config.back_image, back_image);
                 editor.apply();
                 progressDialog.dismiss();
 

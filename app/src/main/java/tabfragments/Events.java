@@ -89,29 +89,13 @@ public class Events extends Fragment implements View.OnClickListener {
     }
 
     private void changeTextColor() {
-        int colorSelected = sharedPreferences.getInt(Config.colorSelected,R.color.colorRed);
-
-        switch (colorSelected)
-        {
-            case R.color.colorRed:
-                changeColor(colorSelected);
-                break;
-            case R.color.PinkKittyToolBar:
-                changeColor(colorSelected);
-                break;
-            case R.color.GreenToolBar:
-                changeColor(colorSelected);
-                break;
-            case R.color.BlackToolBar:
-                changeColor(colorSelected);
-                break;
-            case R.color.BlueToolBar:
-                changeColor(colorSelected);
-                break;
-        }
+        String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
+        changeColor(colorSelected);
     }
 
-    private void changeColor(int colorSelected) {
+    private void changeColor(String color) {
+
+        int colorSelected = Integer.parseInt(color);
         rlTextRec.setBackgroundColor(ContextCompat.getColor(getContext(), colorSelected));
         rlTextMar.setBackgroundColor(ContextCompat.getColor(getContext(),colorSelected));
         //SAGAN

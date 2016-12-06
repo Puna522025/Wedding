@@ -217,6 +217,8 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         String rsvp_phone_two = "";
         String event_two_Name = "";
         String rsvp_text = "";
+        String colorSelected = "";
+        String back_image = "";
 
         try {
             progressDialog.setMessage("Creating you invite..");
@@ -245,6 +247,9 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 event_two_Name = weddingData.getString(Config.event_two_name);
                 rsvp_text = weddingData.getString(Config.rsvp_text);
 
+                colorSelected = weddingData.getString(Config.colorSelected);
+                back_image = weddingData.getString(Config.back_image);
+
                 SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
                 editor.putString(Config.setLatestViewedId, etWedCode.getText().toString());
                 editor.putString(Config.blessUs_para, blessUs_para);
@@ -267,6 +272,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 editor.putString(Config.event_Two_time, event_Two_time);
                 editor.putString(Config.event_two_name, event_two_Name);
                 editor.putString(Config.rsvp_text, rsvp_text);
+
+                editor.putString(Config.colorSelected, colorSelected);
+                editor.putString(Config.back_image, back_image);
+
                 editor.apply();
                 saveInDBviewOnly();
                 callMainActivity(unique_wed_code);
