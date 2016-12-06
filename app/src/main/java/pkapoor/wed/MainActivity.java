@@ -56,11 +56,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        setThemeColor(sharedPreferences.getInt(Config.colorSelected,R.color.colorRed));
+
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
         progressDialog = new ProgressDialog(MainActivity.this);
@@ -77,9 +80,53 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         viewPager.addOnPageChangeListener(this);
         viewPager.setOffscreenPageLimit(3);
         database = new DatabaseHandler(this);
-
+        changeToolBarTheme();
         setupTabIcons();
         progressDialog.dismiss();
+    }
+
+    private void changeToolBarTheme() {
+        int colorSelected = sharedPreferences.getInt(Config.colorSelected,R.color.colorRed);
+        switch (colorSelected)
+        {
+            case R.color.colorRed:
+                Config.changeTheme(R.color.colorPrimary,R.color.colorPrimaryDark,toolbar,this,getWindow(),tabLayout);
+                break;
+            case R.color.PinkKittyToolBar:
+                Config.changeTheme(R.color.PinkKittyToolBar,R.color.PinkKittyStatusBar,toolbar,this,getWindow(),tabLayout);
+                break;
+            case R.color.GreenToolBar:
+                Config.changeTheme(R.color.GreenToolBar,R.color.GreenStatusBar,toolbar,this,getWindow(),tabLayout);
+                break;
+            case R.color.BlackToolBar:
+                Config.changeTheme(R.color.BlackToolBar,R.color.BlackStatusBar,toolbar,this,getWindow(),tabLayout);
+                break;
+            case R.color.BlueToolBar:
+                Config.changeTheme(R.color.BlueToolBar,R.color.BlueStatusBar,toolbar,this,getWindow(),tabLayout);
+                break;
+        }
+    }
+
+    private void setThemeColor(int colorSelected) {
+
+        switch (colorSelected)
+        {
+            case R.color.colorRed:
+                getTheme().applyStyle(R.style.MyMaterialTheme,true);
+                break;
+            case R.color.PinkKittyToolBar:
+                getTheme().applyStyle(R.style.PinkTheme,true);
+                break;
+            case R.color.GreenToolBar:
+                getTheme().applyStyle(R.style.GreenTheme,true);
+                break;
+            case R.color.BlackToolBar:
+                getTheme().applyStyle(R.style.BlackTheme,true);
+                break;
+            case R.color.BlueToolBar:
+                getTheme().applyStyle(R.style.BlueTheme,true);
+                break;
+        }
     }
 
     @Override

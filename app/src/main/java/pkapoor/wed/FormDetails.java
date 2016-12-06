@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -50,7 +51,9 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     SwitchCompat switchEventTwo, switchEventRSVP;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
+    CardView rlPink,rlRed,rlGreen,rlBlack,rlBlue;
 
+    int colorSelected = R.color.colorRed;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +78,6 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         new AlertDialog.Builder(this)
                 .setTitle("")
                 .setMessage("Your Progress will not be saved. Do you want to continue?")
@@ -214,6 +216,18 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         switchEventRSVP = (SwitchCompat) findViewById(R.id.switchEventRSVP);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        rlPink = (CardView)findViewById(R.id.rlPink);
+        rlRed = (CardView)findViewById(R.id.rlRed);
+        rlGreen = (CardView)findViewById(R.id.rlGreen);
+        rlBlack = (CardView)findViewById(R.id.rlBlack);
+        rlBlue = (CardView)findViewById(R.id.rlBlue);
+
+        rlPink.setOnClickListener(this);
+        rlRed.setOnClickListener(this);
+        rlGreen.setOnClickListener(this);
+        rlBlack.setOnClickListener(this);
+        rlBlue.setOnClickListener(this);
     }
 
     @Override
@@ -229,6 +243,21 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.continueToInvite:
                 checkNull();
+                break;
+            case R.id.rlRed:
+                colorSelected = R.color.colorRed;
+                break;
+            case R.id.rlPink:
+                colorSelected = R.color.PinkKittyToolBar;
+                break;
+            case R.id.rlGreen:
+                colorSelected = R.color.GreenToolBar;
+                break;
+            case R.id.rlBlack:
+                colorSelected = R.color.BlackToolBar;
+                break;
+            case R.id.rlBlue:
+                colorSelected = R.color.BlueToolBar;
                 break;
         }
     }
@@ -265,6 +294,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.rsvp_phone_two, etRSVPMobileTwo.getText().toString());
         editor.putString(Config.event_two_name, etEventNameText.getText().toString());
         editor.putString(Config.rsvp_text, etInviteMesRSVPValue.getText().toString());
+        editor.putInt(Config.colorSelected, colorSelected);
 
         if (switchEventRSVP.isChecked()) {
             editor.putString(Config.rsvp_tobe, "true");

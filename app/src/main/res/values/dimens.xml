@@ -22,4 +22,6 @@
     <dimen name="viewHeight">1dp</dimen>
     <dimen name="margin_top_forms">10dp</dimen>
     <dimen name="margin_top_form_edittext">5dp</dimen>
+    <dimen name="width_color_selector">35dp</dimen>
+    <dimen name="height_color_selector">28dp</dimen>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -171,8 +172,8 @@
                             android:layout_toRightOf="@+id/divider"
                             android:imeOptions="actionNext"
                             android:maxLength="8"
-                            android:singleLine="true"
                             android:nextFocusForward="@+id/InviteMesValue"
+                            android:singleLine="true"
                             android:textSize="@dimen/headingEvents" />
 
                         <TextView
@@ -232,8 +233,8 @@
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                             android:imeOptions="actionNext"
                             android:maxLength="10"
-                            android:singleLine="true"
                             android:nextFocusForward="@+id/etNameGro"
+                            android:singleLine="true"
                             android:textSize="@dimen/headingEvents" />
 
 
@@ -413,8 +414,8 @@
                                 android:layout_toRightOf="@+id/dividerEventInsiderl"
                                 android:imeOptions="actionNext"
                                 android:maxLength="8"
-                                android:singleLine="true"
                                 android:nextFocusForward="@+id/etRSVPNameOne"
+                                android:singleLine="true"
                                 android:textSize="@dimen/headingEvents" />
                         </RelativeLayout>
 
@@ -505,8 +506,8 @@
                                 android:layout_below="@+id/RSVPNameOneText"
                                 android:imeOptions="actionNext"
                                 android:maxLength="25"
-                                android:singleLine="true"
                                 android:nextFocusForward="@+id/etRSVPMobileOne"
+                                android:singleLine="true"
                                 android:textSize="@dimen/headingEvents" />
 
 
@@ -533,8 +534,8 @@
                                 android:imeOptions="actionNext"
                                 android:inputType="phone"
                                 android:maxLength="12"
-                                android:singleLine="true"
                                 android:nextFocusForward="@+id/etRSVPNameTwo"
+                                android:singleLine="true"
                                 android:textSize="@dimen/headingEvents" />
 
 
@@ -558,8 +559,8 @@
                                 android:layout_below="@+id/RSVPNameTwoText"
                                 android:imeOptions="actionNext"
                                 android:maxLength="25"
-                                android:singleLine="true"
                                 android:nextFocusForward="@+id/etRSVPMobileTwo"
+                                android:singleLine="true"
                                 android:textSize="@dimen/headingEvents" />
 
 
@@ -587,8 +588,8 @@
                                 android:imeOptions="actionNext"
                                 android:inputType="phone"
                                 android:maxLength="12"
-                                android:singleLine="true"
                                 android:nextFocusForward="@+id/InviteMesRSVPValue"
+                                android:singleLine="true"
 
                                 android:textSize="@dimen/headingEvents" />
 
@@ -630,6 +631,115 @@
 
                         </RelativeLayout>
 
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardThemes"
+                    style="@style/CardViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cardRSVP"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="@dimen/marginEventTopViewLine"
+                    android:layout_marginRight="@dimen/marginEventTopViewLine"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorCardLayout">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/themesText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:text="Themes"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlPink"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_below="@+id/themesText"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/rlRed"
+                            app:cardBackgroundColor="@color/PinkKittyToolBar"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp">
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlGreen"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_below="@+id/themesText"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/rlPink"
+                            app:cardBackgroundColor="@color/GreenToolBar"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp">
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlBlack"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_below="@+id/themesText"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/rlGreen"
+                            app:cardBackgroundColor="@color/BlackToolBar"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp">
+
+                        </android.support.v7.widget.CardView>
+
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlBlue"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_below="@+id/themesText"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/rlBlack"
+                            app:cardBackgroundColor="@color/BlueToolBar"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp">
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlRed"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            app:cardBackgroundColor="@color/colorRed"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp"
+                            android:layout_alignTop="@+id/rlPink"
+                            android:layout_alignStart="@+id/themesText">
+
+                        </android.support.v7.widget.CardView>
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>

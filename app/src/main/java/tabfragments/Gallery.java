@@ -32,7 +32,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import galleryList.Adapter;
-import galleryList.ViewFullScreenImage;
 import launchDetails.Config;
 import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
@@ -50,7 +49,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
     TextView tvEventrok, tvEventBri, tvEventGGGG, tvEventRSV, tvRsvpText, tvrsvpFaml1, tvRsvpFamlContact1, tvRsvpFaml2, tvRsvpFamlContact2;
     CardView card4;
     SharedPreferences sharedPreferences;
-    RelativeLayout rlContactOne, rlContactTwo;
+    RelativeLayout rlContactOne, rlContactTwo, rlRSV;
     public static final String MyPREFERENCES = "myPreference";
 
     @Override
@@ -69,7 +68,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
         Drawable d = new BitmapDrawable(getResources(), bb);
         view.setBackground(d);
 
-        bridImages = new ArrayList<>();
+        /*bridImages = new ArrayList<>();
         bridImages.add(0, R.drawable.aa);
         bridImages.add(1, R.drawable.ss);
         bridImages.add(2, R.drawable.aa);
@@ -121,7 +120,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
                 intent.putExtra("type", type);
                 startActivity(intent);
             }
-        });
+        });*/
 
         tvEventrok = (TextView) view.findViewById(R.id.Event);
         tvEventBri = (TextView) view.findViewById(R.id.EventBri);
@@ -136,6 +135,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
 
         rlContactOne = (RelativeLayout) view.findViewById(R.id.rlContactOne);
         rlContactTwo = (RelativeLayout) view.findViewById(R.id.rlContactTwo);
+        rlRSV = (RelativeLayout) view.findViewById(R.id.rlRSV);
 
         card4 = (CardView) view.findViewById(R.id.card4);
 
@@ -155,8 +155,40 @@ public class Gallery extends Fragment implements View.OnClickListener {
         rlContactOne.setOnClickListener(this);
         rlContactTwo.setOnClickListener(this);
 
+        changeTextColor();
+
         setRSVPdetails();
         return view;
+    }
+
+    private void changeTextColor() {
+        int colorSelected = sharedPreferences.getInt(Config.colorSelected, R.color.colorRed);
+
+        switch (colorSelected) {
+            case R.color.colorRed:
+                changeColor(colorSelected);
+                break;
+            case R.color.PinkKittyToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.GreenToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.BlackToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.BlueToolBar:
+                changeColor(colorSelected);
+                break;
+        }
+    }
+
+    private void changeColor(int colorSelected) {
+        tvrsvpFaml1.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        tvRsvpFaml2.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        tvRsvpFamlContact1.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        tvRsvpFamlContact2.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        rlRSV.setBackgroundColor(ContextCompat.getColor(getContext(), colorSelected));
     }
 
     private void setRSVPdetails() {
@@ -223,7 +255,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
     private void makeCall(String phoneNumber) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(getContext(),Manifest.permission.CALL_PHONE)
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE)
                     != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.CALL_PHONE},

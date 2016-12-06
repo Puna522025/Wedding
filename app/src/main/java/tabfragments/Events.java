@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ import pkapoor.wed.R;
 
 public class Events extends Fragment implements View.OnClickListener {
 
-    RelativeLayout rlSagLocation, rlMarLocation;
+    RelativeLayout rlSagLocation, rlMarLocation,rlTextRec,rlTextMar;
     TextView tvEvent, MarriEvent, dateValueSag, TimeValueSag, eventValueSag, dateValueMar, TimeValueMar, eventValueMar;
     CardView card1, card2;
     SharedPreferences sharedPreferences;
@@ -55,6 +56,8 @@ public class Events extends Fragment implements View.OnClickListener {
 
         rlSagLocation = (RelativeLayout) view.findViewById(R.id.rlSagLocation);
         rlMarLocation = (RelativeLayout) view.findViewById(R.id.rlMarLocation);
+        rlTextRec = (RelativeLayout) view.findViewById(R.id.rlTextRec);
+        rlTextMar = (RelativeLayout) view.findViewById(R.id.rlTextMar);
 
         card1 = (CardView) view.findViewById(R.id.card1);
         card2 = (CardView) view.findViewById(R.id.card2);
@@ -74,6 +77,8 @@ public class Events extends Fragment implements View.OnClickListener {
         TimeValueMar = (TextView) view.findViewById(R.id.TimeValueMar);
         eventValueMar = (TextView) view.findViewById(R.id.eventValueMar);
 
+        changeTextColor();
+
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DeliusSwashCaps-Regular.ttf");
 
         MarriEvent.setTypeface(type);
@@ -81,6 +86,42 @@ public class Events extends Fragment implements View.OnClickListener {
         setEventTwoValues();
         setMarriageEventValues();
         return view;
+    }
+
+    private void changeTextColor() {
+        int colorSelected = sharedPreferences.getInt(Config.colorSelected,R.color.colorRed);
+
+        switch (colorSelected)
+        {
+            case R.color.colorRed:
+                changeColor(colorSelected);
+                break;
+            case R.color.PinkKittyToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.GreenToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.BlackToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.BlueToolBar:
+                changeColor(colorSelected);
+                break;
+        }
+    }
+
+    private void changeColor(int colorSelected) {
+        rlTextRec.setBackgroundColor(ContextCompat.getColor(getContext(), colorSelected));
+        rlTextMar.setBackgroundColor(ContextCompat.getColor(getContext(),colorSelected));
+        //SAGAN
+        dateValueSag.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        TimeValueSag.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        eventValueSag.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        //Mar
+        dateValueMar.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        TimeValueMar.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        eventValueMar.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
     }
 
     private void setMarriageEventValues() {

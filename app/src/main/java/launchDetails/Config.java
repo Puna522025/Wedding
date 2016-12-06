@@ -6,8 +6,13 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,6 +50,7 @@ public class Config {
     public static final  String TYPE_WED_CREATED = "created";
     public static final  String TYPE_WED_VIEWED = "viewed";
     public static final String ONLY_SHARE = "only_Share";
+    public static final String colorSelected = "";
 
     public static boolean isOnline(@NonNull Context context) {
         ConnectivityManager cm =
@@ -107,6 +113,13 @@ public class Config {
         } else {
             Toast.makeText(context, "No message support", Toast.LENGTH_SHORT).show();
         }
+    }
+    public static void changeTheme(int toolbarColor, int statusBar, Toolbar toolbar, Context context, Window window, TabLayout tabLayout) {
 
+        toolbar.setBackgroundColor(ContextCompat.getColor(context, toolbarColor));
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor((ContextCompat.getColor(context, statusBar)));
+        tabLayout.setBackgroundColor(ContextCompat.getColor(context, toolbarColor));
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#EB2437</color>
-    <color name="colorPrimaryDark">#EB2437</color>
+    <color name="colorPrimaryDark">#cf1224</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorRed">#EB2437</color>
     <color name="colorCardLayout">#E6E6E6</color>
@@ -9,5 +9,26 @@
     <color name="textColor">#585858</color>
     <color name="phoneIconTint">#096C1E</color>
     <color name="colorLightRed">#ECDDDD</color>
+
+    <!--Pink Theme  //-->
+    <color name="PinkKittyToolBar">#F06292</color>
+    <color name="PinkKittyStatusBar">#EC407A</color>
+    <color name="PinkKittyAccent">#ce1b59</color>
+
+    <!-- Green Theme  //-->
+    <color name="GreenToolBar">#9BD55A</color>
+    <color name="GreenStatusBar">#8bc34a</color>
+    <color name="GreenAcc">#3e7100</color>
+
+    <!-- Black Theme  //-->
+    <color name="BlackStatusBar">#000000</color>
+    <color name="BlackToolBar">#2e2e2d</color>
+    <color name="BlackAcc">#ffffff</color>
+
+    <!--Blue Theme-->
+    <color name="BlueToolBar">#0288D1</color>
+    <color name="BlueStatusBar">#056BA1</color>
+    <color name="BlueAcc">#046ba4</color>
+
 
 </resources>

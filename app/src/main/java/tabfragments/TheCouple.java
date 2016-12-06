@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class TheCouple extends Fragment {
     long marMilliSec, currentMilli, diff;
     TextView daysValue, HourValue, MinValue, SecValue,
             daysText, tvBriName, tvGroName, tvInviteText, tvTobeHeldOnHeading,
-            tvBless, tvUs, tvTextblesss, tvDate;
+            tvBless, tvUs, tvTextblesss, tvDate, HourText, MinText, SecText;
     ImageView imageHea;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
     SharedPreferences sharedPreferences;
@@ -71,16 +72,17 @@ public class TheCouple extends Fragment {
         tvUs = (TextView) view.findViewById(R.id.tvUs);
         tvDate = (TextView) view.findViewById(R.id.Date);
         tvTextblesss = (TextView) view.findViewById(R.id.tcTextblesss);
-
-        setAnimation();
-
         daysValue = (TextView) view.findViewById(R.id.daysValue);
         HourValue = (TextView) view.findViewById(R.id.HourValue);
         MinValue = (TextView) view.findViewById(R.id.MinValue);
         SecValue = (TextView) view.findViewById(R.id.SecValue);
         daysText = (TextView) view.findViewById(R.id.daysText);
+        HourText = (TextView) view.findViewById(R.id.HourText);
+        MinText = (TextView) view.findViewById(R.id.MinText);
+        SecText = (TextView) view.findViewById(R.id.SecText);
 
-        //Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DeliusSwashCaps-Regular.ttf");
+        changeTextColor();
+        setAnimation();
 
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Bungasai.ttf");
 
@@ -98,6 +100,44 @@ public class TheCouple extends Fragment {
 
         setTimer();
         return view;
+    }
+
+    private void changeTextColor() {
+       int colorSelected = sharedPreferences.getInt(Config.colorSelected,R.color.colorRed);
+
+        switch (colorSelected)
+        {
+            case R.color.colorRed:
+                changeColor(colorSelected);
+                break;
+            case R.color.PinkKittyToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.GreenToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.BlackToolBar:
+                changeColor(colorSelected);
+                break;
+            case R.color.BlueToolBar:
+                changeColor(colorSelected);
+                break;
+        }
+    }
+
+    private void changeColor(int colorSelected) {
+        tvGroName.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        tvBriName.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        tvBless.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        tvDate.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        daysValue.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        HourValue.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        MinValue.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        SecValue.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        daysText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        HourText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        MinText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        SecText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
     }
 
     private void fetchCoupleScreenValues() {
