@@ -42,7 +42,7 @@
                             android:layout_height="60dp"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
-                            android:src="@drawable/calendar" />
+                            android:src="@drawable/heart" />
 
 
                         <TextView
@@ -63,7 +63,7 @@
                             android:layout_below="@+id/inviteText"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/wedding_banner"
-                            android:tint="@android:color/white" />
+                            android:tint="@color/colorRed" />
 
                         <TextView
                             android:id="@+id/tobeHeld"

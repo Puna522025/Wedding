@@ -41,7 +41,7 @@ public class TheCouple extends Fragment {
     TextView daysValue, HourValue, MinValue, SecValue,
             daysText, tvBriName, tvGroName, tvInviteText, tvTobeHeldOnHeading,
             tvBless, tvUs, tvTextblesss, tvDate, HourText, MinText, SecText;
-    ImageView imageHea;
+    ImageView imageHea,imageWedding;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
     SharedPreferences sharedPreferences;
 
@@ -62,6 +62,7 @@ public class TheCouple extends Fragment {
         view.setBackground(d);
         sharedPreferences = getActivity().getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         imageHea = (ImageView) view.findViewById(R.id.imageHea);
+        imageWedding = (ImageView) view.findViewById(R.id.imageWedding);
 
         tvGroName = (TextView) view.findViewById(R.id.GroName);
         tvBriName = (TextView) view.findViewById(R.id.BriName);
@@ -102,25 +103,30 @@ public class TheCouple extends Fragment {
     }
 
     private void changeTextColor() {
-       String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
+        String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
         changeColor(colorSelected);
     }
 
     private void changeColor(String color) {
         int colorSelected = Integer.parseInt(color);
 
-        tvGroName.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
-        tvBriName.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        tvGroName.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        tvBriName.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         tvBless.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
-        tvDate.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
-        daysValue.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        tvDate.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        daysValue.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         HourValue.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
-        MinValue.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        MinValue.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         SecValue.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
-        daysText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
-        HourText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
-        MinText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
-        SecText.setTextColor(ContextCompat.getColor(getContext(),colorSelected));
+        daysText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        HourText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        MinText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        SecText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
+        if (color.equalsIgnoreCase(Integer.toString(R.color.BlackToolBar))) {
+            imageHea.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorRed));
+        } else {
+            imageHea.setColorFilter(ContextCompat.getColor(getContext(), colorSelected));
+        }
     }
 
     private void fetchCoupleScreenValues() {
