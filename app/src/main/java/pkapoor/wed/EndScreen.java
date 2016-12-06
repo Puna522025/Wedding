@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
@@ -108,6 +109,9 @@ public class EndScreen extends AppCompatActivity {
         int colorSelected = Integer.parseInt(color);
         rlEndBackground.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), colorSelected));
         tvUniqueCode.setTextColor(ContextCompat.getColor(getApplicationContext(),colorSelected));
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        getWindow().setStatusBarColor((ContextCompat.getColor(getApplicationContext(), colorSelected)));
     }
 
     @Override
