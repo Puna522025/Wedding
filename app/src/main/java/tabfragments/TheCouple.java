@@ -123,9 +123,9 @@ public class TheCouple extends Fragment {
         MinText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         SecText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         if (color.equalsIgnoreCase(Integer.toString(R.color.BlackToolBar))) {
-            imageHea.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorRed));
+            imageWedding.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorRed));
         } else {
-            imageHea.setColorFilter(ContextCompat.getColor(getContext(), colorSelected));
+            imageWedding.setColorFilter(ContextCompat.getColor(getContext(), colorSelected));
         }
     }
 
