@@ -40,9 +40,7 @@ import pkapoor.wed.R;
 
 public class ShowList extends AppCompatActivity {
 
-    public static final String MyPREFERENCES = "myPreference";
     DatabaseHandler database;
-
     RecyclerView listCreatedWed, listViewedWed;
     ArrayList<WedPojo> wedPojosCreatedWed, wedPojosViewedWed;
     AdapterListWed adapterListWed,adapterListViewed;
@@ -189,7 +187,7 @@ public class ShowList extends AppCompatActivity {
                 colorSelected = weddingData.getString(Config.colorSelected);
                 back_image = weddingData.getString(Config.back_image);
 
-                SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE).edit();
                 editor.putString(Config.setLatestViewedId, unique_code);
                 editor.putString(Config.blessUs_para, blessUs_para);
                 editor.putString(Config.unique_wed_code, unique_wed_code);

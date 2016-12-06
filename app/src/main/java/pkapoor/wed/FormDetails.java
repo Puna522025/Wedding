@@ -39,7 +39,6 @@ import launchDetails.Config;
 
 public class FormDetails extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    public static final String MyPREFERENCES = "myPreference";
     ImageView imgDateCalender, imgDateCalenderEventTwo;
     int mYear, mMonth, mDay, mHour, mMinute;
     TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite, DateText, DateTextEventTwo;
@@ -271,7 +270,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE).edit();
         editor.putString(Config.blessUs_para, etInviteMesValue.getText().toString());
         // editor.putString(Config.unique_wed_code, etInviteMesValue.getText().toString());
         String marDateTime = tvmarDateTimeText.getText().toString();

@@ -50,7 +50,6 @@ public class Gallery extends Fragment implements View.OnClickListener {
     CardView card4;
     SharedPreferences sharedPreferences;
     RelativeLayout rlContactOne, rlContactTwo, rlRSV;
-    public static final String MyPREFERENCES = "myPreference";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -151,7 +150,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
         tvRsvpFaml2.setTypeface(type);
         tvRsvpFamlContact1.setTypeface(type);
         tvRsvpFamlContact2.setTypeface(type);
-        sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         rlContactOne.setOnClickListener(this);
         rlContactTwo.setOnClickListener(this);
 

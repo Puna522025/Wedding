@@ -48,7 +48,6 @@ import viewlist.ShowList;
 
 public class LaunchScreen extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String MyPREFERENCES = "myPreference";
     private EditText etWedCode;
     private RelativeLayout rlCode, rlBackground;
     private Button btnGetInvite, btnCreateInvite, btnGetList;
@@ -71,7 +70,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
         btnGetList = (Button) findViewById(R.id.btnGetList);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
 
         progressDialog = new ProgressDialog(this);
@@ -108,7 +107,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnGetInvite:
                 if (!TextUtils.isEmpty(etWedCode.getText().toString())) {
-                    SharedPreferences sharedPreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+                    SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
                     String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId,"");
                     // No need to hit the service if ID was already fetched the last time.
                     if(!TextUtils.isEmpty(latestViewedId)&&latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())){
@@ -250,7 +249,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 colorSelected = weddingData.getString(Config.colorSelected);
                 back_image = weddingData.getString(Config.back_image);
 
-                SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE).edit();
                 editor.putString(Config.setLatestViewedId, etWedCode.getText().toString());
                 editor.putString(Config.blessUs_para, blessUs_para);
                 editor.putString(Config.unique_wed_code, unique_wed_code);

@@ -43,8 +43,6 @@ import viewlist.ShowList;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
-    public static final String MyPREFERENCES = "myPreference";
-
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         setThemeColor(sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed)));
 
         setContentView(R.layout.activity_main);

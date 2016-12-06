@@ -35,7 +35,6 @@ public class Events extends Fragment implements View.OnClickListener {
     TextView tvEvent, MarriEvent, dateValueSag, TimeValueSag, eventValueSag, dateValueMar, TimeValueMar, eventValueMar;
     CardView card1, card2;
     SharedPreferences sharedPreferences;
-    public static final String MyPREFERENCES = "myPreference";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class Events extends Fragment implements View.OnClickListener {
         Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
         view.setBackground(d);
-        sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
         rlSagLocation = (RelativeLayout) view.findViewById(R.id.rlSagLocation);
         rlMarLocation = (RelativeLayout) view.findViewById(R.id.rlMarLocation);

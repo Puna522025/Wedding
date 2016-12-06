@@ -4,10 +4,12 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -27,8 +29,8 @@ import launchDetails.LaunchScreen;
 public class EndScreen extends AppCompatActivity {
 
     ProgressBar progressBar;
-    TextView tvUniqueCode, tvCongrats, tvYourCodeText, tvShare,tvContinue;
-    RelativeLayout rlShare,rlEndBackground;
+    TextView tvUniqueCode, tvCongrats, tvYourCodeText, tvShare, tvContinue;
+    RelativeLayout rlShare, rlEndBackground;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
 
     @Override
@@ -104,14 +106,23 @@ public class EndScreen extends AppCompatActivity {
 
     private void changeBackgroundColor() {
         SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
-        String color = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
+        String color = sharedPreferences.getString(Config.colorSelected, Integer.toString(R.color.colorRed));
 
         int colorSelected = Integer.parseInt(color);
+
         rlEndBackground.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), colorSelected));
-        tvUniqueCode.setTextColor(ContextCompat.getColor(getApplicationContext(),colorSelected));
+        tvUniqueCode.setTextColor(ContextCompat.getColor(getApplicationContext(), colorSelected));
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         getWindow().setStatusBarColor((ContextCompat.getColor(getApplicationContext(), colorSelected)));
+
+        try {
+            if (null != ((GradientDrawable) progressBar.getProgressDrawable())) {
+                ((GradientDrawable) progressBar.getProgressDrawable()).setColor(ContextCompat.getColor(getApplicationContext(), colorSelected));
+            }
+        } catch (Exception e) {
+            Log.e("EndScreen", "Error while changing color" + e);
+        }
     }
 
     @Override

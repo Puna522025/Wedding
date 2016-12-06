@@ -36,7 +36,6 @@ import pkapoor.wed.R;
 
 public class TheCouple extends Fragment {
 
-    public static final String MyPREFERENCES = "myPreference";
     CountDownTimer mCountDownTimer;
     long marMilliSec, currentMilli, diff;
     TextView daysValue, HourValue, MinValue, SecValue,
@@ -61,7 +60,7 @@ public class TheCouple extends Fragment {
         Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
         view.setBackground(d);
-        sharedPreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         imageHea = (ImageView) view.findViewById(R.id.imageHea);
 
         tvGroName = (TextView) view.findViewById(R.id.GroName);
