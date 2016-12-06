@@ -39,7 +39,7 @@ import launchDetails.Config;
 
 public class FormDetails extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    ImageView imgDateCalender, imgDateCalenderEventTwo;
+    ImageView imgDateCalender, imgDateCalenderEventTwo,tickRed,tickBlue,tickBlack,tickGreen,tickPink;
     int mYear, mMonth, mDay, mHour, mMinute;
     TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite, DateText, DateTextEventTwo;
 
@@ -72,6 +72,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         tvEventNameText.setVisibility(View.VISIBLE);
         etEventNameText.setVisibility(View.VISIBLE);
         rlEventRSVP.setVisibility(View.VISIBLE);
+        tickRed.setVisibility(View.VISIBLE);
 
     }
 
@@ -183,6 +184,12 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         imgDateCalender = (ImageView) findViewById(R.id.imgDateCalender);
         imgDateCalenderEventTwo = (ImageView) findViewById(R.id.imgDateCalenderEventTwo);
 
+        tickRed = (ImageView) findViewById(R.id.tickRed);
+        tickBlue = (ImageView) findViewById(R.id.tickBlue);
+        tickBlack = (ImageView) findViewById(R.id.tickBlack);
+        tickGreen = (ImageView) findViewById(R.id.tickGreen);
+        tickPink = (ImageView) findViewById(R.id.tickPink);
+
         tvmarDateTimeText = (TextView) findViewById(R.id.marDateTimeText);
         tvEventTwoDateTimeText = (TextView) findViewById(R.id.EventTwoDateTimeText);
         tvEventNameText = (TextView) findViewById(R.id.EventNameText);
@@ -231,7 +238,9 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()) {
+
             case R.id.imgDateCalender:
                 Config.hideKeyboard(getCurrentFocus(), this);
                 setDate("wedding");
@@ -245,18 +254,47 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.rlRed:
                 colorSelected = R.color.colorRed;
+                tickRed.setVisibility(View.VISIBLE);
+                tickGreen.setVisibility(View.GONE);
+                tickBlack.setVisibility(View.GONE);
+                tickBlue.setVisibility(View.GONE);
+                tickPink.setVisibility(View.GONE);
+
                 break;
             case R.id.rlPink:
                 colorSelected = R.color.PinkKittyToolBar;
+                tickRed.setVisibility(View.GONE);
+                tickGreen.setVisibility(View.GONE);
+                tickBlack.setVisibility(View.GONE);
+                tickBlue.setVisibility(View.GONE);
+                tickPink.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.rlGreen:
                 colorSelected = R.color.GreenToolBar;
+                tickRed.setVisibility(View.GONE);
+                tickGreen.setVisibility(View.VISIBLE);
+                tickBlack.setVisibility(View.GONE);
+                tickBlue.setVisibility(View.GONE);
+                tickPink.setVisibility(View.GONE);
+
                 break;
             case R.id.rlBlack:
                 colorSelected = R.color.BlackToolBar;
+                tickRed.setVisibility(View.GONE);
+                tickGreen.setVisibility(View.GONE);
+                tickBlack.setVisibility(View.VISIBLE);
+                tickBlue.setVisibility(View.GONE);
+                tickPink.setVisibility(View.GONE);
+
                 break;
             case R.id.rlBlue:
                 colorSelected = R.color.BlueToolBar;
+                tickRed.setVisibility(View.GONE);
+                tickGreen.setVisibility(View.GONE);
+                tickBlack.setVisibility(View.GONE);
+                tickBlue.setVisibility(View.VISIBLE);
+                tickPink.setVisibility(View.GONE);
                 break;
         }
     }

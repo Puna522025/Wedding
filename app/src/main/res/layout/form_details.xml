@@ -676,6 +676,19 @@
                             card_view:cardCornerRadius="5dp"
                             card_view:cardElevation="10dp">
 
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/tickPink"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentTop="true"
+                                    android:src="@android:drawable/presence_online"
+                                    android:visibility="gone" />
+                            </RelativeLayout>
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -691,7 +704,19 @@
                             app:cardBackgroundColor="@color/GreenToolBar"
                             card_view:cardCornerRadius="5dp"
                             card_view:cardElevation="10dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
+                                <ImageView
+                                    android:id="@+id/tickGreen"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentTop="true"
+                                    android:src="@android:drawable/presence_online"
+                                    android:visibility="gone" />
+                            </RelativeLayout>
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -707,7 +732,19 @@
                             app:cardBackgroundColor="@color/BlackToolBar"
                             card_view:cardCornerRadius="5dp"
                             card_view:cardElevation="10dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
+                                <ImageView
+                                    android:id="@+id/tickBlack"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentTop="true"
+                                    android:src="@android:drawable/presence_online"
+                                    android:visibility="gone" />
+                            </RelativeLayout>
                         </android.support.v7.widget.CardView>
 
 
@@ -724,21 +761,45 @@
                             app:cardBackgroundColor="@color/BlueToolBar"
                             card_view:cardCornerRadius="5dp"
                             card_view:cardElevation="10dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
+                            <ImageView
+                                android:id="@+id/tickBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentTop="true"
+                                android:src="@android:drawable/presence_online"
+                                android:visibility="gone" />
+                            </RelativeLayout>
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
                             android:id="@+id/rlRed"
                             android:layout_width="@dimen/width_color_selector"
                             android:layout_height="@dimen/height_color_selector"
+                            android:layout_alignStart="@+id/themesText"
+                            android:layout_alignTop="@+id/rlPink"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             app:cardBackgroundColor="@color/colorRed"
                             card_view:cardCornerRadius="5dp"
-                            card_view:cardElevation="10dp"
-                            android:layout_alignTop="@+id/rlPink"
-                            android:layout_alignStart="@+id/themesText">
+                            card_view:cardElevation="10dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
+                            <ImageView
+                                android:id="@+id/tickRed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentTop="true"
+                                android:src="@android:drawable/presence_online"
+                                android:visibility="gone" />
+                            </RelativeLayout>
                         </android.support.v7.widget.CardView>
 
                     </RelativeLayout>
