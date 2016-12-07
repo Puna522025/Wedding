@@ -45,6 +45,7 @@ public class ShowList extends AppCompatActivity {
     ArrayList<WedPojo> wedPojosCreatedWed, wedPojosViewedWed;
     AdapterListWed adapterListWed,adapterListViewed;
     private ProgressDialog progressDialog;
+    TextView tvNoInvitesFound;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,8 @@ public class ShowList extends AppCompatActivity {
 
         listCreatedWed = (RecyclerView) findViewById(R.id.listCreatedWed);
         listViewedWed = (RecyclerView) findViewById(R.id.listViewedWed);
+
+        tvNoInvitesFound = (TextView) findViewById(R.id.tvNoInvitesFound);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Getting the details..");
@@ -65,12 +68,17 @@ public class ShowList extends AppCompatActivity {
         wedPojosViewedWed = new ArrayList<>();
 
         List<WedPojo> wedPojos = database.getAllWedDetails();
-        for (int i = 0; i < wedPojos.size(); i++) {
-            if (wedPojos.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
-                wedPojosCreatedWed.add(wedPojos.get(i));
-            } else if (wedPojos.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_VIEWED)) {
-                wedPojosViewedWed.add(wedPojos.get(i));
+        if(wedPojos.size()>0) {
+            tvNoInvitesFound.setVisibility(View.GONE);
+            for (int i = 0; i < wedPojos.size(); i++) {
+                if (wedPojos.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
+                    wedPojosCreatedWed.add(wedPojos.get(i));
+                } else if (wedPojos.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_VIEWED)) {
+                    wedPojosViewedWed.add(wedPojos.get(i));
+                }
             }
+        }else{
+            tvNoInvitesFound.setVisibility(View.VISIBLE);
         }
 
         setListLayout(listCreatedWed);
@@ -127,7 +135,11 @@ public class ShowList extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(ShowList.this, "error", Toast.LENGTH_LONG).show();
+               /* if(null != error){
+                    Toast.makeText(ShowList.this, "error -"+ error, Toast.LENGTH_LONG).show();
+                }else{*/
+                    Toast.makeText(ShowList.this, "Error..Please try after some time..", Toast.LENGTH_LONG).show();
+            //    }
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);

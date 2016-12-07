@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -49,13 +51,13 @@ import viewlist.ShowList;
 public class LaunchScreen extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etWedCode;
-    private RelativeLayout rlCode, rlBackground;
+    private RelativeLayout rlCode, rlBackground, rlCreateInvite;
     private Button btnGetInvite, btnCreateInvite, btnGetList;
     private ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
     ImageView imageView;
     DatabaseHandler database;
-
+TextView tvOR;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         etWedCode = (EditText) findViewById(R.id.etWedCode);
         rlCode = (RelativeLayout) findViewById(R.id.rlCode);
         rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
+        rlCreateInvite = (RelativeLayout) findViewById(R.id.rlCreateInvite);
 
         imageView = (ImageView) findViewById(R.id.imageView);
 
@@ -70,6 +73,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
         btnGetList = (Button) findViewById(R.id.btnGetList);
 
+        tvOR = (TextView) findViewById(R.id.tvOR);
         sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
 
@@ -92,6 +96,8 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 imageView.setAnimation(slideUp);
                 rlCode.setVisibility(View.VISIBLE);
                 rlCode.setAnimation(grow);
+                rlCreateInvite.setVisibility(View.VISIBLE);
+                rlCreateInvite.setAnimation(grow);
 
             }
         }, 1 * 900); // wait for 5 seconds
@@ -100,6 +106,12 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         btnGetList.setOnClickListener(this);
         rlBackground.setOnClickListener(this);
         database = new DatabaseHandler(this);
+        Typeface type = Typeface.createFromAsset(this.getAssets(), "fonts/Bungasai.ttf");
+
+        btnGetList.setTypeface(type);
+        btnCreateInvite.setTypeface(type);
+        btnGetInvite.setTypeface(type);
+        tvOR.setTypeface(type);
     }
 
     @Override
@@ -114,6 +126,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
                         progressDialog.setMessage("Getting the invite..");
                         progressDialog.show();
+                        saveInDBviewOnly();
                         callMainActivity(latestViewedId);
                     }
                     else if (Config.isOnline(this)) {

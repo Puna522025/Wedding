@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rlBackground"
     android:background="@color/colorRed">
 
@@ -17,36 +18,65 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        tools:visibility="visible"
         android:visibility="gone">
 
         <EditText
             android:id="@+id/etWedCode"
             android:layout_width="200dp"
+            android:textCursorDrawable="@null"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnGetInvite"
+            android:textColor="#DEDEDE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/buttonshape"
             android:layout_below="@+id/etWedCode"
+            android:typeface="monospace"
             android:layout_centerHorizontal="true"
             android:text="Get Invite" />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlCode"
+        android:id="@+id/rlCreateInvite"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OR"
+        android:id="@+id/tvOR"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"/>
     <Button
         android:id="@+id/btnCreateInvite"
         android:layout_width="wrap_content"
+        android:typeface="monospace"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tvOR"
+        android:layout_marginTop="5dp"
+        android:textColor="#DEDEDE"
+        android:background="@drawable/buttonshape"
+        android:layout_centerHorizontal="true"
         android:text="Create Invite" />
-
+    </RelativeLayout>
     <Button
         android:id="@+id/btnGetList"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        android:textColor="#DEDEDE"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/buttonshape"
         android:text="Recently created and viewed" />
 
 
