@@ -5,11 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +29,6 @@ import java.util.ArrayList;
 
 import galleryList.Adapter;
 import launchDetails.Config;
-import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
 
 /**
@@ -61,11 +56,11 @@ public class Gallery extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.gallery, container, false);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.b);
+       /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.back_seven);
 
         Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
-        view.setBackground(d);
+        view.setBackground(d);*/
 
         /*bridImages = new ArrayList<>();
         bridImages.add(0, R.drawable.aa);

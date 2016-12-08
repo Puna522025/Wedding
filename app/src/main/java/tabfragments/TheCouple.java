@@ -2,11 +2,7 @@ package tabfragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -27,7 +23,6 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import launchDetails.Config;
-import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
 
 /**
@@ -55,11 +50,11 @@ public class TheCouple extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.couple, container, false);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.b);
+       /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.back_six);
 
-        Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
-        Drawable d = new BitmapDrawable(getResources(), bb);
-        view.setBackground(d);
+        //Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
+        Drawable d = new BitmapDrawable(getResources(), bitmap);
+        view.setBackground(d);*/
         sharedPreferences = getActivity().getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         imageHea = (ImageView) view.findViewById(R.id.imageHea);
         imageWedding = (ImageView) view.findViewById(R.id.imageWedding);

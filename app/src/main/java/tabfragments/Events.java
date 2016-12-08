@@ -4,11 +4,7 @@ package tabfragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,7 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import launchDetails.Config;
-import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
 
 /**
@@ -46,11 +41,11 @@ public class Events extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.event, container, false);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.b);
-
-        Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
-        Drawable d = new BitmapDrawable(getResources(), bb);
-        view.setBackground(d);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.back_three);
+//
+//        //Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
+//        Drawable d = new BitmapDrawable(getResources(), bitmap);
+//        view.setBackground(d);
         sharedPreferences = getActivity().getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
         rlSagLocation = (RelativeLayout) view.findViewById(R.id.rlSagLocation);

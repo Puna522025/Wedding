@@ -5,12 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -43,7 +39,6 @@ import java.util.List;
 
 import database.DatabaseHandler;
 import database.WedPojo;
-import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.FormDetails;
 import pkapoor.wed.MainActivity;
 import pkapoor.wed.R;
@@ -87,10 +82,10 @@ TextView tvOR;
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.back_splash);
+     /*   Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.back_six);
         Bitmap bb = BlurBuilder.blur(getApplicationContext(), bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
-        rlBackground.setBackground(d);
+        rlBackground.setBackground(d);*/
 
         etWedCode.getBackground().mutate().setColorFilter(ContextCompat.getColor(this, R.color.colorLightRed), PorterDuff.Mode.SRC_ATOP);
         etWedCode.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
