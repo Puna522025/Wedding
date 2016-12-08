@@ -17,6 +17,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
+import analytics.AnalyticsApplication;
 import launchDetails.Config;
 import pkapoor.wed.R;
 
@@ -30,6 +34,8 @@ public class Events extends Fragment implements View.OnClickListener {
     TextView tvEvent, MarriEvent, dateValueSag, TimeValueSag, eventValueSag, dateValueMar, TimeValueMar, eventValueMar;
     CardView card1, card2;
     SharedPreferences sharedPreferences;
+    private static final String TAG = "Events";
+    private Tracker mTracker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +84,9 @@ public class Events extends Fragment implements View.OnClickListener {
 
         MarriEvent.setTypeface(type);
         tvEvent.setTypeface(type);
+
+        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
+        mTracker = application.getDefaultTracker();
         setEventTwoValues();
         setMarriageEventValues();
         return view;
@@ -86,11 +95,16 @@ public class Events extends Fragment implements View.OnClickListener {
     private void changeTextColor() {
         String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
         changeColor(colorSelected);
-        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("0")){
+        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
             rlEventBack.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
         }
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
     private void changeColor(String color) {
 
         int colorSelected = Integer.parseInt(color);

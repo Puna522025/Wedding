@@ -76,7 +76,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         etEventNameText.setVisibility(View.VISIBLE);
         rlEventRSVP.setVisibility(View.VISIBLE);
         tickRed.setVisibility(View.VISIBLE);
-        tickPinkPetals.setVisibility(View.VISIBLE);
+        tickNoImage.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -307,13 +307,13 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.rlImageNoImage:
-                backgroundSelected = "1";
+                backgroundSelected = "0";
                 tickNoImage.setVisibility(View.VISIBLE);
                 tickPinkPetals.setVisibility(View.GONE);
 
                 break;
             case R.id.rlImagePinkPetals:
-                backgroundSelected = "0";
+                backgroundSelected = "1";
                 tickNoImage.setVisibility(View.GONE);
                 tickPinkPetals.setVisibility(View.VISIBLE);
                 break;

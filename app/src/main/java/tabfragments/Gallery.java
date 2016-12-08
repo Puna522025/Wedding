@@ -25,8 +25,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.util.ArrayList;
 
+import analytics.AnalyticsApplication;
 import galleryList.Adapter;
 import launchDetails.Config;
 import pkapoor.wed.R;
@@ -45,6 +49,8 @@ public class Gallery extends Fragment implements View.OnClickListener {
     CardView card4;
     SharedPreferences sharedPreferences;
     RelativeLayout rlContactOne, rlContactTwo, rlRSV, rlGallery;
+    private static final String TAG = "Gallery";
+    private Tracker mTracker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -151,6 +157,9 @@ public class Gallery extends Fragment implements View.OnClickListener {
         rlContactOne.setOnClickListener(this);
         rlContactTwo.setOnClickListener(this);
 
+        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
+        mTracker = application.getDefaultTracker();
+
         changeTextColor();
 
         setRSVPdetails();
@@ -161,7 +170,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
         String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
         changeColor(colorSelected);
 
-        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("0")){
+        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
             rlGallery.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
         }
     }
@@ -256,7 +265,12 @@ public class Gallery extends Fragment implements View.OnClickListener {
             }
         }
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {

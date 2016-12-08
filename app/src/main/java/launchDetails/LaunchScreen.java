@@ -30,6 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import analytics.AnalyticsApplication;
 import database.DatabaseHandler;
 import database.WedPojo;
 import pkapoor.wed.FormDetails;
@@ -50,14 +53,17 @@ import viewlist.ShowList;
 
 public class LaunchScreen extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "LaunchScreen";
+    SharedPreferences sharedPreferences;
+    ImageView imageView;
+    DatabaseHandler database;
+    TextView tvOR;
     private EditText etWedCode;
     private RelativeLayout rlCode, rlBackground, rlCreateInvite;
     private Button btnGetInvite, btnCreateInvite, btnGetList;
     private ProgressDialog progressDialog;
-    SharedPreferences sharedPreferences;
-    ImageView imageView;
-    DatabaseHandler database;
-TextView tvOR;
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +92,9 @@ TextView tvOR;
         Bitmap bb = BlurBuilder.blur(getApplicationContext(), bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
         rlBackground.setBackground(d);*/
+
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        mTracker = application.getDefaultTracker();
 
         etWedCode.getBackground().mutate().setColorFilter(ContextCompat.getColor(this, R.color.colorLightRed), PorterDuff.Mode.SRC_ATOP);
         etWedCode.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
@@ -118,23 +127,27 @@ TextView tvOR;
         btnGetInvite.setTypeface(type);
         tvOR.setTypeface(type);
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnGetInvite:
                 if (!TextUtils.isEmpty(etWedCode.getText().toString())) {
                     SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
-                    String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId,"");
+                    String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId, "");
                     // No need to hit the service if ID was already fetched the last time.
-                    if(!TextUtils.isEmpty(latestViewedId)&&latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())){
+                    if (!TextUtils.isEmpty(latestViewedId) && latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())) {
 
                         progressDialog.setMessage("Getting the invite..");
                         progressDialog.show();
                         saveInDBviewOnly();
                         callMainActivity(latestViewedId);
-                    }
-                    else if (Config.isOnline(this)) {
+                    } else if (Config.isOnline(this)) {
                         getDBweddingDetails();
                     } else {
                         new AlertDialog.Builder(LaunchScreen.this)
@@ -171,7 +184,7 @@ TextView tvOR;
     private void callMainActivity(String uniqueId) {
         Intent intent = new Intent(this, MainActivity.class);
         List<WedPojo> wedPojoArrayList = database.getAllWedDetails();
-        if(null != wedPojoArrayList) {
+        if (null != wedPojoArrayList) {
             for (int i = 0; i < wedPojoArrayList.size(); i++) {
                 if (wedPojoArrayList.get(i).getId().equalsIgnoreCase(uniqueId)
                         && wedPojoArrayList.get(i).getType().equalsIgnoreCase(Config.TYPE_WED_CREATED)) {
@@ -318,8 +331,7 @@ TextView tvOR;
     }
 
     private void saveInDBviewOnly() {
-        if (!isWedExistsInDB())
-        {
+        if (!isWedExistsInDB()) {
             WedPojo wedPojo = new WedPojo();
             String brideName = sharedPreferences.getString(Config.name_bride, "");
             String groomName = sharedPreferences.getString(Config.name_groom, "");

@@ -21,6 +21,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import analytics.AnalyticsApplication;
 import database.DatabaseHandler;
 import database.WedPojo;
 import launchDetails.Config;
@@ -48,6 +51,9 @@ public class ShowList extends AppCompatActivity {
     private ProgressDialog progressDialog;
     TextView tvNoInvitesFound;
     RelativeLayout rlBack;
+    private static final String TAG = "ShowList";
+    private Tracker mTracker;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +95,8 @@ public class ShowList extends AppCompatActivity {
         }else{
             tvNoInvitesFound.setVisibility(View.VISIBLE);
         }
+        AnalyticsApplication application = (AnalyticsApplication) getApplication();
+        mTracker = application.getDefaultTracker();
 
         setListLayout(listCreatedWed);
         setListLayout(listViewedWed);
@@ -123,6 +131,13 @@ public class ShowList extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void getDBweddingDetails(final String unique_code, final String type) {

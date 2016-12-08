@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,6 +26,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import analytics.AnalyticsApplication;
 import launchDetails.Config;
 import pkapoor.wed.R;
 
@@ -31,6 +35,9 @@ import pkapoor.wed.R;
  */
 
 public class TheCouple extends Fragment {
+
+    private static final String TAG = "TheCouple";
+    private Tracker mTracker;
 
     CountDownTimer mCountDownTimer;
     long marMilliSec, currentMilli, diff;
@@ -97,6 +104,8 @@ public class TheCouple extends Fragment {
         tvDate.setTypeface(type);
 
         fetchCoupleScreenValues();
+        AnalyticsApplication application = (AnalyticsApplication) getActivity().getApplication();
+        mTracker = application.getDefaultTracker();
 
         setTimer();
         return view;
@@ -106,7 +115,7 @@ public class TheCouple extends Fragment {
         String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
         changeColor(colorSelected);
 
-        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("0")){
+        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
             rlCouple.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
         }
     }
@@ -246,7 +255,7 @@ public class TheCouple extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-
+        mTracker.setScreenName(TAG);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

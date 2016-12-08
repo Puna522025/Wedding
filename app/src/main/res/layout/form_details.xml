@@ -823,7 +823,7 @@
                             android:id="@+id/rlImagePinkPetals"
                             android:layout_width="@dimen/width_color_selector"
                             android:layout_height="@dimen/height_color_selector"
-                            android:layout_alignStart="@+id/themesText"
+                            android:layout_toRightOf="@+id/rlImageNoImage"
                             android:layout_below="@+id/backImageText"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
@@ -862,7 +862,8 @@
                             android:layout_height="@dimen/height_color_selector"
                             android:layout_below="@+id/backImageText"
                             android:layout_marginLeft="10dp"
-                            android:layout_toRightOf="@+id/rlImagePinkPetals"
+                            android:layout_alignStart="@+id/themesText"
+
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
