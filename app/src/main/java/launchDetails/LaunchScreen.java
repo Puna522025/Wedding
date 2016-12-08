@@ -81,7 +81,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
         tvOR = (TextView) findViewById(R.id.tvOR);
         sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
-        etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -130,6 +130,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        etWedCode.setText(sharedPreferences.getString(Config.setLatestViewedId, ""));
         mTracker.setScreenName(TAG);
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
@@ -141,7 +142,9 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                     SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
                     String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId, "");
                     // No need to hit the service if ID was already fetched the last time.
-                    if (!TextUtils.isEmpty(latestViewedId) && latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())) {
+                    if (!TextUtils.isEmpty(latestViewedId) &&
+                            latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())&&
+                            latestViewedId.equalsIgnoreCase(sharedPreferences.getString(Config.unique_wed_code, ""))) {
 
                         progressDialog.setMessage("Getting the invite..");
                         progressDialog.show();

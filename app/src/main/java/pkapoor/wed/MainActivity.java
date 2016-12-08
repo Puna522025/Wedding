@@ -247,6 +247,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                         uniqueCode = brideInitial + groomInitial + ((int) (Math.random() * 999) + 100);
                     }
+                    sharedPreferences.edit().putString(Config.unique_wed_code,uniqueCode).commit();
                     paramsj.put(Config.unique_wed_code, uniqueCode);
                     paramsj.put(Config.name_bride, brideName);
                     paramsj.put(Config.name_groom, groomName);
