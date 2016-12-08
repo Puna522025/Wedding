@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlGallery"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/back_seven"
     android:paddingBottom="50dp">
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -22,12 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
-                android:visibility="gone"
-                tools:visibility="visible"
                 android:layout_marginLeft="@dimen/marginEventTopViewLine"
                 android:layout_marginRight="@dimen/marginEventTopViewLine"
                 android:layout_marginTop="5dp"
-                android:background="@color/colorCardLayout">
+                android:background="@color/colorCardLayout"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -73,9 +73,9 @@
                 android:layout_marginLeft="@dimen/marginEventTopViewLine"
                 android:layout_marginRight="@dimen/marginEventTopViewLine"
                 android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout"
                 android:visibility="gone"
-                tools:visibility="visible"
-                android:background="@color/colorCardLayout">
+                tools:visibility="visible">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -118,9 +118,9 @@
                 android:layout_marginLeft="@dimen/marginEventTopViewLine"
                 android:layout_marginRight="@dimen/marginEventTopViewLine"
                 android:layout_marginTop="5dp"
+                android:background="@color/colorCardLayout"
                 android:visibility="gone"
-                tools:visibility="visible"
-                android:background="@color/colorCardLayout">
+                tools:visibility="visible">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -224,9 +224,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rsvrFaml2"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
                         android:visibility="gone"
-                        tools:visibility="visible"
-                        android:layout_marginTop="5dp">
+                        tools:visibility="visible">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -248,23 +248,25 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/rlContactTwo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rlContactOne"
-                        android:id="@+id/rlContactTwo"
-                        android:visibility="gone"
-                        tools:visibility="visible"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp">
-                    <TextView
-                        android:id="@+id/rsvrFamlContact2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentStart="true"
-                        android:text="8800817842"
-                        android:textColor="@color/colorRed"
-                        android:textSize="@dimen/counterValue" />
+                        android:layout_marginTop="5dp"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/rsvrFamlContact2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"
+                            android:text="8800817842"
+                            android:textColor="@color/colorRed"
+                            android:textSize="@dimen/counterValue" />
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

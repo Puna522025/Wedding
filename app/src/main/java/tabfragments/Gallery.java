@@ -44,7 +44,7 @@ public class Gallery extends Fragment implements View.OnClickListener {
     TextView tvEventrok, tvEventBri, tvEventGGGG, tvEventRSV, tvRsvpText, tvrsvpFaml1, tvRsvpFamlContact1, tvRsvpFaml2, tvRsvpFamlContact2;
     CardView card4;
     SharedPreferences sharedPreferences;
-    RelativeLayout rlContactOne, rlContactTwo, rlRSV;
+    RelativeLayout rlContactOne, rlContactTwo, rlRSV, rlGallery;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -131,6 +131,8 @@ public class Gallery extends Fragment implements View.OnClickListener {
         rlContactTwo = (RelativeLayout) view.findViewById(R.id.rlContactTwo);
         rlRSV = (RelativeLayout) view.findViewById(R.id.rlRSV);
 
+        rlGallery = (RelativeLayout) view.findViewById(R.id.rlGallery);
+
         card4 = (CardView) view.findViewById(R.id.card4);
 
         Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/DeliusSwashCaps-Regular.ttf");
@@ -158,17 +160,10 @@ public class Gallery extends Fragment implements View.OnClickListener {
     private void changeTextColor() {
         String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
         changeColor(colorSelected);
-       /* if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.colorRed))){
-            changeColor(colorSelected);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.PinkKittyToolBar))){
-            changeColor(colorSelected);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.GreenToolBar))){
-            changeColor(colorSelected);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.BlackToolBar))){
-            changeColor(colorSelected);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.BlueToolBar))){
-            changeColor(colorSelected);
-        }*/
+
+        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("0")){
+            rlGallery.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
+        }
     }
 
     private void changeColor(String color) {

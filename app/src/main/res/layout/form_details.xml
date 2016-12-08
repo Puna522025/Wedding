@@ -807,6 +807,84 @@
                             </RelativeLayout>
                         </android.support.v7.widget.CardView>
 
+                        <TextView
+                            android:id="@+id/backImageText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_top_forms"
+                            android:layout_alignStart="@+id/themesText"
+                            android:layout_below="@+id/rlRed"
+                            android:text="Background Image"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/headingEvents"
+                            android:textStyle="bold" />
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlImagePinkPetals"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_alignStart="@+id/themesText"
+                            android:layout_below="@+id/backImageText"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/pinkPetals"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                     tools:visibility="visible"
+                                    android:src="@drawable/back_seven"
+                                    android:visibility="gone" />
+                                <ImageView
+                                    android:id="@+id/tickPinkPetals"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentTop="true"
+                                    tools:visibility="visible"
+                                    android:src="@android:drawable/presence_online"
+                                    android:visibility="gone" />
+
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlImageNoImage"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_below="@+id/backImageText"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/rlImagePinkPetals"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/tickNoImage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentTop="true"
+                                    tools:visibility="visible"
+                                    android:src="@android:drawable/presence_online"
+                                    android:visibility="gone" />
+
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+
+
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
             </RelativeLayout>

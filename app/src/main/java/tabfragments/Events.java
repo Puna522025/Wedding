@@ -26,7 +26,7 @@ import pkapoor.wed.R;
 
 public class Events extends Fragment implements View.OnClickListener {
 
-    RelativeLayout rlSagLocation, rlMarLocation,rlTextRec,rlTextMar;
+    RelativeLayout rlSagLocation, rlMarLocation,rlTextRec,rlTextMar, rlEventBack;
     TextView tvEvent, MarriEvent, dateValueSag, TimeValueSag, eventValueSag, dateValueMar, TimeValueMar, eventValueMar;
     CardView card1, card2;
     SharedPreferences sharedPreferences;
@@ -52,6 +52,7 @@ public class Events extends Fragment implements View.OnClickListener {
         rlMarLocation = (RelativeLayout) view.findViewById(R.id.rlMarLocation);
         rlTextRec = (RelativeLayout) view.findViewById(R.id.rlTextRec);
         rlTextMar = (RelativeLayout) view.findViewById(R.id.rlTextMar);
+        rlEventBack = (RelativeLayout) view.findViewById(R.id.rlEventBack);
 
         card1 = (CardView) view.findViewById(R.id.card1);
         card2 = (CardView) view.findViewById(R.id.card2);
@@ -85,6 +86,9 @@ public class Events extends Fragment implements View.OnClickListener {
     private void changeTextColor() {
         String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
         changeColor(colorSelected);
+        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("0")){
+            rlEventBack.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
+        }
     }
 
     private void changeColor(String color) {

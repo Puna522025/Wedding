@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.rsvp_text, sharedPreferences.getString(Config.rsvp_text, "NAME"));
 
                     paramsj.put(Config.colorSelected, sharedPreferences.getString(Config.colorSelected, Integer.toString(R.color.colorRed)));
-                    paramsj.put(Config.back_image,sharedPreferences.getString(Config.back_image, ""));
+                    paramsj.put(Config.back_image,sharedPreferences.getString(Config.back_image, "0"));
 
                     StringBuilder sb = new StringBuilder();
                     URL url = new URL("http://vnnps.esy.es/insert-db.php");

@@ -39,7 +39,7 @@ import launchDetails.Config;
 
 public class FormDetails extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    ImageView imgDateCalender, imgDateCalenderEventTwo,tickRed,tickBlue,tickBlack,tickGreen,tickPink;
+    ImageView imgDateCalender, imgDateCalenderEventTwo,tickRed,tickBlue,tickBlack,tickGreen,tickPink,tickPinkPetals,tickNoImage;
     int mYear, mMonth, mDay, mHour, mMinute;
     TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite, DateText, DateTextEventTwo;
 
@@ -50,9 +50,12 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     SwitchCompat switchEventTwo, switchEventRSVP;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
-    CardView rlPink,rlRed,rlGreen,rlBlack,rlBlue;
+    CardView rlPink,rlRed,rlGreen,rlBlack,rlBlue,rlImagePinkPetals,rlImageNoImage;
 
     int colorSelected = R.color.colorRed;
+
+    String backgroundSelected = "0";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +76,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         etEventNameText.setVisibility(View.VISIBLE);
         rlEventRSVP.setVisibility(View.VISIBLE);
         tickRed.setVisibility(View.VISIBLE);
-
+        tickPinkPetals.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -189,6 +192,8 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         tickBlack = (ImageView) findViewById(R.id.tickBlack);
         tickGreen = (ImageView) findViewById(R.id.tickGreen);
         tickPink = (ImageView) findViewById(R.id.tickPink);
+        tickPinkPetals = (ImageView) findViewById(R.id.tickPinkPetals);
+        tickNoImage = (ImageView) findViewById(R.id.tickNoImage);
 
         tvmarDateTimeText = (TextView) findViewById(R.id.marDateTimeText);
         tvEventTwoDateTimeText = (TextView) findViewById(R.id.EventTwoDateTimeText);
@@ -228,12 +233,16 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         rlGreen = (CardView)findViewById(R.id.rlGreen);
         rlBlack = (CardView)findViewById(R.id.rlBlack);
         rlBlue = (CardView)findViewById(R.id.rlBlue);
+        rlImagePinkPetals = (CardView)findViewById(R.id.rlImagePinkPetals);
+        rlImageNoImage = (CardView)findViewById(R.id.rlImageNoImage);
 
         rlPink.setOnClickListener(this);
         rlRed.setOnClickListener(this);
         rlGreen.setOnClickListener(this);
         rlBlack.setOnClickListener(this);
         rlBlue.setOnClickListener(this);
+        rlImagePinkPetals.setOnClickListener(this);
+        rlImageNoImage.setOnClickListener(this);
     }
 
     @Override
@@ -296,6 +305,18 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                 tickBlue.setVisibility(View.VISIBLE);
                 tickPink.setVisibility(View.GONE);
                 break;
+
+            case R.id.rlImageNoImage:
+                backgroundSelected = "1";
+                tickNoImage.setVisibility(View.VISIBLE);
+                tickPinkPetals.setVisibility(View.GONE);
+
+                break;
+            case R.id.rlImagePinkPetals:
+                backgroundSelected = "0";
+                tickNoImage.setVisibility(View.GONE);
+                tickPinkPetals.setVisibility(View.VISIBLE);
+                break;
         }
     }
 
@@ -332,6 +353,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.event_two_name, etEventNameText.getText().toString());
         editor.putString(Config.rsvp_text, etInviteMesRSVPValue.getText().toString());
         editor.putString(Config.colorSelected, Integer.toString(colorSelected));
+        editor.putString(Config.back_image, backgroundSelected);
 
         if (switchEventRSVP.isChecked()) {
             editor.putString(Config.rsvp_tobe, "true");

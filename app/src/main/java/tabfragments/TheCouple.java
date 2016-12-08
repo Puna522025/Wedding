@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.ParseException;
@@ -39,6 +40,8 @@ public class TheCouple extends Fragment {
     ImageView imageHea,imageWedding;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
     SharedPreferences sharedPreferences;
+
+    RelativeLayout rlCouple;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,8 @@ public class TheCouple extends Fragment {
         MinText = (TextView) view.findViewById(R.id.MinText);
         SecText = (TextView) view.findViewById(R.id.SecText);
 
+        rlCouple = (RelativeLayout) view.findViewById(R.id.rlCouple);
+
         changeTextColor();
         setAnimation();
 
@@ -100,6 +105,10 @@ public class TheCouple extends Fragment {
     private void changeTextColor() {
         String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
         changeColor(colorSelected);
+
+        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("0")){
+            rlCouple.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
+        }
     }
 
     private void changeColor(String color) {
