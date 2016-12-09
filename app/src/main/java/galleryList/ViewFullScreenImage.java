@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,7 +33,7 @@ public class ViewFullScreenImage extends AppCompatActivity implements View.OnCli
         imageViewClose = (ImageView) findViewById(R.id.imageViewClose);
 
 
-        if (getIntent() != null && getIntent().getExtras() != null) {
+       /* if (getIntent() != null && getIntent().getExtras() != null) {
             position = Integer.parseInt(getIntent().getExtras().get("position").toString());
             type = getIntent().getExtras().get("type").toString();
             currentPostition = position;
@@ -66,7 +65,7 @@ public class ViewFullScreenImage extends AppCompatActivity implements View.OnCli
             images.add(10, R.drawable.ss);
             images.add(11, R.drawable.aa);
             images.add(12, R.drawable.ss);
-        }
+        }*/
 
         imageFullScreen.setImageDrawable(ContextCompat.getDrawable(this, images.get(position)));
         imageViewNext.setOnClickListener(this);

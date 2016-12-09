@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/calendar" />
+        android:src="@drawable/splash_new" />
 
     <RelativeLayout
         android:id="@+id/rlCode"
