@@ -106,10 +106,22 @@ public class EndScreen extends AppCompatActivity {
 
     private void changeBackgroundColor() {
         SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
-        String color = sharedPreferences.getString(Config.colorSelected, Integer.toString(R.color.colorRed));
+        String colorSelected = sharedPreferences.getString(Config.colorSelected, "colorRed");
 
-        int colorSelected = Integer.parseInt(color);
+        if(colorSelected.equalsIgnoreCase("colorRed")){
+            setColor(R.color.colorRed);
+        }else if(colorSelected.equalsIgnoreCase("PinkKittyToolBar")){
+            setColor(R.color.PinkKittyToolBar);
+        }else if(colorSelected.equalsIgnoreCase("GreenToolBar")){
+            setColor(R.color.GreenToolBar);
+        }else if(colorSelected.equalsIgnoreCase("BlackToolBar")){
+            setColor(R.color.BlackToolBar);
+        }else if(colorSelected.equalsIgnoreCase("BlueToolBar")){
+            setColor(R.color.BlueToolBar);
+        }
+    }
 
+    private void setColor(int colorSelected) {
         rlEndBackground.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), colorSelected));
         tvUniqueCode.setTextColor(ContextCompat.getColor(getApplicationContext(), colorSelected));
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

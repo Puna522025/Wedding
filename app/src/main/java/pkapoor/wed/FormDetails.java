@@ -52,7 +52,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     private Toolbar toolbar;
     CardView rlPink,rlRed,rlGreen,rlBlack,rlBlue,rlImagePinkPetals,rlImageNoImage;
 
-    int colorSelected = R.color.colorRed;
+    String colorSelected = "colorRed";
 
     String backgroundSelected = "0";
 
@@ -262,7 +262,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                 checkNull();
                 break;
             case R.id.rlRed:
-                colorSelected = R.color.colorRed;
+                colorSelected = "colorRed";
                 tickRed.setVisibility(View.VISIBLE);
                 tickGreen.setVisibility(View.GONE);
                 tickBlack.setVisibility(View.GONE);
@@ -271,7 +271,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
                 break;
             case R.id.rlPink:
-                colorSelected = R.color.PinkKittyToolBar;
+                colorSelected = "PinkKittyToolBar";
                 tickRed.setVisibility(View.GONE);
                 tickGreen.setVisibility(View.GONE);
                 tickBlack.setVisibility(View.GONE);
@@ -280,7 +280,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
                 break;
             case R.id.rlGreen:
-                colorSelected = R.color.GreenToolBar;
+                colorSelected = "GreenToolBar";
                 tickRed.setVisibility(View.GONE);
                 tickGreen.setVisibility(View.VISIBLE);
                 tickBlack.setVisibility(View.GONE);
@@ -289,7 +289,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
                 break;
             case R.id.rlBlack:
-                colorSelected = R.color.BlackToolBar;
+                colorSelected = "BlackToolBar";
                 tickRed.setVisibility(View.GONE);
                 tickGreen.setVisibility(View.GONE);
                 tickBlack.setVisibility(View.VISIBLE);
@@ -298,7 +298,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
 
                 break;
             case R.id.rlBlue:
-                colorSelected = R.color.BlueToolBar;
+                colorSelected = "BlueToolBar";
                 tickRed.setVisibility(View.GONE);
                 tickGreen.setVisibility(View.GONE);
                 tickBlack.setVisibility(View.GONE);
@@ -352,7 +352,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         editor.putString(Config.rsvp_phone_two, etRSVPMobileTwo.getText().toString());
         editor.putString(Config.event_two_name, etEventNameText.getText().toString());
         editor.putString(Config.rsvp_text, etInviteMesRSVPValue.getText().toString());
-        editor.putString(Config.colorSelected, Integer.toString(colorSelected));
+        editor.putString(Config.colorSelected, colorSelected);
         editor.putString(Config.back_image, backgroundSelected);
 
         if (switchEventRSVP.isChecked()) {

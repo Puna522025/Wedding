@@ -112,16 +112,26 @@ public class TheCouple extends Fragment {
     }
 
     private void changeTextColor() {
-        String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
-        changeColor(colorSelected);
+        String colorSelected = sharedPreferences.getString(Config.colorSelected,"colorRed");
+
+        if(colorSelected.equalsIgnoreCase("colorRed")){
+            changeColor(R.color.colorRed,colorSelected);
+        }else if(colorSelected.equalsIgnoreCase("PinkKittyToolBar")){
+            changeColor(R.color.PinkKittyToolBar,colorSelected);
+        }else if(colorSelected.equalsIgnoreCase("GreenToolBar")){
+            changeColor(R.color.GreenToolBar,colorSelected);
+        }else if(colorSelected.equalsIgnoreCase("BlackToolBar")){
+            changeColor(R.color.BlackToolBar,colorSelected);
+        }else if(colorSelected.equalsIgnoreCase("BlueToolBar")){
+            changeColor(R.color.BlueToolBar,colorSelected);
+        }
 
         if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
             rlCouple.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
         }
     }
 
-    private void changeColor(String color) {
-        int colorSelected = Integer.parseInt(color);
+    private void changeColor(int colorSelected, String color) {
 
         tvGroName.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         tvBriName.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
@@ -135,7 +145,7 @@ public class TheCouple extends Fragment {
         HourText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         MinText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         SecText.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
-        if (color.equalsIgnoreCase(Integer.toString(R.color.BlackToolBar))) {
+        if (color.equalsIgnoreCase("BlackToolBar")) {
             imageWedding.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorRed));
         } else {
             imageWedding.setColorFilter(ContextCompat.getColor(getContext(), colorSelected));

@@ -167,16 +167,25 @@ public class Gallery extends Fragment implements View.OnClickListener {
     }
 
     private void changeTextColor() {
-        String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
-        changeColor(colorSelected);
-
+        String colorSelected = sharedPreferences.getString(Config.colorSelected,"colorRed");
+        if(colorSelected.equalsIgnoreCase("colorRed")){
+            changeColor(R.color.colorRed);
+        }else if(colorSelected.equalsIgnoreCase("PinkKittyToolBar")){
+            changeColor(R.color.PinkKittyToolBar);
+        }else if(colorSelected.equalsIgnoreCase("GreenToolBar")){
+            changeColor(R.color.GreenToolBar);
+        }else if(colorSelected.equalsIgnoreCase("BlackToolBar")){
+            changeColor(R.color.BlackToolBar);
+        }else if(colorSelected.equalsIgnoreCase("BlueToolBar")){
+            changeColor(R.color.BlueToolBar);
+        }
         if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
             rlGallery.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
         }
     }
 
-    private void changeColor(String color) {
-        int colorSelected = Integer.parseInt(color);
+    private void changeColor(int colorSelected) {
+
         tvrsvpFaml1.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         tvRsvpFaml2.setTextColor(ContextCompat.getColor(getContext(), colorSelected));
         tvRsvpFamlContact1.setTextColor(ContextCompat.getColor(getContext(), colorSelected));

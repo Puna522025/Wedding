@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         super.onCreate(savedInstanceState);
 
         sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
-        setThemeColor(sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed)));
+        setThemeColor(sharedPreferences.getString(Config.colorSelected,"colorRed"));
 
         setContentView(R.layout.activity_main);
 
@@ -84,30 +84,30 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void changeToolBarTheme() {
-        String colorSelected = sharedPreferences.getString(Config.colorSelected,Integer.toString(R.color.colorRed));
-        if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.colorRed))){
+        String colorSelected = sharedPreferences.getString(Config.colorSelected,"colorRed");
+        if(colorSelected.equalsIgnoreCase("colorRed")){
             Config.changeTheme(R.color.colorPrimary,R.color.colorPrimaryDark,toolbar,this,getWindow(),tabLayout);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.PinkKittyToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("PinkKittyToolBar")){
             Config.changeTheme(R.color.PinkKittyToolBar,R.color.PinkKittyStatusBar,toolbar,this,getWindow(),tabLayout);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.GreenToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("GreenToolBar")){
             Config.changeTheme(R.color.GreenToolBar,R.color.GreenStatusBar,toolbar,this,getWindow(),tabLayout);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.BlackToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("BlackToolBar")){
             Config.changeTheme(R.color.BlackToolBar,R.color.BlackStatusBar,toolbar,this,getWindow(),tabLayout);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.BlueToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("BlueToolBar")){
             Config.changeTheme(R.color.BlueToolBar,R.color.BlueStatusBar,toolbar,this,getWindow(),tabLayout);
         }
     }
 
     private void setThemeColor(String colorSelected) {
-        if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.colorRed))){
+        if(colorSelected.equalsIgnoreCase("colorRed")){
             getTheme().applyStyle(R.style.MyMaterialTheme,true);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.PinkKittyToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("PinkKittyToolBar")){
             getTheme().applyStyle(R.style.PinkTheme,true);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.GreenToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("GreenToolBar")){
             getTheme().applyStyle(R.style.GreenTheme,true);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.BlackToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("BlackToolBar")){
             getTheme().applyStyle(R.style.BlackTheme,true);
-        }else if(colorSelected.equalsIgnoreCase(Integer.toString(R.color.BlueToolBar))){
+        }else if(colorSelected.equalsIgnoreCase("BlueToolBar")){
             getTheme().applyStyle(R.style.BlueTheme,true);
         }
     }
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     paramsj.put(Config.event_two_name, sharedPreferences.getString(Config.event_two_name, "NAME"));
                     paramsj.put(Config.rsvp_text, sharedPreferences.getString(Config.rsvp_text, "NAME"));
 
-                    paramsj.put(Config.colorSelected, sharedPreferences.getString(Config.colorSelected, Integer.toString(R.color.colorRed)));
+                    paramsj.put(Config.colorSelected, sharedPreferences.getString(Config.colorSelected, "colorRed"));
                     paramsj.put(Config.back_image,sharedPreferences.getString(Config.back_image, "0"));
 
                     StringBuilder sb = new StringBuilder();
