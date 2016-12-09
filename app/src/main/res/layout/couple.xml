@@ -53,7 +53,7 @@
                             android:layout_below="@+id/imageHea"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
-                            android:text="Inites you to their"
+                            android:text="Invites you to their"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/mainCoupSize" />
 
