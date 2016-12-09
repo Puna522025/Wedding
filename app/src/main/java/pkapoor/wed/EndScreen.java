@@ -99,7 +99,7 @@ public class EndScreen extends AppCompatActivity {
         rlShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Config.shareIntent(EndScreen.this);
+                Config.shareIntent(EndScreen.this, tvUniqueCode.getText().toString());
             }
         });
     }

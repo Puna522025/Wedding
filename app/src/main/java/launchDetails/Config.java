@@ -97,15 +97,15 @@ public class Config {
         }
     }
 
-    public static void shareIntent(Context context) {
-        String shareBody ="Here's the wedding invite. Looking forward to see you there..";
+    public static void shareIntent(Context context, String uniqueCode) {
+        String shareBody ="Here's the wedding invite. Looking forward to see you there..Enter\n\n"+" "+ uniqueCode;
 
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Wedding invite");
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Wedding Invite");
         //sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 
-        String link = "http://play.google.com/store/apps/details?id=sample.myapplication";
+        String link = "http://play.google.com/store/apps/details?id=pkapoor.wed";
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody + " " + link);
         PackageManager packageManager = context.getPackageManager();
 
