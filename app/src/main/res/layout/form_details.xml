@@ -72,7 +72,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="@dimen/margin_top_forms"
-                            android:text="Name(Bri)"
+                            android:text="Name(Bride)"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/headingEvents"
                             android:textStyle="bold" />
@@ -90,7 +90,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_top_forms"
                             android:layout_toRightOf="@+id/divider"
-                            android:text="Name(Gr)"
+                            android:text="Name(Groom)"
                             android:textColor="@color/textColor"
                             android:textSize="@dimen/headingEvents"
                             android:textStyle="bold" />

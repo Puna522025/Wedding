@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -98,14 +99,21 @@ public class Config {
     }
 
     public static void shareIntent(Context context, String uniqueCode) {
-        String shareBody ="Here's the wedding invite. Looking forward to see you there..Enter\n\n"+" "+ uniqueCode;
+        String shareBody;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            shareBody ="Here's the wedding invite. Looking forward to see you there..Enter\n\t\t\t\t\t\t\t"+" "+
+                    Html.fromHtml("<b>"+uniqueCode.toUpperCase()+"</b>",Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            shareBody ="Here's the wedding invite. Looking forward to see you there..Enter\n\t\t\t\t\t\t\t"+" "+
+                    Html.fromHtml("<b>"+uniqueCode.toUpperCase()+"</b>");
+        }
 
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Wedding Invite");
         //sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 
-        String link = "http://play.google.com/store/apps/details?id=pkapoor.wed";
+        String link = "\nhttp://play.google.com/store/apps/details?id=pkapoor.wed";
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody + " " + link);
         PackageManager packageManager = context.getPackageManager();
 
