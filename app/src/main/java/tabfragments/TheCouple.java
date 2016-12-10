@@ -2,7 +2,11 @@ package tabfragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -28,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 import analytics.AnalyticsApplication;
 import launchDetails.Config;
+import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
 
 /**
@@ -37,18 +42,16 @@ import pkapoor.wed.R;
 public class TheCouple extends Fragment {
 
     private static final String TAG = "TheCouple";
-    private Tracker mTracker;
-
     CountDownTimer mCountDownTimer;
     long marMilliSec, currentMilli, diff;
     TextView daysValue, HourValue, MinValue, SecValue,
             daysText, tvBriName, tvGroName, tvInviteText, tvTobeHeldOnHeading,
             tvBless, tvUs, tvTextblesss, tvDate, HourText, MinText, SecText;
-    ImageView imageHea,imageWedding;
-    private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
+    ImageView imageHea, imageWedding;
     SharedPreferences sharedPreferences;
-
     RelativeLayout rlCouple;
+    private Tracker mTracker;
+    private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -112,23 +115,30 @@ public class TheCouple extends Fragment {
     }
 
     private void changeTextColor() {
-        String colorSelected = sharedPreferences.getString(Config.colorSelected,"colorRed");
+        String colorSelected = sharedPreferences.getString(Config.colorSelected, "colorRed");
 
-        if(colorSelected.equalsIgnoreCase("colorRed")){
-            changeColor(R.color.colorRed,colorSelected);
-        }else if(colorSelected.equalsIgnoreCase("PinkKittyToolBar")){
-            changeColor(R.color.PinkKittyToolBar,colorSelected);
-        }else if(colorSelected.equalsIgnoreCase("GreenToolBar")){
-            changeColor(R.color.GreenToolBar,colorSelected);
-        }else if(colorSelected.equalsIgnoreCase("BlackToolBar")){
-            changeColor(R.color.BlackToolBar,colorSelected);
-        }else if(colorSelected.equalsIgnoreCase("BlueToolBar")){
-            changeColor(R.color.BlueToolBar,colorSelected);
+        if (colorSelected.equalsIgnoreCase("colorRed")) {
+            changeColor(R.color.colorRed, colorSelected);
+        } else if (colorSelected.equalsIgnoreCase("PinkKittyToolBar")) {
+            changeColor(R.color.PinkKittyToolBar, colorSelected);
+        } else if (colorSelected.equalsIgnoreCase("GreenToolBar")) {
+            changeColor(R.color.GreenToolBar, colorSelected);
+        } else if (colorSelected.equalsIgnoreCase("BlackToolBar")) {
+            changeColor(R.color.BlackToolBar, colorSelected);
+        } else if (colorSelected.equalsIgnoreCase("BlueToolBar")) {
+            changeColor(R.color.BlueToolBar, colorSelected);
+        }
+        String backImage = sharedPreferences.getString(Config.back_image, "0");
+        if (backImage.equalsIgnoreCase("1")) {
+            rlCouple.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.back_seven));
+        } else if (backImage.equalsIgnoreCase("2")) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
+            Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
+            Drawable d = new BitmapDrawable(getResources(), bb);
+            rlCouple.setBackground(d);
         }
 
-        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
-            rlCouple.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
-        }
+        //rlCouple.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.three));
     }
 
     private void changeColor(int colorSelected, String color) {

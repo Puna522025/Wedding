@@ -39,7 +39,7 @@ import launchDetails.Config;
 
 public class FormDetails extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    ImageView imgDateCalender, imgDateCalenderEventTwo,tickRed,tickBlue,tickBlack,tickGreen,tickPink,tickPinkPetals,tickNoImage;
+    ImageView imgDateCalender, imgDateCalenderEventTwo,tickRed,tickBlue,tickBlack,tickGreen,tickcoupleback,tickPink,tickPinkPetals,tickNoImage;
     int mYear, mMonth, mDay, mHour, mMinute;
     TextView tvmarDateTimeText, tvEventTwoDateTimeText, tvEventNameText, tvcontinueToInvite, DateText, DateTextEventTwo;
 
@@ -50,7 +50,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
     SwitchCompat switchEventTwo, switchEventRSVP;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
-    CardView rlPink,rlRed,rlGreen,rlBlack,rlBlue,rlImagePinkPetals,rlImageNoImage;
+    CardView rlPink,rlRed,rlGreen,rlBlack,rlBlue,rlImagePinkPetals,rlImageNoImage,rlCoupleMainBack;
 
     String colorSelected = "colorRed";
 
@@ -194,6 +194,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         tickPink = (ImageView) findViewById(R.id.tickPink);
         tickPinkPetals = (ImageView) findViewById(R.id.tickPinkPetals);
         tickNoImage = (ImageView) findViewById(R.id.tickNoImage);
+        tickcoupleback = (ImageView) findViewById(R.id.tickcoupleback);
 
         tvmarDateTimeText = (TextView) findViewById(R.id.marDateTimeText);
         tvEventTwoDateTimeText = (TextView) findViewById(R.id.EventTwoDateTimeText);
@@ -235,6 +236,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         rlBlue = (CardView)findViewById(R.id.rlBlue);
         rlImagePinkPetals = (CardView)findViewById(R.id.rlImagePinkPetals);
         rlImageNoImage = (CardView)findViewById(R.id.rlImageNoImage);
+        rlCoupleMainBack = (CardView)findViewById(R.id.rlImageCoupleBack);
 
         rlPink.setOnClickListener(this);
         rlRed.setOnClickListener(this);
@@ -243,6 +245,7 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
         rlBlue.setOnClickListener(this);
         rlImagePinkPetals.setOnClickListener(this);
         rlImageNoImage.setOnClickListener(this);
+        rlCoupleMainBack.setOnClickListener(this);
     }
 
     @Override
@@ -305,17 +308,23 @@ public class FormDetails extends AppCompatActivity implements View.OnClickListen
                 tickBlue.setVisibility(View.VISIBLE);
                 tickPink.setVisibility(View.GONE);
                 break;
-
             case R.id.rlImageNoImage:
                 backgroundSelected = "0";
                 tickNoImage.setVisibility(View.VISIBLE);
                 tickPinkPetals.setVisibility(View.GONE);
-
+                tickcoupleback.setVisibility(View.GONE);
                 break;
             case R.id.rlImagePinkPetals:
                 backgroundSelected = "1";
                 tickNoImage.setVisibility(View.GONE);
+                tickcoupleback.setVisibility(View.GONE);
                 tickPinkPetals.setVisibility(View.VISIBLE);
+                break;
+            case R.id.rlImageCoupleBack:
+                backgroundSelected = "2";
+                tickcoupleback.setVisibility(View.VISIBLE);
+                tickNoImage.setVisibility(View.GONE);
+                tickPinkPetals.setVisibility(View.GONE);
                 break;
         }
     }

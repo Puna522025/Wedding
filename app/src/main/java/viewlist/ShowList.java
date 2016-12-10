@@ -4,6 +4,10 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -35,6 +39,7 @@ import analytics.AnalyticsApplication;
 import database.DatabaseHandler;
 import database.WedPojo;
 import launchDetails.Config;
+import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.MainActivity;
 import pkapoor.wed.R;
 
@@ -62,10 +67,11 @@ public class ShowList extends AppCompatActivity {
         database = new DatabaseHandler(this);
 
         rlBack = (RelativeLayout)findViewById(R.id.rlBack);
-       /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.back_splash);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
         Bitmap bb = BlurBuilder.blur(getApplicationContext(), bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
-        rlBack.setBackground(d);*/
+        rlBack.setBackground(d);
+       // rlBack.setBackground(ContextCompat.getDrawable(this,R.drawable.two));
 
         listCreatedWed = (RecyclerView) findViewById(R.id.listCreatedWed);
         listViewedWed = (RecyclerView) findViewById(R.id.listViewedWed);

@@ -854,6 +854,40 @@
                             </RelativeLayout>
                         </android.support.v7.widget.CardView>
 
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/rlImageCoupleBack"
+                            android:layout_width="@dimen/width_color_selector"
+                            android:layout_height="@dimen/height_color_selector"
+                            android:layout_toRightOf="@+id/rlImagePinkPetals"
+                            android:layout_below="@+id/backImageText"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="10dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/coupleback"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/two"
+                                    />
+                                <ImageView
+                                    android:id="@+id/tickcoupleback"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_alignParentTop="true"
+                                    tools:visibility="visible"
+                                    android:src="@android:drawable/presence_online"
+                                    android:visibility="gone" />
+
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
                             android:id="@+id/rlImageNoImage"

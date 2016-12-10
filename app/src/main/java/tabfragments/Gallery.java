@@ -5,7 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +37,7 @@ import java.util.ArrayList;
 import analytics.AnalyticsApplication;
 import galleryList.Adapter;
 import launchDetails.Config;
+import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
 
 /**
@@ -179,9 +184,19 @@ public class Gallery extends Fragment implements View.OnClickListener {
         }else if(colorSelected.equalsIgnoreCase("BlueToolBar")){
             changeColor(R.color.BlueToolBar);
         }
-        if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
+       /* if(sharedPreferences.getString(Config.back_image,"0").equalsIgnoreCase("1")){
             rlGallery.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.back_seven));
+        }*/
+        String backImage = sharedPreferences.getString(Config.back_image, "0");
+        if (backImage.equalsIgnoreCase("1")) {
+            rlGallery.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.back_seven));
+        } else if (backImage.equalsIgnoreCase("2")) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
+            Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
+            Drawable d = new BitmapDrawable(getResources(), bb);
+            rlGallery.setBackground(d);
         }
+        //rlGallery.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.four));
     }
 
     private void changeColor(int colorSelected) {
