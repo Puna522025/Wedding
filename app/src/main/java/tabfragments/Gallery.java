@@ -5,11 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,7 +33,6 @@ import java.util.ArrayList;
 import analytics.AnalyticsApplication;
 import galleryList.Adapter;
 import launchDetails.Config;
-import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
 
 /**
@@ -191,10 +186,10 @@ public class Gallery extends Fragment implements View.OnClickListener {
         if (backImage.equalsIgnoreCase("1")) {
             rlGallery.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.back_seven));
         } else if (backImage.equalsIgnoreCase("2")) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
+           /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
             Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
-            Drawable d = new BitmapDrawable(getResources(), bb);
-            rlGallery.setBackground(d);
+            Drawable d = new BitmapDrawable(getResources(), bb);*/
+            rlGallery.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.two));
         }
         //rlGallery.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.four));
     }

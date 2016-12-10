@@ -2,11 +2,7 @@ package tabfragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
@@ -32,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 
 import analytics.AnalyticsApplication;
 import launchDetails.Config;
-import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.R;
 
 /**
@@ -132,10 +127,10 @@ public class TheCouple extends Fragment {
         if (backImage.equalsIgnoreCase("1")) {
             rlCouple.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.back_seven));
         } else if (backImage.equalsIgnoreCase("2")) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
+           /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
             Bitmap bb = BlurBuilder.blur(getContext(), bitmap);
-            Drawable d = new BitmapDrawable(getResources(), bb);
-            rlCouple.setBackground(d);
+            Drawable d = new BitmapDrawable(getResources(), bb);*/
+            rlCouple.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.two));
         }
 
         //rlCouple.setBackground(ContextCompat.getDrawable(getContext(),R.drawable.three));

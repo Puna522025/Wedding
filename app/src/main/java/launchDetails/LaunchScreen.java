@@ -5,12 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -46,7 +42,6 @@ import java.util.List;
 import analytics.AnalyticsApplication;
 import database.DatabaseHandler;
 import database.WedPojo;
-import pkapoor.wed.BlurBuilder;
 import pkapoor.wed.FormDetails;
 import pkapoor.wed.MainActivity;
 import pkapoor.wed.R;
@@ -93,12 +88,12 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
+       /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.two);
         Bitmap bb = BlurBuilder.blur(getApplicationContext(), bitmap);
         Drawable d = new BitmapDrawable(getResources(), bb);
-       // rlBackground.setBackground(ContextCompat.getDrawable(this,R.drawable.two));
-        rlBackground.setBackground(d);
-
+       //
+       // rlBackground.setBackground(d);*/
+        rlBackground.setBackground(ContextCompat.getDrawable(this,R.drawable.two));
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
 
@@ -129,14 +124,11 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         Typeface type = Typeface.createFromAsset(this.getAssets(), "fonts/Bungasai.ttf");
 
         btnGetList.setTypeface(type);
-       /* Bitmap bitmap1 = BitmapFactory.decodeResource(getResources(), R.drawable.buttonshape);
-        Bitmap bb1 = BlurBuilder.blur(getApplicationContext(), bitmap1);
-        Drawable d1 = new BitmapDrawable(getResources(), bb1);
-        btnGetList.setBackground(d1);*/
 
         btnCreateInvite.setTypeface(type);
         btnGetInvite.setTypeface(type);
         tvOR.setTypeface(type);
+        getWindow().setStatusBarColor((ContextCompat.getColor(this, R.color.BlackStatusBar)));
     }
     @Override
     protected void onResume() {
