@@ -4,7 +4,7 @@
         android:radius="72dp"
         />
     <solid
-        android:color="@android:color/transparent"
+        android:color="@color/colorPrimaryDark"
         />
     <size
         android:width="130dp"
