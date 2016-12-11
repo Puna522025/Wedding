@@ -115,7 +115,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 rlCreateInvite.setAnimation(grow);
 
             }
-        }, 1 * 900); // wait for 5 seconds
+        }, 1 * 600); // wait for 5 seconds
         btnGetInvite.setOnClickListener(this);
         btnCreateInvite.setOnClickListener(this);
         btnGetList.setOnClickListener(this);
