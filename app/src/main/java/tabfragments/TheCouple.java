@@ -215,17 +215,18 @@ public class TheCouple extends Fragment {
     }
 
     private void setTimer() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy, HH:mm");
-        formatter.setLenient(false);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy, hh:mm a");
+        //formatter.setLenient(false);
 
-        String marTime = sharedPreferences.getString(Config.date_marriage, "22.01.2017, 19:00");
-        // String marTime = "22.01.2017, 19:00";
+        String marTime = sharedPreferences.getString(Config.date_marriage, "22.01.2017, 11:00 AM");
+
         Date marDate;
         try {
             marDate = formatter.parse(marTime);
             marMilliSec = marDate.getTime();
 
             currentMilli = System.currentTimeMillis();
+
             diff = marMilliSec - currentMilli;
 
             mCountDownTimer = new CountDownTimer(diff, 1000) {

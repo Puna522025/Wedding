@@ -21,26 +21,27 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <RelativeLayout
-            android:id="@+id/rlWedCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-           >
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="wrap_content"
+                android:id="@+id/textLayoutWedCode"
+                android:theme="@style/TextLabel"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/etWedCode"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:textCursorDrawable="@null" />
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/etWedCode"
+                    android:layout_width="200dp"
+                    android:hint="Enter the Invite Code.."
+                    android:layout_height="wrap_content"
+                    android:textCursorDrawable="@null"
+                    android:textColorHint="@android:color/white"/>
+
+            </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btnGetInvite"
             android:layout_width="110dp"
             android:layout_height="45dp"
-            android:layout_below="@+id/rlWedCode"
+            android:layout_below="@+id/textLayoutWedCode"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:background="@drawable/buttonshape"

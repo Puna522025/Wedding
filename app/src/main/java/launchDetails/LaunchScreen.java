@@ -20,7 +20,6 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +54,6 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "LaunchScreen";
     SharedPreferences sharedPreferences;
-    ImageView imageView;
     DatabaseHandler database;
     TextView tvOR;
     private EditText etWedCode;
@@ -72,9 +70,6 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         rlCode = (RelativeLayout) findViewById(R.id.rlCode);
         rlBackground = (RelativeLayout) findViewById(R.id.rlBackground);
         rlCreateInvite = (RelativeLayout) findViewById(R.id.rlCreateInvite);
-
-        imageView = (ImageView) findViewById(R.id.imageView);
-
         btnGetInvite = (Button) findViewById(R.id.btnGetInvite);
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
         btnGetList = (Button) findViewById(R.id.btnGetList);
@@ -108,14 +103,13 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void run() {
-                imageView.setAnimation(slideUp);
                 rlCode.setVisibility(View.VISIBLE);
                 rlCode.setAnimation(grow);
                 rlCreateInvite.setVisibility(View.VISIBLE);
                 rlCreateInvite.setAnimation(grow);
 
             }
-        }, 1 * 600); // wait for 5 seconds
+        }, 1 * 300); // wait for 5 seconds
         btnGetInvite.setOnClickListener(this);
         btnCreateInvite.setOnClickListener(this);
         btnGetList.setOnClickListener(this);
