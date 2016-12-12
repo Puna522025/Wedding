@@ -120,9 +120,10 @@ public class Config {
         } catch (android.content.ActivityNotFoundException anfe) {
             link ="https://play.google.com/store/apps/details?id=" + appPackageName;
         }*/
-
         //String link = "\nhttp://play.google.com/store/apps/details?id=pkapoor.wed";
+
         String link = "\nhttps://gr83f.app.goo.gl/ZjWo";
+
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody + " " + link);
         PackageManager packageManager = context.getPackageManager();
 
