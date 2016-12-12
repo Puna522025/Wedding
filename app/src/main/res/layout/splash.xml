@@ -10,7 +10,6 @@
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerInParent="true"
         android:src="@drawable/splash_new"
         android:visibility="gone" />
 
@@ -34,9 +33,10 @@
             android:layout_height="45dp"
             android:layout_below="@+id/etWedCode"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/two_b"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/buttonshape"
             android:text="Get Invite"
-            android:textColor="#DEDEDE"
             android:typeface="monospace" />
 
     </RelativeLayout>
@@ -67,9 +67,10 @@
             android:layout_below="@+id/tvOR"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:background="@drawable/two_b"
+            android:background="@drawable/buttonshape"
             android:text="Create Invite"
-            android:textColor="#DEDEDE"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
             android:typeface="monospace" />
     </RelativeLayout>
 
@@ -80,9 +81,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
-        android:background="@drawable/two_b"
+        android:background="@drawable/buttonshape"
         android:text="Recently created and viewed"
-        android:textColor="#DEDEDE" />
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
 
 
 </RelativeLayout>

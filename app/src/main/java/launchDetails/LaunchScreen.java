@@ -76,8 +76,13 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         imageView = (ImageView) findViewById(R.id.imageView);
 
         btnGetInvite = (Button) findViewById(R.id.btnGetInvite);
+        btnGetInvite.setAlpha(0.6f);
+
         btnCreateInvite = (Button) findViewById(R.id.btnCreateInvite);
+        btnCreateInvite.setAlpha(0.6f);
+
         btnGetList = (Button) findViewById(R.id.btnGetList);
+        btnGetList.setAlpha(0.6f);
 
         tvOR = (TextView) findViewById(R.id.tvOR);
         sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);

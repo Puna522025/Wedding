@@ -1,67 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:id="@+id/card1"
-        app:cardElevation="5dp"
-        app:cardCornerRadius="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-
-        android:background="@color/colorCardLayout">
+        android:alpha="0.7"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
 
         <RelativeLayout
             android:layout_width="180dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:alpha="0.7"
+            android:background="#777A81">
 
             <TextView
                 android:id="@+id/tvNames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorRed"
-                android:textSize="@dimen/headingEvents"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/headingEvents"
+                android:textStyle="bold"
                 tools:text="sss &amp; sss" />
+
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/tvNames"
-                android:textColor="@color/colorRed"
+                android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/headingEvents"
                 tools:text="25/11/2017" />
 
             <TextView
                 android:id="@+id/tvId"
-                android:layout_alignStart="@id/tvNames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tvNames"
                 android:layout_below="@+id/tvDate"
-                android:textColor="@color/colorRed"
                 android:layout_marginTop="5dp"
-                android:visibility="gone"
+                android:textColor="@color/colorRed"
                 android:textSize="@dimen/headingEvents"
+                android:visibility="gone"
                 tools:text="25/11/2017" />
 
             <TextView
                 android:id="@+id/tvType"
-                android:layout_alignStart="@id/tvNames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tvNames"
                 android:layout_below="@+id/tvId"
-                android:textColor="@color/colorRed"
                 android:layout_marginTop="5dp"
-                android:visibility="gone"
+                android:textColor="@color/colorRed"
                 android:textSize="@dimen/headingEvents"
+                android:visibility="gone"
                 tools:text="25/11/2017" />
 
 
