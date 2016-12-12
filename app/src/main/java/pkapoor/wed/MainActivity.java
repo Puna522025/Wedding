@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         dialog.dismiss();
                     }
                 })
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(android.R.drawable.ic_menu_delete)
                 .show();
 
     }
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         dialog.dismiss();
                     }
                 })
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(android.R.drawable.ic_menu_save)
                 .show();
     }
 
