@@ -216,8 +216,6 @@ public class TheCouple extends Fragment {
 
     private void setTimer() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy, hh:mm a");
-        //formatter.setLenient(false);
-
         String marTime = sharedPreferences.getString(Config.date_marriage, "22.01.2017, 11:00 AM");
 
         Date marDate;
