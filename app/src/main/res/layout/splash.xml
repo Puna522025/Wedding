@@ -21,22 +21,33 @@
         android:visibility="gone"
         tools:visibility="visible">
 
-        <EditText
-            android:id="@+id/etWedCode"
-            android:layout_width="200dp"
+        <RelativeLayout
+            android:id="@+id/rlWedCode"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textCursorDrawable="@null" />
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+           >
+
+            <EditText
+                android:id="@+id/etWedCode"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@null" />
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btnGetInvite"
             android:layout_width="110dp"
             android:layout_height="45dp"
-            android:layout_below="@+id/etWedCode"
+            android:layout_below="@+id/rlWedCode"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:layout_marginTop="5dp"
             android:background="@drawable/buttonshape"
             android:text="Get Invite"
+            android:alpha="0.6"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             android:typeface="monospace" />
 
     </RelativeLayout>
@@ -69,8 +80,9 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/buttonshape"
             android:text="Create Invite"
-            android:textStyle="bold"
+            android:alpha="0.6"
             android:textColor="@android:color/white"
+            android:textStyle="bold"
             android:typeface="monospace" />
     </RelativeLayout>
 
@@ -78,13 +90,14 @@
         android:id="@+id/btnGetList"
         android:layout_width="250dp"
         android:layout_height="45dp"
+        android:alpha="0.5"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:background="@drawable/buttonshape"
         android:text="Recently created and viewed"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
