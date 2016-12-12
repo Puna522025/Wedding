@@ -113,7 +113,16 @@ public class Config {
         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Wedding Invite");
         //sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 
-        String link = "\nhttp://play.google.com/store/apps/details?id=pkapoor.wed";
+       // String link ="";
+    /*    final String appPackageName = context.getPackageName(); // getPackageName() from Context or Activity object
+        try {
+             link = "https://market://details?id=" + appPackageName;
+        } catch (android.content.ActivityNotFoundException anfe) {
+            link ="https://play.google.com/store/apps/details?id=" + appPackageName;
+        }*/
+
+        //String link = "\nhttp://play.google.com/store/apps/details?id=pkapoor.wed";
+        String link = "\nhttps://gr83f.app.goo.gl/ZjWo";
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody + " " + link);
         PackageManager packageManager = context.getPackageManager();
 
