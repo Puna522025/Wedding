@@ -206,8 +206,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     private void saveDatatoDB() {
         new AlertDialog.Builder(MainActivity.this)
-                .setTitle("Create Invite")
-                .setMessage("You will not be able to edit this invite if you save it. Do you want to create this invite?")
+                .setTitle("Create Invite ?")
+                .setMessage("You will not be able to edit this invite if you create it.")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         insertToOnlineDatabase();
