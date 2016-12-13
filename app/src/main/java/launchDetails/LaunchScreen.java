@@ -152,7 +152,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                                     Intent intent = result.getInvitationIntent();
                                     String deepLink = AppInviteReferral.getDeepLink(intent);
                                     String[] splitText = deepLink.split("utm_medium=");
-                                    if(splitText.length>0) {
+                                    if(splitText.length>1) {
                                         String inviteCode = splitText[1];
                                         etWedCode.setText(inviteCode);
                                     }
