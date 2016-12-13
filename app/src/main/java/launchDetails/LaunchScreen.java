@@ -1,5 +1,7 @@
 package launchDetails;
 
+import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -17,11 +20,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -117,7 +124,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 rlCreateInvite.setAnimation(grow);
 
             }
-        }, 1 * 300); // wait for 5 seconds
+        }, 1 * 200); // wait for 5 seconds
         btnGetInvite.setOnClickListener(this);
         btnCreateInvite.setOnClickListener(this);
         btnGetList.setOnClickListener(this);
@@ -151,21 +158,107 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                                     // Extract deep link from Intent
                                     Intent intent = result.getInvitationIntent();
                                     String deepLink = AppInviteReferral.getDeepLink(intent);
-                                    String[] splitText = deepLink.split("utm_medium=");
-                                    if(splitText.length>1) {
-                                        String inviteCode = splitText[1];
-                                        etWedCode.setText(inviteCode);
+                                    if(!TextUtils.isEmpty(deepLink)) {
+                                        String[] splitText = deepLink.split("utm_medium=");
+                                        if (splitText.length > 1) {
+                                            String inviteCode = splitText[1];
+                                            etWedCode.setText(inviteCode);
+                                            createDialog(inviteCode);
+                                        }
                                     }
                                     } else {
                                     Log.d(TAG, "getInvitation: no deep link found.");
                                 }
                             }
                         });
-/*      Intent intent = getIntent();
-        String action = intent.getAction();
-        Uri data = intent.getData();
-        Toast.makeText(LaunchScreen.this, action+"-- yahooooo--"+data, Toast.LENGTH_LONG).show();*/
+
     }
+
+    private void createDialog(final String inviteCode) {
+       /* String[] splitText = deepLink.split("&utm_source=");
+        String names = "";
+        if(splitText.length > 1) {
+            String[] splitLevelTwo = splitText[1].split("&ut");
+            if(splitLevelTwo.length > 1){
+                names = splitLevelTwo[0];
+            }
+        }*/
+        final Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.launch_dialog_two);
+
+        final Button btnGetInviteLaunch = (Button) dialog.findViewById(R.id.btnGetInvite);
+        final TextView tvUniqueCode = (TextView) dialog.findViewById(R.id.tvUniqueCode);
+        ImageView imageViewClose = (ImageView) dialog.findViewById(R.id.imageViewClose);
+
+        TextView tvInvited = (TextView) dialog.findViewById(R.id.tvInvited);
+        Typeface type = Typeface.createFromAsset(this.getAssets(), "fonts/Bungasai.ttf");
+
+        tickmarkZoomIn = AnimationUtils.loadAnimation(this,
+                R.anim.zoom_in_without_bounce);
+        tickmarkzoomOutWithBounce = AnimationUtils.loadAnimation(this,
+                R.anim.zoom_out_with_bounce);
+
+        tvUniqueCode.setAnimation(tickmarkZoomIn);
+
+        tickmarkZoomIn.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                //On end of zoom,adding other animation.
+                tvUniqueCode.setAnimation(tickmarkzoomOutWithBounce);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        tvInvited.setTypeface(type);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogDate;
+
+        final ProgressBar progressBar = (ProgressBar) dialog.findViewById(R.id.progressBar);
+
+        try {
+            if (null != ((GradientDrawable) progressBar.getProgressDrawable())) {
+                ((GradientDrawable) progressBar.getProgressDrawable()).
+                        setColor(ContextCompat.getColor(getApplicationContext(), R.color.BlackToolBar));
+            }
+        } catch (Exception e) {
+            Log.e("LaunchScreen", "Error while changing color" + e);
+        }
+
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 600);
+        animation.setDuration(2200); //in milliseconds
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
+        tvUniqueCode.setText(inviteCode);
+        dialog.show();
+        imageViewClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnGetInviteLaunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!TextUtils.isEmpty(inviteCode)) {
+                    getInviteMethod();
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(LaunchScreen.this, "No invite found..", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -178,31 +271,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.btnGetInvite:
                 if (!TextUtils.isEmpty(etWedCode.getText().toString())) {
-                    SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
-                    String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId, "");
-                    // No need to hit the service if ID was already fetched the last time.
-                    if (!TextUtils.isEmpty(latestViewedId) &&
-                            latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())&&
-                            latestViewedId.equalsIgnoreCase(sharedPreferences.getString(Config.unique_wed_code, ""))) {
-
-                        progressDialog.setMessage("Getting the invite..");
-                        progressDialog.show();
-                        saveInDBviewOnly();
-                        callMainActivity(latestViewedId);
-                    } else if (Config.isOnline(this)) {
-                        getDBweddingDetails();
-                    } else {
-                        new AlertDialog.Builder(LaunchScreen.this)
-                                .setTitle("OOPS!!")
-                                .setMessage("No Internet ..Please try again..")
-                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                })
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
-                    }
+                    getInviteMethod();
                 } else {
                     Toast.makeText(this, "Please enter the wedding invite code", Toast.LENGTH_LONG).show();
                 }
@@ -220,6 +289,34 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this, ShowList.class);
                 startActivity(intent);
                 break;
+        }
+    }
+
+    private void getInviteMethod() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.MyPREFERENCES, MODE_PRIVATE);
+        String latestViewedId = sharedPreferences.getString(Config.setLatestViewedId, "");
+        // No need to hit the service if ID was already fetched the last time.
+        if (!TextUtils.isEmpty(latestViewedId) &&
+                latestViewedId.equalsIgnoreCase(etWedCode.getText().toString())&&
+                latestViewedId.equalsIgnoreCase(sharedPreferences.getString(Config.unique_wed_code, ""))) {
+
+            progressDialog.setMessage("Getting the invite..");
+            progressDialog.show();
+            saveInDBviewOnly();
+            callMainActivity(latestViewedId);
+        } else if (Config.isOnline(this)) {
+            getDBweddingDetails();
+        } else {
+            new AlertDialog.Builder(LaunchScreen.this)
+                    .setTitle("OOPS!!")
+                    .setMessage("No Internet ..Please try again..")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
     }
 

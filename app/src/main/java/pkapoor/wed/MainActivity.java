@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private String uniqueCode = "";
+ //   private String brideGroom = "";
     private SharedPreferences sharedPreferences;
     private ProgressDialog progressDialog;
     DatabaseHandler database;
@@ -164,13 +165,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             return true;
         }
         if (id == R.id.action_share) {
-            Config.shareIntent(MainActivity.this, sharedPreferences.getString(Config.unique_wed_code,""));
-           /* Intent intent = new AppInviteInvitation.IntentBuilder("hello")
-                    .setMessage("hello message")
-                    .setDeepLink(Uri.parse("http://play.google.com/store/apps/details?id=sample.myapplication"))
-                    .setCallToActionText("ct253")
-                    .build();
-            startActivityForResult(intent, 1);*/
+            //String brideGroom = sharedPreferences.getString(Config.name_bride,"")+"%20with%20"+sharedPreferences.getString(Config.name_groom,"");
+            Config.shareIntent(MainActivity.this,sharedPreferences.getString(Config.unique_wed_code,""));
             return true;
         }
         if (id == R.id.action_delete) {
@@ -241,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                     String brideName = sharedPreferences.getString(Config.name_bride, "");
                     String groomName = sharedPreferences.getString(Config.name_groom, "");
+                  //  brideGroom = brideName+"%20with%20"+groomName;
                     if (!TextUtils.isEmpty(brideName) && !TextUtils.isEmpty(groomName)) {
                         String brideInitial = brideName.substring(0, 1);
                         String groomInitial = groomName.substring(0, 1);
@@ -318,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     savingInDB();
                     Intent intent = new Intent(MainActivity.this, EndScreen.class);
                     intent.putExtra("uniqueCode", uniqueCode);
+                  //intent.putExtra("brideGroom", brideGroom);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

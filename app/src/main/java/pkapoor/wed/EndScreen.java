@@ -31,6 +31,7 @@ public class EndScreen extends AppCompatActivity {
     ProgressBar progressBar;
     TextView tvUniqueCode, tvCongrats, tvYourCodeText, tvShare, tvContinue;
     RelativeLayout rlShare, rlEndBackground;
+    //String brideGroom = "";
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
 
     @Override
@@ -58,7 +59,9 @@ public class EndScreen extends AppCompatActivity {
 
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().get("uniqueCode") != null) {
             tvUniqueCode.setText(getIntent().getExtras().get("uniqueCode").toString());
-        }
+        }/* if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().get("brideGroom") != null) {
+            brideGroom = getIntent().getExtras().get("brideGroom").toString();
+        }*/
         ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 600);
         animation.setDuration(2200); //in milliseconds
         animation.setInterpolator(new DecelerateInterpolator());
