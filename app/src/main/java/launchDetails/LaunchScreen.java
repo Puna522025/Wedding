@@ -175,14 +175,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
     }
 
     private void createDialog(final String inviteCode) {
-       /* String[] splitText = deepLink.split("&utm_source=");
-        String names = "";
-        if(splitText.length > 1) {
-            String[] splitLevelTwo = splitText[1].split("&ut");
-            if(splitLevelTwo.length > 1){
-                names = splitLevelTwo[0];
-            }
-        }*/
+
         final Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
