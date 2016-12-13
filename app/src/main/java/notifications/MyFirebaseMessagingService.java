@@ -64,7 +64,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.app_icon_two)
+                .setSmallIcon(R.drawable.app_icon_three)
                 .setContentTitle("Wedding Invites")
                 .setColor(ContextCompat.getColor(this, R.color.colorRed))
                 .setContentText(messageBody)
