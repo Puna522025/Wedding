@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -99,14 +98,9 @@ public class Config {
     }
 
     public static void shareIntent(Context context, String uniqueCode) {
-        String shareBody;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            shareBody ="Here's the wedding invite. Looking forward to see you there..Enter\n\t\t\t\t\t\t\t"+" "+
-                    Html.fromHtml("<b>"+uniqueCode.toUpperCase()+"</b>",Html.FROM_HTML_MODE_LEGACY);
-        } else {
-            shareBody ="Here's the wedding invite. Looking forward to see you there..Enter\n\t\t\t\t\t\t\t"+" "+
-                    Html.fromHtml("<b>"+uniqueCode.toUpperCase()+"</b>");
-        }
+
+        String shareBody ="Here's the wedding invite. Looking forward to see you there..Enter "+" "+
+                    uniqueCode.toUpperCase();
 
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
@@ -122,9 +116,14 @@ public class Config {
         }*/
         //String link = "\nhttp://play.google.com/store/apps/details?id=pkapoor.wed";
 
-        String link = "\nhttps://gr83f.app.goo.gl/ZjWo";
+        //String link = "\nhttps://gr83f.app.goo.gl/ZjWo";
+       // String link = "\nhttps://gr83f.app.goo.gl/?link=";
 
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody + " " + link);
+      //  String str = "http://play.google.com/store/apps/details?id=pkapoor.wed&amv=10543";
+        String finalStr="\n https://gr83f.app.goo.gl/?link=http://play.google.com&apn=pkapoor.wed&afl=" +
+                "http://play.google.com/store/apps/details?id%3Dpkapoor.wed&utm_medium="+uniqueCode;
+
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody + " " + finalStr);
         PackageManager packageManager = context.getPackageManager();
 
         if (sharingIntent.resolveActivity(packageManager) != null) {

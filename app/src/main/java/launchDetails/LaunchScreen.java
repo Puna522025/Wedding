@@ -9,11 +9,13 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -31,6 +33,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.android.gms.appinvite.AppInvite;
+import com.google.android.gms.appinvite.AppInviteInvitationResult;
+import com.google.android.gms.appinvite.AppInviteReferral;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +58,7 @@ import viewlist.ShowList;
  * Created by pkapo8 on 11/23/2016.
  */
 
-public class LaunchScreen extends AppCompatActivity implements View.OnClickListener {
+public class LaunchScreen extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private static final String TAG = "LaunchScreen";
     SharedPreferences sharedPreferences;
@@ -123,6 +131,40 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         btnGetInvite.setTypeface(type);
         tvOR.setTypeface(type);
         getWindow().setStatusBarColor((ContextCompat.getColor(this, R.color.BlackStatusBar)));
+
+
+        // Build GoogleApiClient with AppInvite API for receiving deep links
+        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(AppInvite.API)
+                .build();
+
+        // Check if this app was launched from a deep link. Setting autoLaunchDeepLink to true
+        // would automatically launch the deep link if one is found.
+        boolean autoLaunchDeepLink = true;
+        AppInvite.AppInviteApi.getInvitation(mGoogleApiClient, this, autoLaunchDeepLink)
+                .setResultCallback(
+                        new ResultCallback<AppInviteInvitationResult>() {
+                            @Override
+                            public void onResult(@NonNull AppInviteInvitationResult result) {
+                                if (result.getStatus().isSuccess()) {
+                                    // Extract deep link from Intent
+                                    Intent intent = result.getInvitationIntent();
+                                    String deepLink = AppInviteReferral.getDeepLink(intent);
+                                    String[] splitText = deepLink.split("utm_medium=");
+                                    if(splitText.length>0) {
+                                        String inviteCode = splitText[1];
+                                        etWedCode.setText(inviteCode);
+                                    }
+                                    } else {
+                                    Log.d(TAG, "getInvitation: no deep link found.");
+                                }
+                            }
+                        });
+/*      Intent intent = getIntent();
+        String action = intent.getAction();
+        Uri data = intent.getData();
+        Toast.makeText(LaunchScreen.this, action+"-- yahooooo--"+data, Toast.LENGTH_LONG).show();*/
     }
     @Override
     protected void onResume() {
@@ -353,5 +395,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             }
         }
         return false;
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
