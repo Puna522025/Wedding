@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -107,9 +108,10 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
 
-        etWedCode.getBackground().mutate().setColorFilter(ContextCompat.getColor(this, R.color.colorLightRed), PorterDuff.Mode.SRC_ATOP);
-        etWedCode.setTextColor(ContextCompat.getColor(this, R.color.colorLightRed));
-        final Animation slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
+        etWedCode.getBackground().mutate().setColorFilter(ContextCompat.getColor(this, android.R.color.white), PorterDuff.Mode.SRC_ATOP);
+        etWedCode.setTextColor(ContextCompat.getColor(this, android.R.color.white));
+        etWedCode.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
+        //final Animation slideUp = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_up);
         final Animation grow = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.grow_anim);
 
         new Handler().postDelayed(new Runnable() {
