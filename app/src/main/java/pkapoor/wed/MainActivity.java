@@ -240,8 +240,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     String groomName = sharedPreferences.getString(Config.name_groom, "");
                   //  brideGroom = brideName+"%20with%20"+groomName;
                     if (!TextUtils.isEmpty(brideName) && !TextUtils.isEmpty(groomName)) {
-                        String brideInitial = brideName.substring(0, 1);
-                        String groomInitial = groomName.substring(0, 1);
+                        String brideInitial = brideName.substring(0, 1).toUpperCase();
+                        String groomInitial = groomName.substring(0, 1).toUpperCase();
 
                         uniqueCode = brideInitial + groomInitial + ((int) (Math.random() * 999) + 100);
                     }
