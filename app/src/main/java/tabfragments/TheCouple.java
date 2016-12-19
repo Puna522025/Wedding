@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class TheCouple extends Fragment {
     ImageView imageHea, imageWedding;
     SharedPreferences sharedPreferences;
     RelativeLayout rlCouple;
+    CardView card1;
     private Tracker mTracker;
     private Animation tickmarkZoomIn, tickmarkzoomOutWithBounce;
 
@@ -83,7 +85,7 @@ public class TheCouple extends Fragment {
         HourText = (TextView) view.findViewById(R.id.HourText);
         MinText = (TextView) view.findViewById(R.id.MinText);
         SecText = (TextView) view.findViewById(R.id.SecText);
-
+        card1 = (CardView) view.findViewById(R.id.card1);
         rlCouple = (RelativeLayout) view.findViewById(R.id.rlCouple);
 
         changeTextColor();
@@ -124,6 +126,8 @@ public class TheCouple extends Fragment {
             changeColor(R.color.BlueToolBar, colorSelected);
         }
         String backImage = sharedPreferences.getString(Config.back_image, "0");
+       // card1.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.aa));
+
         if (backImage.equalsIgnoreCase("1")) {
             rlCouple.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.back_seven));
         } else if (backImage.equalsIgnoreCase("2")) {

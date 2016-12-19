@@ -350,7 +350,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(LaunchScreen.this, "error", Toast.LENGTH_LONG).show();
+                Toast.makeText(LaunchScreen.this, "Oops ..Please try after sometime..", Toast.LENGTH_SHORT).show();
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -458,7 +458,7 @@ public class LaunchScreen extends AppCompatActivity implements View.OnClickListe
 
         } catch (JSONException e) {
             progressDialog.dismiss();
-            e.printStackTrace();
+            Toast.makeText(LaunchScreen.this, "Oops ..Please try after sometime..", Toast.LENGTH_SHORT).show();
         }
     }
 

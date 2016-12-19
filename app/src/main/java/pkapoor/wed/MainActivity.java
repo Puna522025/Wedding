@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -300,9 +301,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         }
                     } else {
                         progressDialog.dismiss();
+                        Toast.makeText(MainActivity.this, "Oops ..Please try after sometime..", Toast.LENGTH_SHORT).show();
                     }
                 } catch (IOException e) {
                     progressDialog.dismiss();
+                    Toast.makeText(MainActivity.this, "Oops ..Please try after sometime..", Toast.LENGTH_SHORT).show();
                 }
                 return "success";
             }
